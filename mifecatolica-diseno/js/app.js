@@ -85,7 +85,7 @@
         return new Promise(ok => {
           if (!voz) return ok(false);
           resolver = ok; voz.onended = () => ok(true); voz.onerror = () => ok(false);
-          voz.src = `audio/voz/${id}.ogg`; voz.playbackRate = Math.max(0.7, Math.min(1.3, S.velocidad)); voz.preservesPitch = true;
+          voz.src = `audio/voz/${id}.ogg`; voz.playbackRate = 1;
           tocar(voz, () => ok(false));
         });
       },
@@ -100,7 +100,7 @@
   async function leer(texto) {
     if (!N.Voz.disponible()) { aviso('La lectura en voz alta no está disponible en este equipo.'); return; }
     await detenerVoz(); hablando = true; const ses = ++sesionVoz; marcarBotonVoz(true);
-    try { await N.Voz.hablar(texto, S.velocidad); } catch (e) { aviso('No se pudo usar la voz. Revisá el motor de voz de Android en Ajustes.'); }
+    try { await N.Voz.hablar(texto, S.velocidad); } catch (e) { aviso('El teléfono no tiene una voz en español lista. Mirá Ajustes › Voz y audio.'); if (actual().p === 'ajustes') setTimeout(() => ir('voces'), 1800); }
     if (ses === sesionVoz) { hablando = false; marcarBotonVoz(false); }
   }
   async function detenerVoz() { sesionVoz++; hablando = false; rezoAuto = false; Sonido.detenerClip(); await N.Voz.detener(); marcarBotonVoz(false); actualizarPlay(); }
@@ -189,14 +189,14 @@
   }
 
   /* ---------- Dibujo del rosario (SVG) ---------- */
-  const CX = 200, CY = 250, RX = 166, RY = 218;
+  const CX = 200, CY = 258, RX = 170, RY = 226;
   const ORDEN = ['cruz', 'p0', 'p1', 'p2', 'p3', 'medalla'];
   for (let m = 1; m <= 5; m++) { ORDEN.push('L' + m); for (let j = 1; j <= 10; j++) ORDEN.push(`S${m}-${j}`); }
   const POS = (() => {
-    const pos = {}, lazo = ORDEN.slice(6), a0 = 102, a1 = 438, paso = (a1 - a0) / (lazo.length - 1);
-    lazo.forEach((id, i) => { const a = (a0 + i * paso) * Math.PI / 180; pos[id] = { x: CX + RX * Math.cos(a), y: CY + RY * Math.sin(a), r: id[0] === 'L' ? 11.5 : 7.6 }; });
-    pos.medalla = { x: CX, y: CY + RY + 4, r: 12 }; pos.p0 = { x: CX, y: 512, r: 11.5 };
-    pos.p1 = { x: CX, y: 538, r: 7.6 }; pos.p2 = { x: CX, y: 558, r: 7.6 }; pos.p3 = { x: CX, y: 578, r: 7.6 }; pos.cruz = { x: CX, y: 618, r: 0 };
+    const pos = {}, lazo = ORDEN.slice(6), a0 = 101, a1 = 439, paso = (a1 - a0) / (lazo.length - 1);
+    lazo.forEach((id, i) => { const a = (a0 + i * paso) * Math.PI / 180; pos[id] = { x: CX + RX * Math.cos(a), y: CY + RY * Math.sin(a), r: id[0] === 'L' ? 11 : 7.4 }; });
+    pos.medalla = { x: CX, y: CY + RY + 10, r: 12 }; pos.p0 = { x: CX, y: 532, r: 11 };
+    pos.p1 = { x: CX, y: 556, r: 7.4 }; pos.p2 = { x: CX, y: 575, r: 7.4 }; pos.p3 = { x: CX, y: 594, r: 7.4 }; pos.cruz = { x: CX, y: 634, r: 0 };
     return pos;
   })();
   function svgRosario(paso, imagen) {
@@ -206,30 +206,41 @@
       if (id === paso.c) return paso.hecho ? 'hecha-actual' : 'actual';
       return ORDEN.indexOf(id) < ordenActual ? 'hecha' : 'pend';
     };
-    const lazoPath = ORDEN.slice(6).map((id, i) => `${i ? 'L' : 'M'}${POS[id].x.toFixed(1)} ${POS[id].y.toFixed(1)}`).join(' ');
+    const lazoPath = ORDEN.slice(6).map((id, i) => `${i ? 'L' : 'M'}${POS[id].x.toFixed(1)} ${POS[id].y.toFixed(1)}`).join(' ') + ` L${POS.medalla.x} ${POS.medalla.y} Z`;
+    let halo = '';
     const cuentas = ORDEN.filter(id => id !== 'cruz').map(id => {
-      const p = POS[id], e = estado(id), act = e === 'actual' || e === 'hecha-actual';
+      const p = POS[id], e = estado(id), act = e === 'actual' || e === 'hecha-actual', x = p.x.toFixed(1), y = p.y.toFixed(1);
+      if (act) halo = `<circle class="halo" cx="${x}" cy="${y}" r="${p.r + 16}" fill="url(#gHalo)"/><circle class="onda" cx="${x}" cy="${y}" r="${p.r + 4}" fill="none" stroke="#fff3c4" stroke-width="1.5"/>`;
       const fill = act ? 'url(#gAct)' : e.startsWith('hecha') ? 'url(#gOro)' : 'url(#gPerla)';
-      if (id === 'medalla') return `<g class="${act ? 'cuenta-actual' : ''}"><path d="M${p.x} ${p.y - 13} L${p.x + 11} ${p.y} L${p.x} ${p.y + 13} L${p.x - 11} ${p.y} Z" fill="${fill}" stroke="#8a6a24" stroke-width="1.2"/><text x="${p.x}" y="${p.y + 4}" text-anchor="middle" font-size="10" fill="#4a3608">M</text></g>`;
-      return `<circle class="cuenta ${act ? 'cuenta-actual' : ''}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${act ? p.r + 3 : p.r}" fill="${fill}" stroke="${act ? '#fff6d6' : '#8a6a24'}" stroke-width="${act ? 2 : 1}"/>`;
+      if (id === 'medalla') return `<g class="${act ? 'cuenta-actual' : ''}" filter="url(#sombra)"><path d="M${p.x} ${p.y - 15} C${p.x + 13} ${p.y - 12} ${p.x + 13} ${p.y + 12} ${p.x} ${p.y + 15} C${p.x - 13} ${p.y + 12} ${p.x - 13} ${p.y - 12} ${p.x} ${p.y - 15}Z" fill="${act ? 'url(#gAct)' : 'url(#gOro)'}" stroke="#7a5a18" stroke-width="1"/><path d="M${p.x} ${p.y - 7}V${p.y + 7}M${p.x - 5} ${p.y - 2}H${p.x + 5}" stroke="#5a410c" stroke-width="1.6" stroke-linecap="round"/></g>`;
+      const r = act ? p.r + 2.5 : p.r;
+      return `<g class="cuenta ${act ? 'cuenta-actual' : ''}" filter="url(#sombra)"><circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${act ? '#fffbe9' : e.startsWith('hecha') ? '#8a6a24' : 'rgba(255,255,255,.55)'}" stroke-width="${act ? 1.6 : .8}"/><circle cx="${(p.x - r * .32).toFixed(1)}" cy="${(p.y - r * .36).toFixed(1)}" r="${(r * .32).toFixed(1)}" fill="#fff" opacity="${e === 'pend' ? .75 : .55}"/></g>`;
     }).join('');
     const c = POS.cruz, crAct = paso.c === 'cruz';
-    const cruz = `<g class="${crAct ? 'cuenta-actual' : ''}" fill="${crAct ? 'url(#gAct)' : 'url(#gOro)'}" stroke="#6b4f14" stroke-width="1.2">
-      <rect x="${c.x - 4}" y="${c.y - 26}" width="8" height="56" rx="2"/><rect x="${c.x - 17}" y="${c.y - 12}" width="34" height="8" rx="2"/></g>`;
-    const img = imagen ? `<image href="${imagen}" x="${CX - RX + 12}" y="${CY - RY + 10}" width="${(RX - 12) * 2}" height="${(RY - 10) * 2}" preserveAspectRatio="xMidYMid slice" mask="url(#mOval)"/>` : '';
-    return `<svg viewBox="0 0 400 652" role="img" aria-label="${h(paso.t)}. Tocá la imagen para avanzar." data-a="rezo:sig">
+    const cruz = `<g class="${crAct ? 'cuenta-actual' : ''}" filter="url(#sombra)">
+      ${crAct ? `<circle class="halo" cx="${c.x}" cy="${c.y - 4}" r="34" fill="url(#gHalo)"/>` : ''}
+      <path d="M${c.x - 4} ${c.y - 30}h8v14h14v8h-14v36h-8v-36h-14v-8h14z" fill="${crAct ? 'url(#gAct)' : 'url(#gCruz)'}" stroke="#6b4f14" stroke-width="1" stroke-linejoin="round"/>
+      <circle cx="${c.x}" cy="${c.y - 12}" r="2.4" fill="#fff6d6" opacity=".9"/></g>`;
+    const img = imagen ? `<g class="kb"><image href="${imagen}" x="-6" y="-8" width="412" height="590" preserveAspectRatio="xMidYMid slice" mask="url(#mOval)"/></g>
+      <ellipse cx="${CX}" cy="282" rx="204" ry="292" fill="url(#gLuz)" mask="url(#mOval)" style="mix-blend-mode:screen"/>` : '';
+    return `<svg viewBox="0 0 400 668" role="img" aria-label="${h(paso.t)}. Tocá la imagen para avanzar." data-a="rezo:sig">
       <defs>
-        <radialGradient id="gOro" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff4cf"/><stop offset=".45" stop-color="#e9c46a"/><stop offset="1" stop-color="#8a6a24"/></radialGradient>
-        <radialGradient id="gPerla" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ffffff" stop-opacity=".85"/><stop offset=".6" stop-color="#cfd6e6" stop-opacity=".45"/><stop offset="1" stop-color="#6d7894" stop-opacity=".55"/></radialGradient>
-        <radialGradient id="gAct" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#fff0b8"/><stop offset="1" stop-color="#f0c040"/></radialGradient>
-        <radialGradient id="gOval" cx="50%" cy="50%" r="50%"><stop offset=".62" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-        <mask id="mOval"><ellipse cx="${CX}" cy="${CY}" rx="${RX - 8}" ry="${RY - 6}" fill="url(#gOval)"/></mask>
-        <filter id="brillo" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <radialGradient id="gOro" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff6d8"/><stop offset=".45" stop-color="#e9c46a"/><stop offset="1" stop-color="#7d5c1c"/></radialGradient>
+        <radialGradient id="gPerla" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset=".55" stop-color="#dfe3ee" stop-opacity=".7"/><stop offset="1" stop-color="#7f8aa6" stop-opacity=".75"/></radialGradient>
+        <radialGradient id="gAct" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#fff2c2"/><stop offset="1" stop-color="#f0bf3c"/></radialGradient>
+        <radialGradient id="gHalo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff6cf" stop-opacity=".95"/><stop offset=".35" stop-color="#f6d77d" stop-opacity=".55"/><stop offset="1" stop-color="#f6d77d" stop-opacity="0"/></radialGradient>
+        <linearGradient id="gCruz" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0bd"/><stop offset=".5" stop-color="#d9ac48"/><stop offset="1" stop-color="#8a6420"/></linearGradient>
+        <radialGradient id="gOval" cx="50%" cy="50%" r="50%"><stop offset=".6" stop-color="#fff"/><stop offset=".86" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="gLuz" cx="50%" cy="0%" r="70%"><stop offset="0" stop-color="#fff2c8" stop-opacity=".55"/><stop offset=".5" stop-color="#fff2c8" stop-opacity=".08"/><stop offset="1" stop-color="#fff2c8" stop-opacity="0"/></radialGradient>
+        <mask id="mOval"><ellipse cx="${CX}" cy="282" rx="204" ry="292" fill="url(#gOval)"/></mask>
+        <filter id="sombra" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.6" flood-color="#000" flood-opacity=".55"/></filter>
+        <filter id="brillo" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
       ${img}
-      <path d="${lazoPath}" fill="none" stroke="#c9a54e" stroke-opacity=".55" stroke-width="1.4"/>
-      <path d="M${CX} ${CY + RY + 16} V${c.y - 26}" stroke="#c9a54e" stroke-opacity=".55" stroke-width="1.4"/>
-      ${cuentas}${cruz}
+      <path d="${lazoPath}" fill="none" stroke="#1a1206" stroke-opacity=".45" stroke-width="3"/>
+      <path d="${lazoPath}" fill="none" stroke="#e8c66e" stroke-opacity=".85" stroke-width="1.3"/>
+      <path d="M${CX} ${POS.medalla.y + 14} V${c.y - 30}" stroke="#e8c66e" stroke-opacity=".85" stroke-width="1.3"/>
+      ${halo}${cuentas}${cruz}
     </svg>`;
   }
 
@@ -247,15 +258,24 @@
     detenerVoz(); Sonido.musica(false); N.Pantalla.mantenerEncendida(false); document.body.classList.remove('modo-rezo');
     if (actual().p === 'rezo') pila.pop(); if (!pila.length) pila = [{ p: 'inicio' }]; render();
   }
+  const ICO = {
+    ant: '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>', sig: '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>',
+    play: '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" class="relleno"/></svg>', pausa: '<svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke-width="3.4"/></svg>',
+    cerrar: '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+  };
   function renderRezo() {
     const st = estadoRezo(), paso = rezoSec[st.i], total = rezoSec.length;
     const imagen = rezoTipo === 'coronilla' ? 'img/misterios/dolorosos-5.webp' : `img/misterios/${rezoTipo}-${paso.img || 1}.webp`;
     const cred = window.__creditos && window.__creditos[imagen.replace('img/misterios/', '').replace('.webp', '')];
     const nombre = rezoTipo === 'coronilla' ? 'Coronilla de la Divina Misericordia' : R.grupos[rezoTipo].nombre;
+    const m = /^S(\d)-(\d+)$/.exec(paso.c), decena = m && !paso.hecho ? Number(m[2]) : 0;
     main.innerHTML = `<section class="rezo" aria-live="polite">
-      <div class="rezo-top"><button class="btn-atras" data-a="rezo:salir" aria-label="Salir">✕</button>
-        <div class="rezo-cab"><div class="eyebrow">${h(nombre)} · ${st.i + 1}/${total}</div><h2>${h(paso.t)}</h2><div class="sub">${h(paso.sub || '')}</div></div>
-        <span style="width:52px"></span></div>
+      <div class="rezo-fondo" style="background-image:url(${imagen})" aria-hidden="true"></div>
+      <div class="rezo-top"><button class="btn-atras" data-a="rezo:salir" aria-label="Salir">${ICO.cerrar}</button>
+        <div class="rezo-cab"><div class="eyebrow">${h(nombre)}</div><h2>${h(paso.t)}</h2>${paso.sub ? `<div class="sub">${h(paso.sub)}</div>` : ''}</div>
+        <span class="rezo-cuenta">${st.i + 1}<small>/${total}</small></span></div>
+      <div class="rezo-barra" aria-hidden="true"><div style="width:${((st.i + 1) / total * 100).toFixed(1)}%"></div></div>
+      ${decena ? `<div class="decena" aria-hidden="true">${Array.from({ length: 10 }, (_, k) => `<i class="${k < decena ? 'si' : ''}"></i>`).join('')}</div>` : ''}
       <div class="rezo-lienzo">${svgRosario(paso, imagen)}</div>
       ${cred ? `<div class="credito-arte">${h(cred.autor)} · dominio público</div>` : ''}
       ${S.mostrarTexto ? `<div class="rezo-texto">${h(paso.x)}</div>` : ''}
@@ -265,14 +285,14 @@
         <button data-a="rezo:musica" class="${S.musica ? 'activo' : ''}">🎵 Música</button>
         <button data-a="rezo:reiniciar">↺ Reiniciar</button></div>
       <div class="rezo-controles">
-        <button data-a="rezo:ant" aria-label="Anterior"><span class="ic">◀</span>Anterior</button>
-        <button class="play" data-a="rezo:play" aria-label="${rezoAuto ? 'Pausar' : 'Escuchar'}"><span class="ic">${rezoAuto ? '⏸' : '▶'}</span>${rezoAuto ? 'Pausar' : 'Escuchar'}</button>
-        <button data-a="rezo:sig" aria-label="Siguiente"><span class="ic">▶</span>Siguiente</button></div>
+        <button class="redondo" data-a="rezo:ant" aria-label="Anterior">${ICO.ant}<span>Anterior</span></button>
+        <button class="play" data-a="rezo:play" aria-label="${rezoAuto ? 'Pausar' : 'Escuchar'}">${rezoAuto ? ICO.pausa : ICO.play}<span>${rezoAuto ? 'Pausar' : 'Escuchar'}</span></button>
+        <button class="redondo" data-a="rezo:sig" aria-label="Siguiente">${ICO.sig}<span>Siguiente</span></button></div>
     </section>`;
   }
   function actualizarPlay() {
     const b = document.querySelector('.rezo-controles .play'); if (!b) return;
-    b.innerHTML = `<span class="ic">${rezoAuto ? '⏸' : '▶'}</span>${rezoAuto ? 'Pausar' : 'Escuchar'}`;
+    b.innerHTML = `${rezoAuto ? ICO.pausa : ICO.play}<span>${rezoAuto ? 'Pausar' : 'Escuchar'}</span>`; b.setAttribute('aria-label', rezoAuto ? 'Pausar' : 'Escuchar');
   }
   function moverRezo(d) {
     const st = estadoRezo(); const n = st.i + d;
@@ -289,9 +309,9 @@
     const ses = ++sesionVoz; rezoAuto = true; actualizarPlay();
     while (rezoAuto && ses === sesionVoz) {
       const st = estadoRezo(), paso = rezoSec[st.i];
-      try { await narrarPaso(paso); } catch (e) { aviso('No se pudo reproducir la voz.'); rezoAuto = false; break; }
+      try { await narrarPaso(paso); } catch (e) { aviso('No se pudo usar la voz del teléfono. Probá con la voz grabada en Ajustes.'); rezoAuto = false; break; }
       if (!rezoAuto || ses !== sesionVoz) break;
-      await new Promise(r => setTimeout(r, S.voz === 'natural' ? 150 : 450));
+      await new Promise(r => setTimeout(r, paso.anuncio ? 1300 : 650));
       if (!rezoAuto || ses !== sesionVoz) break;
       if (st.i >= rezoSec.length - 1) { rezoAuto = false; aviso('Terminaste. ¡Dios te bendiga!'); break; }
       st.i++; guardar(); renderRezo();
@@ -503,30 +523,76 @@
       .map(([i, t, s, a]) => item(i, t, s, a)).join('')}</div>${pie()}`;
 
   /* ---------- Ajustes ---------- */
+  let estadoRec = null;
+  const cabAjuste = (ico, t, sub) => `<div class="aj-cab"><span class="aj-ico" aria-hidden="true">${ico}</span><div><h3>${h(t)}</h3>${sub ? `<small>${h(sub)}</small>` : ''}</div></div>`;
+  const interruptor = (id, ico, t, sub, on) => `<label class="interruptor" for="${id}"><span class="int-txt"><span class="int-ico" aria-hidden="true">${ico}</span><span><b>${h(t)}</b>${sub ? `<small>${h(sub)}</small>` : ''}</span></span><input type="checkbox" id="${id}" ${on ? 'checked' : ''}></label>`;
+  function textoProximo(r) {
+    const l = [];
+    if (r.rosario) l.push(['Rosario', r.rosario]); if (r.angelus) l.push(['Ángelus', '12:00']); if (r.misericordia) l.push(['Misericordia', '15:00']);
+    if (!l.length) return '';
+    const ahora = new Date(), min = ahora.getHours() * 60 + ahora.getMinutes();
+    const prox = l.map(([n, hm]) => { const [hh, mm] = hm.split(':').map(Number), t = hh * 60 + mm; return { n, hm, d: t > min ? t - min : t + 1440 - min, hoy: t > min }; }).sort((a, b) => a.d - b.d)[0];
+    return `Próximo aviso: <b>${prox.hoy ? 'hoy' : 'mañana'} a las ${h(prox.hm)}</b> (${h(prox.n)})`;
+  }
   P.ajustes = () => {
-    const rr = S.recordatorios;
+    const rr = S.recordatorios, e = estadoRec, alguno = rr.rosario || rr.angelus || rr.misericordia;
+    const problemas = [];
+    if (e && alguno && e.permiso !== 'granted') problemas.push(`<div class="alerta"><b>Las notificaciones están bloqueadas.</b> Sin ese permiso los recordatorios no pueden llegar.${btn('Permitir notificaciones', 'recpermiso', 'chico primario')}</div>`);
+    if (e && alguno && e.exacto && e.exacto !== 'granted') problemas.push(`<div class="alerta"><b>Falta permitir «Alarmas y recordatorios».</b> Sin ese permiso Android puede atrasar o no mostrar el aviso.${btn('Abrir permiso', 'recexacto', 'chico primario')}</div>`);
     return `${titulo('Ajustes', 'Adaptá la app a tu gusto.')}
-    <div class="card"><h3>Tamaño de letra</h3><div class="segmentado">${[['normal', 'Normal'], ['grande', 'Grande'], ['muy-grande', 'Muy grande']].map(([k, v]) => `<button class="${S.letra === k ? 'activo' : ''}" data-a="letra:${k}">${v}</button>`).join('')}</div>
-      <h3>Apariencia</h3><div class="segmentado">${[['oscuro', '🌙 Oscuro'], ['claro', '☀️ Claro']].map(([k, v]) => `<button class="${S.tema === k ? 'activo' : ''}" data-a="tema:${k}">${v}</button>`).join('')}</div></div>
-    <div class="card"><h3>Voz del Rosario</h3><div class="segmentado">${[['natural', '🎙 Voz natural'], ['telefono', '📱 Voz del teléfono']].map(([k, v]) => `<button class="${S.voz === k ? 'activo' : ''}" data-a="voz:${k}">${v}</button>`).join('')}</div>
-      <p class="small muted">La voz natural está grabada dentro de la app (acento argentino) y funciona sin internet. La del teléfono lee cualquier texto.</p>
-      <div class="interruptor"><span>🎵 Música de fondo al rezar</span><input type="checkbox" id="musica" ${S.musica ? 'checked' : ''}></div>
-      <label class="lbl" for="volm">Volumen de la música</label><input id="volm" type="range" min="0.05" max="0.8" step="0.05" value="${S.volMusica}" style="width:100%"></div>
-    <div class="card"><h3>Voz para leer oraciones</h3><label class="lbl" for="vel">Velocidad de lectura: <b id="velTxt">${S.velocidad.toFixed(1)}×</b></label>
-      <input id="vel" type="range" min="0.6" max="1.4" step="0.1" value="${S.velocidad}" style="width:100%">
-      <div class="fila" style="margin-top:10px">${btnLeer('leer:prueba', '🔊 Probar voz', '')}${btn('Instalar voces', 'voces', 'chico')}</div>
-      <p class="small muted" style="margin-top:8px">Si la voz no suena o está en otro idioma, en Android andá a Ajustes › Accesibilidad › Texto a voz y elegí «Español».</p></div>
-    <div class="card"><h3>Recordatorios diarios</h3>
-      <div class="interruptor"><span>📿 Rezar el Rosario</span><input type="checkbox" id="recRos" ${rr.rosario ? 'checked' : ''}></div>
-      ${rr.rosario ? `<label class="lbl" for="recHora">Hora del recordatorio</label><input type="time" id="recHora" value="${h(rr.rosario)}">` : ''}
-      <div class="interruptor"><span>🔔 Ángelus a las 12 h</span><input type="checkbox" id="recAng" ${rr.angelus ? 'checked' : ''}></div>
-      <div class="interruptor"><span>💙 Hora de la Misericordia (15 h)</span><input type="checkbox" id="recMis" ${rr.misericordia ? 'checked' : ''}></div>
-      ${N.Recordatorios.disponible() ? '' : '<p class="small muted">Los recordatorios funcionan en la app instalada en Android.</p>'}</div>
-    <div class="card"><h3>Respaldo de mis datos</h3><p class="small muted">Favoritos, intenciones, avance del Rosario y novenas. El respaldo puede contener datos personales: guardalo en un lugar seguro.</p>
-      <div class="fila">${btn('📤 Crear respaldo', 'respaldo')}${btn('📥 Restaurar', 'restaurar')}</div><input type="file" id="archivoResp" accept="application/json,.json,text/plain" hidden></div>
-    <div class="card"><h3>Actualizaciones</h3><p>Versión instalada: <b>${h(CFG.version)}</b></p>${btn('Buscar actualizaciones', 'ir:actualizar', 'ancho')}</div>
-    <div class="lista">${item('❓', 'Ayuda', 'Cómo usar la app', 'ir:ayuda')}${item('📄', 'Licencias y créditos', 'Textos, imágenes y fuentes', 'ir:licencias')}${item('🔒', 'Privacidad', 'Qué datos se guardan', 'ir:privacidad')}</div>${pie()}`;
+    <section class="card aj">${cabAjuste('🎨', 'Apariencia', 'Tamaño de letra y colores')}
+      <label class="lbl">Tamaño de letra</label>
+      <div class="segmentado letras">${[['normal', 'Normal', 'a1'], ['grande', 'Grande', 'a2'], ['muy-grande', 'Muy grande', 'a3']].map(([k, v, c]) => `<button class="${S.letra === k ? 'activo' : ''}" data-a="letra:${k}"><span class="aa ${c}">Aa</span>${v}</button>`).join('')}</div>
+      <label class="lbl">Tema</label>
+      <div class="temas">${[['oscuro', '🌙', 'Oscuro', 'Ideal de noche'], ['claro', '☀️', 'Claro', 'Para leer de día']].map(([k, i, v, s]) => `<button class="tema-op ${k} ${S.tema === k ? 'activo' : ''}" data-a="tema:${k}"><span class="tema-muestra"><i></i><i></i><i></i></span><b>${i} ${v}</b><small>${s}</small></button>`).join('')}</div>
+    </section>
+    <section class="card aj">${cabAjuste('🎙️', 'Voz y audio', 'Cómo se escucha el Rosario y las oraciones')}
+      <label class="lbl">Voz para rezar el Rosario</label>
+      <div class="voces">${[['natural', '🎙️', 'Voz grabada', 'Acento argentino, sin internet'], ['telefono', '📱', 'Voz del teléfono', 'La de Google, más clara']].map(([k, i, v, s]) => `<button class="voz-op ${S.voz === k ? 'activo' : ''}" data-a="voz:${k}"><span>${i}</span><b>${v}</b><small>${s}</small></button>`).join('')}</div>
+      <div class="fila" style="margin:12px 0 4px">${btn('▶ Probar voz grabada', 'probarnat', 'chico')}${btnLeer('leer:prueba', '▶ Probar voz del teléfono', 'chico')}</div>
+      ${interruptor('musica', '🎵', 'Música de fondo al rezar', 'Suave, mientras rezás el Rosario', S.musica)}
+      <label class="lbl" for="volm">Volumen de la música</label>
+      <div class="rango"><span aria-hidden="true">🔈</span><input id="volm" type="range" min="0.05" max="0.8" step="0.05" value="${S.volMusica}"><span aria-hidden="true">🔊</span></div>
+      <label class="lbl" for="vel">Velocidad de la voz del teléfono: <b id="velTxt">${velTexto(S.velocidad)}</b></label>
+      <div class="rango"><span aria-hidden="true">🐢</span><input id="vel" type="range" min="0.6" max="1.4" step="0.1" value="${S.velocidad}"><span aria-hidden="true">🐇</span></div>
+      ${item('🛠️', 'La voz del teléfono no suena o se entiende mal', 'Cómo instalar o elegir la voz en español', 'ir:voces')}
+    </section>
+    <section class="card aj">${cabAjuste('🔔', 'Recordatorios diarios', 'Un aviso para no olvidarte de rezar')}
+      ${interruptor('recRos', '📿', 'Rezar el Rosario', 'Todos los días a la hora que elijas', rr.rosario)}
+      ${rr.rosario ? `<div class="horas"><div class="chips">${['07:00', '12:00', '18:00', '20:00', '21:00', '22:00'].map(x => `<button class="chip ${rr.rosario === x ? 'activo' : ''}" data-a="rechora:${x}">${x}</button>`).join('')}</div>
+        <label class="lbl" for="recHora">Otra hora</label><input type="time" id="recHora" value="${h(rr.rosario)}"></div>` : ''}
+      ${interruptor('recAng', '🔔', 'Ángelus', 'A las 12 del mediodía', rr.angelus)}
+      ${interruptor('recMis', '💙', 'Hora de la Misericordia', 'A las 15 h', rr.misericordia)}
+      ${alguno ? `<p class="proximo">${textoProximo(rr)}</p>` : ''}
+      ${problemas.join('')}
+      ${N.Recordatorios.disponible() ? `${btn('🔔 Enviar un aviso de prueba', 'recprueba', 'ancho')}
+        <details class="ayuda-det"><summary>¿No te llegan los avisos?</summary>
+          <ol><li>Tocá <b>Enviar un aviso de prueba</b> y bloqueá el teléfono: en 10 segundos tiene que llegar.</li>
+          <li>En <b>Ajustes del teléfono › Apps › Mi Fe Católica › Notificaciones</b>, dejalas activadas.</li>
+          <li>En <b>Ahorro de batería</b> elegí <b>Sin restricciones</b>.</li>
+          <li>En Xiaomi, Redmi o POCO: activá también <b>Inicio automático</b> (Ajustes › Apps › Permisos › Inicio automático).</li>
+          <li>En Samsung: en <b>Batería</b>, sacá la app de «Apps en suspensión».</li></ol></details>` : '<p class="small muted">Los recordatorios funcionan en la app instalada en Android.</p>'}
+    </section>
+    <section class="card aj">${cabAjuste('💾', 'Respaldo de mis datos', 'Favoritos, intenciones, notas y avances')}
+      <p class="small muted">El respaldo puede contener datos personales: guardalo en un lugar seguro.</p>
+      <div class="fila">${btn('📤 Crear respaldo', 'respaldo')}${btn('📥 Restaurar', 'restaurar')}</div><input type="file" id="archivoResp" accept="application/json,.json,text/plain" hidden></section>
+    <section class="card aj">${cabAjuste('✝️', 'Acerca de', `Mi Fe Católica ${CFG.version}`)}
+      <div class="lista" style="margin:0">${item('⬆️', 'Buscar actualizaciones', 'Versión instalada: ' + CFG.version, 'ir:actualizar')}${item('❓', 'Ayuda', 'Cómo usar la app', 'ir:ayuda')}${item('📄', 'Licencias y créditos', 'Textos, imágenes y voces', 'ir:licencias')}${item('🔒', 'Privacidad', 'Qué datos se guardan', 'ir:privacidad')}</div></section>${pie()}`;
   };
+  function velTexto(v) { return v <= 0.75 ? 'muy pausada' : v <= 0.95 ? 'pausada' : v <= 1.05 ? 'normal' : v <= 1.25 ? 'ágil' : 'rápida'; }
+  async function refrescarEstadoRec() {
+    const e = await N.Recordatorios.estado();
+    if (JSON.stringify(e) !== JSON.stringify(estadoRec)) { estadoRec = e; if (actual().p === 'ajustes') { const y = window.scrollY; render(); window.scrollTo(0, y); } }
+  }
+  P.voces = () => `${titulo('Voz del teléfono', 'Cómo lograr que la lectura en voz alta se escuche clara y en español.')}
+    <div class="card"><ol class="pasos">
+      <li><b>Instalá «Servicios de voz de Google»</b> (gratis). Es la voz más clara en español.${btn('Abrir en Play Store', 'url:https://play.google.com/store/apps/details?id=com.google.android.tts', 'chico primario')}</li>
+      <li>Abrí <b>Ajustes del teléfono</b> y buscá <b>«Texto a voz»</b> (suele estar en Accesibilidad o en Idioma y entrada).</li>
+      <li>En <b>Motor preferido</b> elegí <b>Servicios de voz de Google</b>.</li>
+      <li>En <b>Idioma</b> elegí <b>Español (Estados Unidos)</b> — es el acento latinoamericano — y descargá la voz si te lo pide.</li>
+      <li>Volvé a la app y tocá <b>Probar voz del teléfono</b>.</li></ol>
+      <div class="fila">${btn('⚙️ Abrir ajustes de voz', 'voces', 'chico')}${btnLeer('leer:prueba', '▶ Probar voz del teléfono', 'chico')}</div></div>
+    <div class="aviso">En algunos Xiaomi el motor que viene instalado no tiene español y lee las palabras como si fueran en inglés. Con la voz de Google se soluciona.</div>${pie()}`;
 
   P.actualizar = () => {
     const u = window.__actualizacion;
@@ -694,14 +760,15 @@
     if (p === 'rezo') { renderRezo(); return; }
     if (p === 'lector') { if (!lectorLibro) lectorLibro = LIBROS().find(b => b.id === arg); renderLector(); return; }
     document.body.classList.remove('modo-rezo');
-    const raiz = RAICES.includes(p) ? p : (['rosario'].includes(p) ? 'rosario' : (['oraciones', 'oracion', 'favoritos'].includes(p) ? 'oraciones' : (['ajustes', 'actualizar', 'ayuda', 'privacidad', 'licencias'].includes(p) ? 'ajustes' : (p === 'inicio' ? 'inicio' : 'explorar'))));
+    const raiz = RAICES.includes(p) ? p : (['rosario'].includes(p) ? 'rosario' : (['oraciones', 'oracion', 'favoritos'].includes(p) ? 'oraciones' : (['ajustes', 'actualizar', 'ayuda', 'privacidad', 'licencias', 'voces'].includes(p) ? 'ajustes' : (p === 'inicio' ? 'inicio' : 'explorar'))));
     document.querySelectorAll('nav.bottom [data-a]').forEach(b => b.classList.toggle('activo', b.dataset.a === 'ir:' + raiz));
     $('#btnAtras').classList.toggle('oculto', pila.length <= 1);
     main.innerHTML = (P[p] || P.inicio)(arg);
     const b = $('#buscar'); if (b) b.addEventListener('input', e => { busqueda = e.target.value; const pos = e.target.selectionStart; render(); const nb = $('#buscar'); nb.focus(); nb.setSelectionRange(pos, pos); });
-    const v = $('#vel'); if (v) v.addEventListener('input', e => { S.velocidad = Number(e.target.value); $('#velTxt').textContent = S.velocidad.toFixed(1) + '×'; guardar(); });
+    const v = $('#vel'); if (v) v.addEventListener('input', e => { S.velocidad = Number(e.target.value); $('#velTxt').textContent = velTexto(S.velocidad); guardar(); });
+    if (p === 'ajustes' && N.Recordatorios.disponible()) refrescarEstadoRec();
     ['recRos', 'recAng', 'recMis'].forEach(id => { const el = $('#' + id); if (el) el.addEventListener('change', () => cambiarRecordatorio(id, el.checked)); });
-    const rh = $('#recHora'); if (rh) rh.addEventListener('change', () => { S.recordatorios.rosario = rh.value || '20:00'; guardar(); programarRecordatorios(); });
+    const rh = $('#recHora'); if (rh) rh.addEventListener('change', async () => { S.recordatorios.rosario = rh.value || '20:00'; guardar(); await programarRecordatorios(); render(); aviso('Te vamos a avisar a las ' + S.recordatorios.rosario); });
     const mu = $('#musica'); if (mu) mu.addEventListener('change', () => { S.musica = mu.checked; guardar(); });
     const vm = $('#volm'); if (vm) vm.addEventListener('input', () => { S.volMusica = Number(vm.value); guardar(); Sonido.volumen(S.volMusica); });
     const bn = $('#buscarNota'); if (bn) bn.addEventListener('input', e => { notaBusca = e.target.value; const pos = e.target.selectionStart; render(); const nb = $('#buscarNota'); nb.focus(); nb.setSelectionRange(pos, pos); });
@@ -713,7 +780,7 @@
     if (id === 'recRos') S.recordatorios.rosario = on ? (S.recordatorios.rosario || '20:00') : null;
     if (id === 'recAng') S.recordatorios.angelus = on;
     if (id === 'recMis') S.recordatorios.misericordia = on;
-    guardar(); await programarRecordatorios(); render(); if (on) aviso('Recordatorio activado');
+    guardar(); await programarRecordatorios(); render(); refrescarEstadoRec(); if (on) aviso('Recordatorio activado. ' + (id === 'recRos' ? 'Elegí la hora abajo.' : ''));
   }
   async function programarRecordatorios() {
     const r = S.recordatorios, l = [];
@@ -804,7 +871,12 @@
       case 'intdel': if (confirm('¿Borrar esta intención?')) { S.intenciones = S.intenciones.filter(x => String(x.id) !== arg); guardar(); render(); } break;
       case 'letra': S.letra = arg; guardar(); render(); break;
       case 'tema': S.tema = arg; guardar(); render(); break;
-      case 'voces': N.Voz.abrirAjustesVoz(); break;
+      case 'voces': { const ok = await N.Voz.abrirAjustesVoz(); if (!ok || actual().p !== 'voces') { if (actual().p !== 'voces') ir('voces'); else aviso('Abrí Ajustes del teléfono y buscá «Texto a voz».'); } break; }
+      case 'probarnat': { if (hablando) { detenerVoz(); break; } await detenerVoz(); hablando = true; aviso('▶ Escuchando la voz grabada…'); const ok = await Sonido.clip('avemaria'); hablando = false; if (!ok) aviso('No se pudo reproducir el audio.'); break; }
+      case 'rechora': S.recordatorios.rosario = arg; guardar(); await programarRecordatorios(); render(); aviso('Te vamos a avisar a las ' + arg); break;
+      case 'recprueba': { if (!(await N.Recordatorios.pedirPermiso())) { aviso('Primero hay que permitir las notificaciones.'); refrescarEstadoRec(); break; } await N.Recordatorios.probar(10); aviso('Listo: en 10 segundos te llega un aviso de prueba'); break; }
+      case 'recpermiso': { const ok = await N.Recordatorios.pedirPermiso(); if (ok) await programarRecordatorios(); else aviso('Activá las notificaciones desde Ajustes del teléfono › Apps › Mi Fe Católica.'); refrescarEstadoRec(); break; }
+      case 'recexacto': await N.Recordatorios.pedirAlarmasExactas(); setTimeout(refrescarEstadoRec, 1500); break;
       case 'voz': S.voz = arg; guardar(); render(); break;
       case 'respaldo': respaldo(); break;
       case 'restaurar': $('#archivoResp').click(); break;
@@ -846,6 +918,8 @@
   N.Recordatorios.alTocar(extra => { const p = extra.pantalla || 'inicio'; if (p === 'coronilla') entrarRezo('coronilla'); else if (p.startsWith('oracion:')) ir('oracion', p.slice(8)); else ir(p); });
   if (window.fetch) fetch('img/misterios/creditos.json').then(r => r.json()).then(j => { window.__creditos = j; }).catch(() => { });
   render();
+  // Al abrir la app se vuelven a programar los avisos (por si el sistema los borró, por ejemplo tras una actualización).
+  { const r = S.recordatorios; if (N.Recordatorios.disponible() && (r.rosario || r.angelus || r.misericordia)) setTimeout(() => programarRecordatorios(), 1500); }
   setTimeout(() => buscarActualizacion(false), 4000);
   if ('serviceWorker' in navigator && !N.esNativo && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => { });
   window.__MFC = { S, ir, ORACIONES, secuenciaRosario, secuenciaCoronilla }; // para pruebas automáticas
