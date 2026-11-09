@@ -128,9 +128,9 @@
     <h2 class="seccion">Tu espacio de fe</h2><div class="grilla">
       ${[['🙏', 'Oraciones', 'Clásicas y para cada momento', 'oraciones'], ['🕯', 'Novenas', 'Nueve días de oración', 'novenas'], ['📖', 'Biblia', 'Palabra de Dios', 'biblia'],
         ['💙', 'Divina Misericordia', 'Coronilla guiada', 'rezar:coronilla'], ['✝', 'Vía Crucis', '14 estaciones', 'viacrucis'], ['📰', 'Noticias', 'Papa, Iglesia y Argentina', 'noticias'],
-        ['📅', 'Calendario', 'Santos y tiempos litúrgicos', 'calendario'], ['🎓', 'Formación', 'Aprender la fe', 'formacion'], ['📺', 'Videos y radio', 'Misa y programas', 'medios'],
+        ['📅', 'Calendario', 'Santos y tiempos litúrgicos', 'calendario'], ['🎓', 'Formación', 'Aprender la fe', 'formacion'], ['🎶', 'Música católica', 'Athenas, alabanza y más', 'musica'], ['📺', 'Videos y radio', 'Misa y programas', 'medios'],
         ['✍️', 'Cuaderno espiritual', 'Tus anotaciones', 'cuaderno'], ['📚', 'Biblioteca', 'Libros para leer', 'biblioteca'], ['✨', 'Frases', 'Pensamientos de santos', 'frases'], ['🌿', '30 días', 'Camino de oración', 'camino'], ['💛', 'Mis intenciones', 'Mis pedidos a Dios', 'intenciones'], ['⭐', 'Favoritas', 'Oraciones guardadas', 'favoritos']]
-        .map(([i, t, s, a], n) => `<button class="tile" style="--h:${[38, 268, 28, 212, 0, 200, 150, 248, 330, 22, 16, 45, 120, 48, 52][n % 15]}" data-a="${a.includes(':') ? a : 'ir:' + a}"><span class="sim">${i}</span><strong>${t}</strong><small>${s}</small></button>`).join('')}
+        .map(([i, t, s, a], n) => `<button class="tile" style="--h:${[38, 268, 28, 212, 0, 200, 150, 248, 330, 300, 22, 16, 45, 120, 48, 52][n % 16]}" data-a="${a.includes(':') ? a : 'ir:' + a}"><span class="sim">${i}</span><strong>${t}</strong><small>${s}</small></button>`).join('')}
     </div>${pie()}`;
   };
 
@@ -490,6 +490,54 @@
 
   /* ---------- Medios ---------- */
   let medioTipo = 'Todos';
+  /* ---------- Música católica (reproductor de Spotify dentro de la app) ---------- */
+  const MUSICA = [
+    { cat: 'athenas', tipo: 'artist', id: '71IIrUaZMShJKwuwIZVVwu', t: 'Athenas', s: 'Artista · todas sus canciones', h: 330 },
+    { cat: 'athenas', tipo: 'playlist', id: '5nPelpGdGjhebP6tY5Qb4u', t: 'Lo mejor de Athenas', s: 'Playlist oficial de Athenas', h: 330 },
+    { cat: 'athenas', tipo: 'playlist', id: '1uOa7kU8YBNu89HGoTYHOo', t: 'Athenas · Música de adoración', s: 'Playlist oficial de Athenas', h: 268 },
+    { cat: 'athenas', tipo: 'playlist', id: '3MGAzAmu4VQ7lR6HjdWwFX', t: 'Música católica alegre', s: 'Playlist de Athenas', h: 38 },
+    { cat: 'athenas', tipo: 'playlist', id: '65qYXQ3yT8f1zpf7BU5qfQ', t: 'Athenas · Entre tus manos', s: 'Playlist de Athenas', h: 200 },
+    { cat: 'alabanza', tipo: 'playlist', id: '1VfwAMYqbxxMY0TvJFvVgj', t: 'Top 50 canciones católicas', s: 'Las más escuchadas', h: 45 },
+    { cat: 'alabanza', tipo: 'playlist', id: '6XXlzAvKk2l72UPCZ8t7dm', t: 'Canciones de Misa (Argentina)', s: 'Para la celebración', h: 212 },
+    { cat: 'alabanza', tipo: 'playlist', id: '40ZvIDWgx2Gc5H0aFEXIWd', t: 'Athenas, Hakuna y Jésed', s: 'Lo mejor de la música católica joven', h: 16 },
+    { cat: 'oracion', tipo: 'playlist', id: '2UvXaPadYPoifQH4xf9gJC', t: 'Canto gregoriano', s: 'Monjes de Silos', h: 250 },
+    { cat: 'oracion', tipo: 'playlist', id: '1Ff6fMK5IuULSr96OqloVx', t: 'Canto gregoriano de Silos', s: 'Monasterio de Santo Domingo de Silos', h: 220 },
+    { cat: 'artistas', tipo: 'artist', id: '7Lemn0MD6Cb2QfmeZJ5BwS', t: 'Hakuna Group Music', s: 'Artista', h: 150 },
+    { cat: 'artistas', tipo: 'artist', id: '3TXp4wMgvRheVQPf1PEV2P', t: 'Jésed', s: 'Artista', h: 0 },
+    { cat: 'artistas', tipo: 'artist', id: '76sYe6qdnJ9ZPHCM5GtpHj', t: 'Siervas', s: 'Artista', h: 300 },
+    { cat: 'artistas', tipo: 'artist', id: '7uuwLxz14KbMReX1HaSmyo', t: 'Ixcís', s: 'Artista', h: 180 },
+    { cat: 'artistas', tipo: 'artist', id: '5aOjT1DbSYHA1jylD0zohr', t: 'Martín Valverde', s: 'Artista', h: 28 },
+    { cat: 'artistas', tipo: 'artist', id: '7LDonbUd4pk78tBtFO039E', t: 'Hermana Glenda', s: 'Artista', h: 280 }
+  ];
+  const CAT_MUSICA = [['todo', 'Todo'], ['athenas', '🎤 Athenas'], ['alabanza', '🙌 Alabanza'], ['oracion', '🕯 Para orar'], ['artistas', '⭐ Artistas']];
+  let musicaCat = 'todo', portadas = null;
+  const spLink = m => `https://open.spotify.com/${m.tipo}/${m.id}`;
+  async function cargarPortadas() {
+    if (portadas) return; portadas = S.portadasMusica || {};
+    let cambios = false;
+    await Promise.all(MUSICA.filter(m => !portadas[m.id]).map(async m => {
+      try { const j = JSON.parse(await N.descargarTexto('https://open.spotify.com/oembed?url=' + encodeURIComponent(spLink(m)), 10000)); if (/^https:\/\//.test(j.thumbnail_url || '')) { portadas[m.id] = j.thumbnail_url; cambios = true; } } catch (e) { }
+    }));
+    if (cambios) { S.portadasMusica = portadas; guardar(); if (actual().p === 'musica') document.querySelectorAll('[data-portada]').forEach(el => { const u = portadas[el.dataset.portada]; if (u) el.style.backgroundImage = `url("${u}")`; }); }
+  }
+  P.musica = () => {
+    const sel = MUSICA.find(m => m.id === S.musicaSel) || MUSICA[1];
+    const l = MUSICA.filter(m => musicaCat === 'todo' || m.cat === musicaCat);
+    setTimeout(cargarPortadas, 50);
+    const pt = m => (portadas || S.portadasMusica || {})[m.id];
+    return `${titulo('Música católica', 'Escuchá alabanza, adoración y canto gregoriano sin salir de la app.')}
+      <section class="reproductor">
+        <div class="rep-cab"><span class="eyebrow">🎶 Sonando ahora</span><strong>${h(sel.t)}</strong></div>
+        <iframe class="spotify" title="Reproductor: ${h(sel.t)}" src="https://open.spotify.com/embed/${sel.tipo}/${sel.id}?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rep-pie"><span>Sin sesión de Spotify: fragmentos de 30 s.</span>${btn('Completa en Spotify ↗', 'url:' + spLink(sel), 'chico')}</div>
+      </section>
+      <div class="chips">${CAT_MUSICA.map(([k, v]) => `<button class="chip ${musicaCat === k ? 'activo' : ''}" data-a="mcat:${k}">${v}</button>`).join('')}</div>
+      <div class="discos">${l.map(m => `<button class="disco ${m.id === sel.id ? 'activo' : ''}" data-a="msel:${m.id}" style="--h:${m.h}">
+        <span class="tapa-disco ${m.tipo === 'artist' ? 'redonda' : ''}" data-portada="${m.id}" ${pt(m) ? `style="background-image:url('${h(pt(m))}')"` : ''}><i>${m.tipo === 'artist' ? '🎤' : '🎵'}</i>${m.id === sel.id ? '<b class="eq" aria-hidden="true"><i></i><i></i><i></i></b>' : ''}</span>
+        <strong>${h(m.t)}</strong><small>${h(m.s)}</small></button>`).join('')}</div>
+      <div class="aviso">Necesita conexión a internet. La música la provee Spotify; si tenés la app de Spotify con tu cuenta, el botón «Completa en Spotify» abre las canciones enteras.</div>${pie()}`;
+  };
+
   P.medios = () => `${titulo('Videos, Misa y radio', 'Transmisiones y programas de canales católicos oficiales. Se abren en YouTube o en el sitio de cada medio.')}
     <div class="chips">${['Todos', 'En vivo', 'Videos', 'Audios'].map(t => `<button class="chip ${t === medioTipo ? 'activo' : ''}" data-a="medio:${t}">${t}</button>`).join('')}</div>
     <div class="lista">${F.medios.filter(m => medioTipo === 'Todos' || m.tipo === medioTipo).map(m => item(m.icono, m.titulo, `${m.tipo} · ${m.desc}`, 'url:' + m.url)).join('')}</div>
@@ -519,7 +567,7 @@
       ['🕯', 'Novenas', 'Inmaculada, Navidad, Luján y más', 'ir:novenas'], ['✝', 'Vía Crucis', '14 estaciones', 'ir:viacrucis'], ['📖', 'La Biblia', 'El Libro del Pueblo de Dios', 'ir:biblia'],
       ['📜', 'Lecturas del día', 'Evangelio y liturgia', 'ir:lecturas'], ['📅', 'Calendario litúrgico', 'Santos, fiestas y colores', 'ir:calendario'], ['📰', 'Noticias', 'Papa, Iglesia y Argentina', 'ir:noticias'],
       ['📺', 'Videos, Misa y radio', 'Canales oficiales', 'ir:medios'], ['🎓', 'Formación católica', 'Mandamientos, sacramentos y más', 'ir:formacion'], ['🌿', '30 días de oración', 'Camino diario', 'ir:camino'],
-      ['✍️', 'Cuaderno espiritual', 'Anotaciones personales', 'ir:cuaderno'], ['📚', 'Biblioteca', 'Lector estilo libro', 'ir:biblioteca'], ['✨', 'Galería de frases', 'Pensamientos de los santos', 'ir:frases'], ['💛', 'Mis intenciones', '', 'ir:intenciones'], ['⭐', 'Oraciones favoritas', '', 'ir:favoritos'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]]
+      ['🎶', 'Música católica', 'Athenas, alabanza y canto gregoriano', 'ir:musica'], ['✍️', 'Cuaderno espiritual', 'Anotaciones personales', 'ir:cuaderno'], ['📚', 'Biblioteca', 'Lector estilo libro', 'ir:biblioteca'], ['✨', 'Galería de frases', 'Pensamientos de los santos', 'ir:frases'], ['💛', 'Mis intenciones', '', 'ir:intenciones'], ['⭐', 'Oraciones favoritas', '', 'ir:favoritos'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]]
       .map(([i, t, s, a]) => item(i, t, s, a)).join('')}</div>${pie()}`;
 
   /* ---------- Ajustes ---------- */
@@ -872,6 +920,8 @@
       case 'letra': S.letra = arg; guardar(); render(); break;
       case 'tema': S.tema = arg; guardar(); render(); break;
       case 'voces': { const ok = await N.Voz.abrirAjustesVoz(); if (!ok || actual().p !== 'voces') { if (actual().p !== 'voces') ir('voces'); else aviso('Abrí Ajustes del teléfono y buscá «Texto a voz».'); } break; }
+      case 'mcat': { musicaCat = arg; const tmp = document.createElement('div'); tmp.innerHTML = P.musica(); ['.chips', '.discos'].forEach(q => { const d = main.querySelector(q), o = tmp.querySelector(q); if (d && o) d.innerHTML = o.innerHTML; }); break; } // sin recargar el reproductor
+      case 'msel': S.musicaSel = arg; guardar(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); break;
       case 'probarnat': { if (hablando) { detenerVoz(); break; } await detenerVoz(); hablando = true; aviso('▶ Escuchando la voz grabada…'); const ok = await Sonido.clip('avemaria'); hablando = false; if (!ok) aviso('No se pudo reproducir el audio.'); break; }
       case 'rechora': S.recordatorios.rosario = arg; guardar(); await programarRecordatorios(); render(); aviso('Te vamos a avisar a las ' + arg); break;
       case 'recprueba': { if (!(await N.Recordatorios.pedirPermiso())) { aviso('Primero hay que permitir las notificaciones.'); refrescarEstadoRec(); break; } await N.Recordatorios.probar(10); aviso('Listo: en 10 segundos te llega un aviso de prueba'); break; }

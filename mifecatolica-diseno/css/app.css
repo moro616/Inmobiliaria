@@ -399,3 +399,26 @@ body.claro .cal button.sel b, body.claro .cal button.sel .estrella { color: #fff
 textarea.renglones { font-family: var(--serif); line-height: 32px; background-image: repeating-linear-gradient(180deg, transparent 0 31px, #e4d7b8 31px 32px) !important; background-attachment: local; padding-top: 6px; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* ---------- Música católica ---------- */
+.reproductor { border-radius: 26px; padding: 14px; margin-bottom: 14px; border: 1px solid var(--line); box-shadow: var(--sombra);
+  background: radial-gradient(120% 80% at 0 0, rgba(30,215,96,.14), transparent 55%), radial-gradient(100% 80% at 100% 0, rgba(230,195,111,.16), transparent 60%), var(--card); }
+.rep-cab { margin: 0 2px 10px; } .rep-cab strong { display: block; font-family: var(--serif); font-size: 1.1em; }
+iframe.spotify { display: block; width: 100%; height: 352px; border: 0; border-radius: 14px; background: #121212; }
+.rep-pie { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; font-size: .72em; color: var(--tx2); }
+.rep-pie .btn { flex: none; min-height: 40px; font-size: 1.15em; }
+.discos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
+@media (min-width: 560px) { .discos { grid-template-columns: repeat(3, 1fr); } }
+.disco { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 10px; text-align: left; border-radius: 20px; border: 1.5px solid var(--line); background: var(--card); color: var(--tx); box-shadow: var(--sombra-suave); transition: transform .14s, border-color .2s; }
+.disco:active { transform: scale(.97); }
+.disco.activo { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(230,195,111,.18); }
+.tapa-disco { position: relative; width: 100%; aspect-ratio: 1; border-radius: 14px; margin-bottom: 6px; display: grid; place-items: center; overflow: hidden;
+  background: linear-gradient(145deg, hsl(var(--h) 55% 45%), hsl(var(--h) 60% 22%)); background-size: cover; background-position: center; box-shadow: 0 8px 18px -10px rgba(0,0,0,.7); }
+.tapa-disco.redonda { border-radius: 50%; }
+.tapa-disco > i { font-style: normal; font-size: 2.2em; opacity: .9; }
+.tapa-disco[style*="url"] > i { display: none; }
+.disco strong { font-size: .88em; line-height: 1.25; } .disco small { color: var(--tx2); font-size: .7em; line-height: 1.3; }
+.eq { position: absolute; right: 8px; bottom: 8px; display: flex; align-items: flex-end; gap: 3px; height: 22px; padding: 4px 6px; border-radius: 8px; background: rgba(0,0,0,.55); }
+.eq i { width: 4px; background: #f6dfa0; border-radius: 2px; animation: eq 1s ease-in-out infinite; }
+.eq i:nth-child(2) { animation-delay: .2s; } .eq i:nth-child(3) { animation-delay: .4s; }
+@keyframes eq { 0%, 100% { height: 4px; } 50% { height: 14px; } }
