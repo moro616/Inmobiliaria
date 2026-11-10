@@ -722,8 +722,12 @@
   const HISTORIAS = PAPAS.flatMap(p => p.f.map(f => ({ ...f, papa: p })));
   const DUR_HIST = 9000;
   let histTimer = null;
-  const avatarPapa = p => `<span class="av-papa" style="--h:${p.h};background-image:url('img/misterios/${p.f[0].img}.webp')"><b>${h(p.c)}</b></span>`;
-  const filaHistorias = () => `<div class="historias" role="list">${PAPAS.map(p => `<button class="hist-burbuja ${(S.histVistas || []).includes(p.id) ? 'vista' : ''}" role="listitem" data-a="historia:${HISTORIAS.findIndex(x => x.papa === p)}">${avatarPapa(p)}<small>${h(p.n.replace('San ', ''))}</small></button>`).join('')}</div>`;
+  const LLAVES = '<svg class="llaves" viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><g stroke="#e9edf5" transform="rotate(-40 24 24)"><circle cx="24" cy="9.5" r="5.2"/><path d="M24 14.7V41M24 33h-5.5M24 38h-4.5"/></g><g stroke="#f6dfa0" transform="rotate(40 24 24)"><circle cx="24" cy="9.5" r="5.2"/><path d="M24 14.7V41M24 33h5.5M24 38h4.5"/></g></g></svg>';
+  const avatarPapa = p => `<span class="av-papa" style="--h:${p.h}">${LLAVES}<b>${h(p.c)}</b></span>`;
+  // Música de fondo de las historias (de la app, no depende de la voz del teléfono)
+  const musHist = typeof Audio !== 'undefined' ? Object.assign(new Audio('audio/musica/adoracion.ogg'), { loop: true, preload: 'none' }) : null;
+  function musicaHistoria(on) { if (!musHist) return; if (on && S.musicaHist !== false) { musHist.volume = 0.45; const r = musHist.play(); if (r && r.catch) r.catch(() => { }); } else musHist.pause(); }
+  const filaHistorias = () => `<div class="historias" role="list">${PAPAS.map(p => `<button class="hist-burbuja ${(S.histVistas || []).includes(p.id) ? 'vista' : ''}" role="listitem" data-a="historia:${HISTORIAS.findIndex(x => x.papa === p)}"><span class="aro">${avatarPapa(p)}</span><small>${h(p.n.replace('San ', ''))}</small></button>`).join('')}</div>`;
   P.papas = () => `${titulo('Frases de los Papas', 'Palabras que marcaron a la Iglesia, para rezar y compartir.')}
     ${filaHistorias()}
     <div class="lista">${HISTORIAS.map((x, k) => `<button class="frase-papa" data-a="historia:${k}" style="background-image:linear-gradient(90deg,rgba(5,10,23,.92),rgba(5,10,23,.55)),url(img/misterios/${x.img}.webp)">
@@ -739,12 +743,13 @@
     main.innerHTML = `<section class="historia" data-k="${k}">
       <div class="hist-img" style="background-image:url(img/misterios/${x.img}.webp)" aria-hidden="true"></div>
       <div class="hist-barras">${delPapa.map((_, i) => `<i class="${i < pos ? 'llena' : i === pos ? 'activa' : ''}"><b style="animation-duration:${DUR_HIST}ms"></b></i>`).join('')}</div>
-      <div class="hist-top">${avatarPapa(p)}<div><strong>${h(p.n)}</strong><small>${h(p.y)}</small></div><button class="btn-atras" data-a="hist:cerrar" aria-label="Cerrar">${ICO.cerrar}</button></div>
+      <div class="hist-top">${avatarPapa(p)}<div><strong>${h(p.n)}</strong><small>${h(p.y)}</small></div><button class="btn-atras hist-son" data-a="hist:musica" aria-label="${S.musicaHist !== false ? 'Silenciar música' : 'Activar música'}">${S.musicaHist !== false ? '🔊' : '🔇'}</button><button class="btn-atras" data-a="hist:cerrar" aria-label="Cerrar">${ICO.cerrar}</button></div>
       <button class="hist-zona izq" data-a="hist:ant" aria-label="Anterior"></button><button class="hist-zona der" data-a="hist:sig" aria-label="Siguiente"></button>
       <div class="hist-texto"><span class="hist-comillas" aria-hidden="true">“</span><q>${h(x.t).split(' ').map((w, i) => `<span style="animation-delay:${(0.25 + i * 0.07).toFixed(2)}s">${w} </span>`).join('')}</q>
         <small>— ${h(p.n)}<br>${h(x.s)}</small></div>
       <div class="hist-acciones">${btn('↗ Compartir', 'hist:compartir:' + k, 'chico')}${btnLeer('leer:papa:' + k, '🔊 Escuchar', 'chico')}</div>
     </section>`;
+    musicaHistoria(true);
     histTimer = setTimeout(() => { if (actual().p === 'historia') moverHistoria(1); }, DUR_HIST);
   }
   function moverHistoria(d) {
@@ -753,7 +758,7 @@
     if (k >= HISTORIAS.length) { cerrarHistoria(); aviso('¡Viste todas las frases! 🙏'); return; }
     pila[pila.length - 1] = { p: 'historia', arg: k }; renderHistoria(k);
   }
-  function cerrarHistoria() { detenerHistoria(); detenerVoz(); document.body.classList.remove('modo-rezo'); if (actual().p === 'historia') pila.pop(); if (!pila.length) pila = [{ p: 'inicio' }]; render(); }
+  function cerrarHistoria() { detenerHistoria(); musicaHistoria(false); detenerVoz(); document.body.classList.remove('modo-rezo'); if (actual().p === 'historia') pila.pop(); if (!pila.length) pila = [{ p: 'inicio' }]; render(); }
 
   P.medios = () => `${titulo('Videos, Misa y radio', 'Transmisiones y programas de canales católicos oficiales. Se abren en YouTube o en el sitio de cada medio.')}
     <div class="chips">${['Todos', 'En vivo', 'Videos', 'Audios'].map(t => `<button class="chip ${t === medioTipo ? 'activo' : ''}" data-a="medio:${t}">${t}</button>`).join('')}</div>
@@ -1123,7 +1128,7 @@
         else if (tipo === 'camino') { const e = window.MFC_LIBRE[S.camino - 1]; leer(`${e.titulo}. ${e.oracion} Para vivir hoy: ${e.accion}`); }
         else if (tipo === 'leccion') { const l = window.MFC_FORMACION.find(x => x.id === id); leer(`${l.titulo}. ${l.intro} ${l.puntos.join('. ')}`); }
         else if (tipo === 'prueba') leer('Dios te salve, María, llena eres de gracia, el Señor es contigo. Amén.').then(() => { const i = N.Voz.idioma(); if (i) aviso('Voz usada: ' + i + '. ¿Se escuchó bien?'); });
-        else if (tipo === 'papa') { detenerHistoria(); const x = HISTORIAS[Number(id)]; leer(`${x.t} ${x.papa.n}.`); }
+        else if (tipo === 'papa') { detenerHistoria(); const x = HISTORIAS[Number(id)]; if (musHist) musHist.volume = 0.15; leer(`${x.t} ${x.papa.n}.`).then(() => { if (musHist) musHist.volume = 0.45; }); }
         break;
       }
       case 'fav': { const i = S.favoritos.indexOf(arg); if (i >= 0) S.favoritos.splice(i, 1); else S.favoritos.push(arg); guardar(); render(); aviso(i >= 0 ? 'Quitada de favoritas' : 'Guardada en favoritas'); break; }
@@ -1161,6 +1166,7 @@
       case 'historia': Repro.pausar(); pila.push({ p: 'historia', arg: Number(arg) }); renderHistoria(Number(arg)); break;
       case 'hist': {
         if (arg === 'cerrar') cerrarHistoria();
+        else if (arg === 'musica') { S.musicaHist = S.musicaHist === false; guardar(); musicaHistoria(S.musicaHist); const b = document.querySelector('.hist-son'); if (b) b.textContent = S.musicaHist ? '🔊' : '🔇'; }
         else if (arg === 'sig' || arg === 'ant') { await detenerVoz(); moverHistoria(arg === 'sig' ? 1 : -1); }
         else if (arg.startsWith('compartir:')) { detenerHistoria(); const x = HISTORIAS[Number(arg.split(':')[1])]; const r = await N.compartir('Frase de ' + x.papa.n, `«${x.t}»\n— ${x.papa.n}, ${x.s}\n\nCompartido desde Mi Fe Católica 🙏`); if (r === 'copiado') aviso('Frase copiada'); }
         break;

@@ -492,15 +492,15 @@ body.modo-rezo .mini { display: none; }
 .historias::-webkit-scrollbar { display: none; }
 .hist-burbuja { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 76px; border: 0; background: none; color: var(--tx); padding: 0; }
 .hist-burbuja small { font-size: .66em; font-weight: 600; text-align: center; line-height: 1.2; color: var(--tx2); }
-.hist-burbuja .av-papa { width: 70px; height: 70px; box-shadow: 0 0 0 3px var(--bg), 0 0 0 5.5px #e6c36f; }
-.hist-burbuja:not(.vista) .av-papa { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5.5px transparent; background-clip: padding-box; }
-.hist-burbuja:not(.vista) { --aro: conic-gradient(#f6dfa0, #e08a3c, #c43b6b, #8b5cf6, #f6dfa0); }
-.hist-burbuja:not(.vista) .av-papa { outline: 3px solid transparent; position: relative; }
-.hist-burbuja:not(.vista) .av-papa::before { content: ''; position: absolute; inset: -7px; border-radius: 50%; background: var(--aro); z-index: -1; }
-.hist-burbuja:not(.vista) .av-papa::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: var(--bg); z-index: -1; }
-.hist-burbuja.vista .av-papa { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--line); }
-.av-papa { position: relative; isolation: isolate; flex: none; width: 46px; height: 46px; border-radius: 50%; background-size: cover; background-position: center; display: grid; place-items: center; }
-.av-papa b { position: relative; z-index: 1; font-family: var(--serif); color: #fff; font-size: .78em; letter-spacing: .02em; text-shadow: 0 1px 6px rgba(0,0,0,.9); padding: 2px 6px; border-radius: 99px; background: rgba(0,0,0,.45); }
+.aro { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 50%; padding: 5.5px; background: conic-gradient(from 200deg, #f6dfa0, #e08a3c, #c43b6b, #8b5cf6, #f6dfa0); }
+.hist-burbuja.vista .aro { background: var(--line); }
+.aro .av-papa { width: 100%; height: 100%; box-shadow: 0 0 0 3px var(--bg), inset 0 2px 6px rgba(255,255,255,.25), inset 0 -6px 12px rgba(0,0,0,.35); }
+.av-papa { position: relative; flex: none; width: 46px; height: 46px; border-radius: 50%; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0;
+  background: radial-gradient(circle at 35% 25%, hsl(var(--h) 70% 58%), hsl(var(--h) 65% 30%) 60%, hsl(var(--h) 60% 16%)); box-shadow: inset 0 2px 6px rgba(255,255,255,.25), inset 0 -6px 12px rgba(0,0,0,.35); }
+.av-papa .llaves { width: 58%; height: 58%; filter: drop-shadow(0 2px 3px rgba(0,0,0,.45)); margin-top: -4px; }
+.av-papa b { font-family: var(--serif); color: #fff6da; font-size: .62em; line-height: 1; letter-spacing: .03em; text-shadow: 0 1px 4px rgba(0,0,0,.8); margin-top: -2px; }
+.hist-top .av-papa .llaves { width: 62%; height: 62%; margin: 0; } .hist-top .av-papa b { display: none; }
+.hist-top .hist-son { width: 46px; height: 46px; font-size: 1.1em; margin-right: 2px; }
 .frase-papa { display: block; width: 100%; text-align: left; border: 1px solid var(--line); border-radius: 20px; padding: 16px; color: #fff; background-size: cover; background-position: center; box-shadow: var(--sombra-suave); }
 .frase-papa q { display: block; font-family: var(--serif); font-size: .98em; line-height: 1.45; quotes: '«' '»'; margin-bottom: 8px; }
 .frase-papa small { color: #f6dfa0; font-size: .72em; font-weight: 600; }
