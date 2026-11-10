@@ -98,7 +98,15 @@
 
   /* ================= Voz ================= */
   let hablando = false, sesionVoz = 0;
-  async function leer(texto) {
+  // Grabaciones con voz natural incluidas en la app (js/datos/voz.js). Si existe la grabación, se usa en lugar de la voz del teléfono.
+  const GRABADAS = new Set(window.MFC_VOZ || []);
+  async function leer(texto, clip) {
+    if (clip && GRABADAS.has(clip) && S.voz !== 'telefono') {
+      await detenerVoz(); hablando = true; const ses = ++sesionVoz; marcarBotonVoz(true);
+      const ok = await Sonido.clip(clip);
+      if (ses === sesionVoz) { hablando = false; marcarBotonVoz(false); }
+      if (ok || ses !== sesionVoz) return;
+    }
     if (!N.Voz.disponible()) { aviso('La lectura en voz alta no está disponible en este equipo.'); return; }
     await detenerVoz(); hablando = true; const ses = ++sesionVoz; marcarBotonVoz(true);
     try { await N.Voz.hablar(texto, S.velocidad); } catch (e) { aviso('El teléfono no tiene una voz en español lista. Mirá Ajustes › Voz y audio.'); if (actual().p === 'ajustes') setTimeout(() => ir('voces'), 1800); }
@@ -1122,13 +1130,13 @@
       case 'leer': {
         if (hablando) { detenerVoz(); break; }
         const [tipo, id] = [resto[0], resto.slice(1).join(':')];
-        if (tipo === 'oracion') leer(oracion(id).title + '. ' + oracion(id).text);
-        else if (tipo === 'novena') { const n = window.MFC_NOVENAS.find(x => x.id === id), d = S.novenas[id] || 1, [t, r, o] = n.dias[d - 1]; leer(`${n.titulo}. Día ${d}. ${t}. ${r} ${o} ${n.final}`); }
-        else if (tipo === 'via') leer(`Estación ${S.viacrucis + 1}. ${ESTACIONES[S.viacrucis]}. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. ${MEDIT[S.viacrucis]}`);
+        if (tipo === 'oracion') leer(oracion(id).title + '. ' + oracion(id).text, 'oracion-' + id);
+        else if (tipo === 'novena') { const n = window.MFC_NOVENAS.find(x => x.id === id), d = S.novenas[id] || 1, [t, r, o] = n.dias[d - 1]; leer(`${n.titulo}. Día ${d}. ${t}. ${r} ${o} ${n.final}`, `novena-${id}-${d}`); }
+        else if (tipo === 'via') leer(`Estación ${S.viacrucis + 1}. ${ESTACIONES[S.viacrucis]}. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. ${MEDIT[S.viacrucis]}`, 'via-' + (S.viacrucis + 1));
         else if (tipo === 'camino') { const e = window.MFC_LIBRE[S.camino - 1]; leer(`${e.titulo}. ${e.oracion} Para vivir hoy: ${e.accion}`); }
         else if (tipo === 'leccion') { const l = window.MFC_FORMACION.find(x => x.id === id); leer(`${l.titulo}. ${l.intro} ${l.puntos.join('. ')}`); }
         else if (tipo === 'prueba') leer('Dios te salve, María, llena eres de gracia, el Señor es contigo. Amén.').then(() => { const i = N.Voz.idioma(); if (i) aviso('Voz usada: ' + i + '. ¿Se escuchó bien?'); });
-        else if (tipo === 'papa') { detenerHistoria(); const x = HISTORIAS[Number(id)]; if (musHist) musHist.volume = 0.15; leer(`${x.t} ${x.papa.n}.`).then(() => { if (musHist) musHist.volume = 0.45; }); }
+        else if (tipo === 'papa') { detenerHistoria(); const x = HISTORIAS[Number(id)]; if (musHist) musHist.volume = 0.15; leer(`${x.t} ${x.papa.n}.`, 'papa-' + id).then(() => { if (musHist) musHist.volume = 0.45; }); }
         break;
       }
       case 'fav': { const i = S.favoritos.indexOf(arg); if (i >= 0) S.favoritos.splice(i, 1); else S.favoritos.push(arg); guardar(); render(); aviso(i >= 0 ? 'Quitada de favoritas' : 'Guardada en favoritas'); break; }
@@ -1224,5 +1232,5 @@
   { const r = S.recordatorios; if (N.Recordatorios.disponible() && (r.rosario || r.angelus || r.misericordia)) setTimeout(() => programarRecordatorios(), 1500); }
   setTimeout(() => buscarActualizacion(false), 4000);
   if ('serviceWorker' in navigator && !N.esNativo && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => { });
-  window.__MFC = { S, ir, ORACIONES, secuenciaRosario, secuenciaCoronilla }; // para pruebas automáticas
+  window.__MFC = { S, ir, ORACIONES, secuenciaRosario, secuenciaCoronilla, ESTACIONES, MEDIT, HISTORIAS }; // para pruebas automáticas
 })();
