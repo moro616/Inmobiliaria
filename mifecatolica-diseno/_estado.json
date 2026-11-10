@@ -1,0 +1,288 @@
+{
+ "grabados": [
+  "oracion-acto",
+  "oracion-adoracion",
+  "oracion-al-despertar",
+  "oracion-angel",
+  "oracion-angelus",
+  "oracion-antes-biblia",
+  "oracion-antes-de-dormir",
+  "oracion-antes-trabajar",
+  "oracion-argentina",
+  "oracion-avemaria",
+  "oracion-bautismo",
+  "oracion-bendicion",
+  "oracion-comunion-espiritual",
+  "oracion-credo",
+  "oracion-descanso",
+  "oracion-despues-biblia",
+  "oracion-difuntos",
+  "oracion-enfermos",
+  "oracion-esperanza",
+  "oracion-espiritu",
+  "oracion-estudiantes",
+  "oracion-examen",
+  "oracion-familia",
+  "oracion-gloria",
+  "oracion-gratitud",
+  "oracion-hijos",
+  "oracion-hospital",
+  "oracion-jesus",
+  "oracion-magnificat",
+  "oracion-manana",
+  "oracion-matrimonio",
+  "oracion-miguel",
+  "oracion-nuestra-senora-lujan",
+  "oracion-ofrenda-dia",
+  "oracion-padrenuestro",
+  "oracion-padres",
+  "oracion-papa",
+  "oracion-paz",
+  "oracion-perdon",
+  "oracion-por-el-matrimonio",
+  "oracion-por-la-amistad",
+  "oracion-por-las-madres",
+  "oracion-por-los-abuelos",
+  "oracion-por-los-cuidadores",
+  "oracion-por-los-docentes",
+  "oracion-por-los-hijos",
+  "oracion-por-los-medicos",
+  "oracion-por-los-migrantes",
+  "oracion-por-los-padres",
+  "oracion-por-los-sin-trabajo",
+  "oracion-rosario-familia",
+  "oracion-salve",
+  "oracion-san-antonio",
+  "oracion-san-cayetano",
+  "oracion-san-jose",
+  "oracion-santa-rita",
+  "oracion-senor-mio",
+  "oracion-trabajo",
+  "oracion-vocaciones",
+  "papa-0",
+  "papa-1",
+  "papa-10",
+  "papa-11",
+  "papa-2",
+  "papa-3",
+  "papa-5",
+  "papa-6",
+  "papa-7",
+  "papa-8",
+  "papa-9"
+ ],
+ "excluidos_por_dudosos": [
+  "oracion-reginacaeli",
+  "papa-4"
+ ],
+ "faltan": [
+  "oracion-reginacaeli",
+  "oracion-por-las-personas-solas",
+  "oracion-por-los-que-sufren",
+  "oracion-por-la-paz",
+  "oracion-por-la-argentina",
+  "oracion-por-rosario",
+  "oracion-por-las-parroquias",
+  "oracion-por-los-sacerdotes",
+  "oracion-por-las-vocaciones",
+  "oracion-por-la-unidad",
+  "oracion-por-los-jovenes",
+  "oracion-por-la-infancia",
+  "oracion-por-las-familias-separadas",
+  "oracion-ante-una-decision",
+  "oracion-en-la-tristeza",
+  "oracion-en-la-alegria",
+  "oracion-antes-de-estudiar",
+  "oracion-antes-del-trabajo",
+  "oracion-despues-del-trabajo",
+  "oracion-por-los-difuntos",
+  "oracion-ante-la-confesion",
+  "oracion-despues-de-comulgar",
+  "oracion-ante-el-santisimo",
+  "oracion-por-la-creacion",
+  "oracion-persignacion",
+  "oracion-yo-confieso",
+  "oracion-acordaos",
+  "oracion-bajo-tu-amparo",
+  "oracion-oh-senora-mia",
+  "oracion-bendita-pureza",
+  "oracion-alma-de-cristo",
+  "oracion-a-san-jose",
+  "oracion-instrumento-paz",
+  "oracion-letanias",
+  "oracion-eterno-descanso",
+  "oracion-te-adoro",
+  "via-1",
+  "via-2",
+  "via-3",
+  "via-4",
+  "via-5",
+  "via-6",
+  "via-7",
+  "via-8",
+  "via-9",
+  "via-10",
+  "via-11",
+  "via-12",
+  "via-13",
+  "via-14",
+  "papa-4",
+  "novena-inmaculada-1",
+  "novena-inmaculada-2",
+  "novena-inmaculada-3",
+  "novena-inmaculada-4",
+  "novena-inmaculada-5",
+  "novena-inmaculada-6",
+  "novena-inmaculada-7",
+  "novena-inmaculada-8",
+  "novena-inmaculada-9",
+  "novena-navidad-1",
+  "novena-navidad-2",
+  "novena-navidad-3",
+  "novena-navidad-4",
+  "novena-navidad-5",
+  "novena-navidad-6",
+  "novena-navidad-7",
+  "novena-navidad-8",
+  "novena-navidad-9",
+  "novena-lujan-1",
+  "novena-lujan-2",
+  "novena-lujan-3",
+  "novena-lujan-4",
+  "novena-lujan-5",
+  "novena-lujan-6",
+  "novena-lujan-7",
+  "novena-lujan-8",
+  "novena-lujan-9",
+  "novena-espiritu-1",
+  "novena-espiritu-2",
+  "novena-espiritu-3",
+  "novena-espiritu-4",
+  "novena-espiritu-5",
+  "novena-espiritu-6",
+  "novena-espiritu-7",
+  "novena-espiritu-8",
+  "novena-espiritu-9",
+  "novena-san-jose-1",
+  "novena-san-jose-2",
+  "novena-san-jose-3",
+  "novena-san-jose-4",
+  "novena-san-jose-5",
+  "novena-san-jose-6",
+  "novena-san-jose-7",
+  "novena-san-jose-8",
+  "novena-san-jose-9"
+ ],
+ "dudosas_rosario": {
+  "misterio-gozosos-2": [
+   {
+    "frase": "Lucas, capítulo uno, versículos treinta y nueve al cincuenta y seis. Fruto: El amor al prójimo.",
+    "oido": " Lucas capítulo 1 versículos 39 al 56.  Fruto el amor al prójimo.",
+    "sim": 0.72
+   }
+  ],
+  "misterio-gozosos-3": [
+   {
+    "frase": "Lucas, capítulo dos, versículos uno al veinte. Fruto: El desprendimiento.",
+    "oido": " Lucas, capítulo 2, versículos 1 al 20. Fruto, el desprendimiento.",
+    "sim": 0.82
+   }
+  ],
+  "misterio-gozosos-4": [
+   {
+    "frase": "Lucas, capítulo dos, versículos veintidós al treinta y ocho. Fruto: La obediencia.",
+    "oido": " Lucas capítulo 2 versículos 22 al 38 fruto la obediencia",
+    "sim": 0.74
+   }
+  ],
+  "misterio-gozosos-5": [
+   {
+    "frase": "Lucas, capítulo dos, versículos cuarenta y uno al cincuenta y dos. Fruto: La búsqueda de Dios.",
+    "oido": " Lucas capítulo 2, versículos 41 al 52, fruto, la búsqueda de Dios.",
+    "sim": 0.72
+   }
+  ],
+  "letanias": [
+   {
+    "frase": "Señor, ten piedad. Cristo, ten piedad. Señor, ten piedad. Cristo, óyenos. Cristo, escúchanos.",
+    "oido": " Señor Tempiedad, Cristo Tempiedad, Señor Tempiedad, Cristo, oyenos, Cristo, escúchanos.",
+    "sim": 0.61
+   },
+   {
+    "frase": "Dios, Padre celestial, ten piedad de nosotros. Dios Hijo, Redentor del mundo, ten piedad de nosotros.",
+    "oido": " Dios Padre Celestial, Tempidad de nosotros.  Dios Hijo Redentor del Mundo, Tempidad de nosotros.",
+    "sim": 0.8
+   },
+   {
+    "frase": "Dios Espíritu Santo, ten piedad de nosotros. Santísima Trinidad, que eres un solo Dios, ten piedad de nosotros.",
+    "oido": " Dios Espíritu Santo, Tempiedad de nosotros, Santísima Trinidad, que eres un solo Dios,  Tempiedad de nosotros.",
+    "sim": 0.82
+   },
+   {
+    "frase": "Santa María, ruega por nosotros. Santa Madre de Dios, ruega por nosotros. Santa Virgen de las vírgenes, ruega por nosotros.",
+    "oido": " Santa María ruéva por nosotros.  Santa madre de Dios ruéva por nosotros.  Santa Virgen de las Virgenes ruéva por nosotros.",
+    "sim": 0.85
+   },
+   {
+    "frase": "Madre de Cristo, ruega por nosotros. Madre de la Iglesia, ruega por nosotros. Madre de la misericordia, ruega por nosotros.",
+    "oido": " Madre de Cristo, rueda por nosotros.  Madre de la Iglesia, rueda por nosotros.  Madre de la misericordia, rueda por nosotros.",
+    "sim": 0.85
+   },
+   {
+    "frase": "Madre castísima, ruega por nosotros. Madre virginal, ruega por nosotros. Madre sin mancha, ruega por nosotros.",
+    "oido": " Madre castísima, rueda por nosotros. Madre original, rueda por nosotros.  Madre sin mancha, rueda por nosotros.",
+    "sim": 0.75
+   },
+   {
+    "frase": "Madre del Creador, ruega por nosotros. Madre del Salvador, ruega por nosotros. Virgen prudentísima, ruega por nosotros.",
+    "oido": " Madre del Creador, rueda por nosotros. Madre del Salvador, rueda por nosotros. Virgen prudentísima,  rueda por nosotros.",
+    "sim": 0.82
+   },
+   {
+    "frase": "Virgen digna de veneración, ruega por nosotros. Virgen digna de alabanza, ruega por nosotros.",
+    "oido": " Virgen digna de veneración, rueda por nosotros. Virgen digna de alabanza, rueda por nosotros.",
+    "sim": 0.86
+   },
+   {
+    "frase": "Torre de marfil, ruega por nosotros. Casa de oro, ruega por nosotros. Arca de la alianza, ruega por nosotros.",
+    "oido": " Torre de Marfil rueda por nosotros  Casa de Oro rueda por nosotros  Arca de la Alianza rueda por nosotros",
+    "sim": 0.84
+   },
+   {
+    "frase": "Refugio de los pecadores, ruega por nosotros. Consuelo de los migrantes, ruega por nosotros.",
+    "oido": " Refugio de los pecadores, rueda por nosotros, consuelo de los migrantes, rueda por nosotros.",
+    "sim": 0.86
+   },
+   {
+    "frase": "Consuelo de los afligidos, ruega por nosotros. Auxilio de los cristianos, ruega por nosotros.",
+    "oido": " Consuelo de los Afligidos, Rueba por nosotros.  Auxilio de los Cristianos, Rueba por nosotros.",
+    "sim": 0.86
+   },
+   {
+    "frase": "Reina de los ángeles, ruega por nosotros. Reina de los patriarcas, ruega por nosotros.",
+    "oido": " Reina de los Ángeles, rueda por nosotros.  Reina de los Patriarcas, rueda por nosotros.",
+    "sim": 0.86
+   },
+   {
+    "frase": "Reina de los profetas, ruega por nosotros. Reina de los apóstoles, ruega por nosotros.",
+    "oido": " Reina de los Profetas, rueda por nosotros, Reina de los Apóstoles, rueda por nosotros.",
+    "sim": 0.86
+   },
+   {
+    "frase": "Reina de los mártires, ruega por nosotros. Reina de los confesores, ruega por nosotros.",
+    "oido": " Reina de los mártires, ruedó por nosotros.  Reina de los confesores, ruedó por nosotros.",
+    "sim": 0.86
+   },
+   {
+    "frase": "Reina del santísimo Rosario, ruega por nosotros. Reina de la familia, ruega por nosotros.",
+    "oido": " Reina del Santísimo Rosario, rueda por nosotros.  Reina de la familia, rueda por nosotros.",
+    "sim": 0.86
+   },
+   {
+    "frase": "Cordero de Dios, que quitas el pecado del mundo, ten piedad de nosotros.",
+    "oido": " Cordero de Dios, que quitas el pecado del mundo, te empiedad de nosotros.",
+    "sim": 0.85
+   }
+  ]
+ }
+}

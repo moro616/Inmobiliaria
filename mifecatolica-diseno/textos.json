@@ -1,0 +1,711 @@
+{
+ "clips": {
+  "senal": "Por la señal de la Santa Cruz, de nuestros enemigos líbranos, Señor, Dios nuestro. En el nombre del Padre, y del Hijo, y del Espíritu Santo. Amén.",
+  "ofrecimiento": "Señor, te ofrecemos este Rosario por nuestras intenciones, por nuestras familias, por la Iglesia y por la Argentina. María, Madre nuestra, acompañanos en esta oración.",
+  "credo": "Creo en Dios, Padre todopoderoso, Creador del cielo y de la tierra. Creo en Jesucristo, su único Hijo, nuestro Señor, que fue concebido por obra y gracia del Espíritu Santo; nació de Santa María Virgen; padeció bajo el poder de Poncio Pilato; fue crucificado, muerto y sepultado; descendió a los infiernos; al tercer día resucitó de entre los muertos; subió a los cielos y está sentado a la derecha de Dios, Padre todopoderoso. Desde allí ha de venir a juzgar a vivos y muertos. Creo en el Espíritu Santo, la santa Iglesia católica, la comunión de los santos, el perdón de los pecados, la resurrección de la carne y la vida eterna. Amén.",
+  "padrenuestro": "Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén.",
+  "avemaria": "Dios te salve, María, llena eres de gracia; el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén.",
+  "gloria": "Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.",
+  "misterio-gozosos-1": "Primer misterio gozoso: La Anunciación del Ángel a María.\nLucas 1, 26-38. Fruto: La humildad.\n\nEl ángel saluda a María y ella responde con un sí confiado. Pidamos un corazón disponible para escuchar a Dios en lo cotidiano.",
+  "jaculatoria": "Oh Jesús mío, perdona nuestros pecados, líbranos del fuego del infierno, lleva al cielo a todas las almas, especialmente a las más necesitadas de tu misericordia.\n\nMaría, Madre de gracia, Madre de misericordia, en la vida y en la muerte ampáranos, gran Señora.",
+  "misterio-gozosos-2": "Segundo misterio gozoso: La Visitación de María a su prima Isabel.\nLucas 1, 39-56. Fruto: El amor al prójimo.\n\nMaría se pone en camino sin demora para ayudar. Pidamos la alegría de servir a quien nos necesita.",
+  "misterio-gozosos-3": "Tercer misterio gozoso: El Nacimiento del Hijo de Dios en Belén.\nLucas 2, 1-20. Fruto: El desprendimiento.\n\nDios se hace pequeño y nace en la pobreza de un pesebre. Pidamos sencillez para reconocerlo en los más humildes.",
+  "misterio-gozosos-4": "Cuarto misterio gozoso: La Presentación de Jesús en el Templo.\nLucas 2, 22-38. Fruto: La obediencia.\n\nMaría y José ofrecen a Jesús según la Ley, y Simeón reconoce la luz de las naciones. Pidamos fidelidad en lo pequeño.",
+  "misterio-gozosos-5": "Quinto misterio gozoso: El Niño Jesús perdido y hallado en el Templo.\nLucas 2, 41-52. Fruto: La búsqueda de Dios.\n\nDespués de tres días de angustia, María y José encuentran a Jesús en la casa del Padre. Pidamos buscarlo siempre, aun en la oscuridad.",
+  "salve": "Dios te salve, Reina y Madre de misericordia, vida, dulzura y esperanza nuestra; Dios te salve. A ti llamamos los desterrados hijos de Eva; a ti suspiramos, gimiendo y llorando en este valle de lágrimas. Ea, pues, Señora, abogada nuestra, vuelve a nosotros esos tus ojos misericordiosos; y después de este destierro, muéstranos a Jesús, fruto bendito de tu vientre. ¡Oh clemente, oh piadosa, oh dulce Virgen María! Ruega por nosotros, santa Madre de Dios, para que seamos dignos de alcanzar las promesas de nuestro Señor Jesucristo. Amén.",
+  "letanias": "Señor, ten piedad. Cristo, ten piedad. Señor, ten piedad.\nCristo, óyenos. Cristo, escúchanos.\nDios, Padre celestial, ten piedad de nosotros.\nDios Hijo, Redentor del mundo, ten piedad de nosotros.\nDios Espíritu Santo, ten piedad de nosotros.\nSantísima Trinidad, que eres un solo Dios, ten piedad de nosotros.\nSanta María, ruega por nosotros.\nSanta Madre de Dios, ruega por nosotros.\nSanta Virgen de las vírgenes, ruega por nosotros.\nMadre de Cristo, ruega por nosotros.\nMadre de la Iglesia, ruega por nosotros.\nMadre de la misericordia, ruega por nosotros.\nMadre de la divina gracia, ruega por nosotros.\nMadre de la esperanza, ruega por nosotros.\nMadre purísima, ruega por nosotros.\nMadre castísima, ruega por nosotros.\nMadre virginal, ruega por nosotros.\nMadre sin mancha, ruega por nosotros.\nMadre amable, ruega por nosotros.\nMadre admirable, ruega por nosotros.\nMadre del buen consejo, ruega por nosotros.\nMadre del Creador, ruega por nosotros.\nMadre del Salvador, ruega por nosotros.\nVirgen prudentísima, ruega por nosotros.\nVirgen digna de veneración, ruega por nosotros.\nVirgen digna de alabanza, ruega por nosotros.\nVirgen poderosa, ruega por nosotros.\nVirgen clemente, ruega por nosotros.\nVirgen fiel, ruega por nosotros.\nEspejo de justicia, ruega por nosotros.\nTrono de la sabiduría, ruega por nosotros.\nCausa de nuestra alegría, ruega por nosotros.\nVaso espiritual, ruega por nosotros.\nVaso digno de honor, ruega por nosotros.\nVaso insigne de devoción, ruega por nosotros.\nRosa mística, ruega por nosotros.\nTorre de David, ruega por nosotros.\nTorre de marfil, ruega por nosotros.\nCasa de oro, ruega por nosotros.\nArca de la alianza, ruega por nosotros.\nPuerta del cielo, ruega por nosotros.\nEstrella de la mañana, ruega por nosotros.\nSalud de los enfermos, ruega por nosotros.\nRefugio de los pecadores, ruega por nosotros.\nConsuelo de los migrantes, ruega por nosotros.\nConsuelo de los afligidos, ruega por nosotros.\nAuxilio de los cristianos, ruega por nosotros.\nReina de los ángeles, ruega por nosotros.\nReina de los patriarcas, ruega por nosotros.\nReina de los profetas, ruega por nosotros.\nReina de los apóstoles, ruega por nosotros.\nReina de los mártires, ruega por nosotros.\nReina de los confesores, ruega por nosotros.\nReina de las vírgenes, ruega por nosotros.\nReina de todos los santos, ruega por nosotros.\nReina concebida sin pecado original, ruega por nosotros.\nReina asunta a los cielos, ruega por nosotros.\nReina del santísimo Rosario, ruega por nosotros.\nReina de la familia, ruega por nosotros.\nReina de la paz, ruega por nosotros.\nCordero de Dios, que quitas el pecado del mundo, perdónanos, Señor.\nCordero de Dios, que quitas el pecado del mundo, escúchanos, Señor.\nCordero de Dios, que quitas el pecado del mundo, ten piedad de nosotros.\nRuega por nosotros, santa Madre de Dios, para que seamos dignos de alcanzar las promesas de nuestro Señor Jesucristo. Amén.",
+  "final": "Oh Dios, cuyo Hijo unigénito, con su vida, muerte y resurrección, nos alcanzó el premio de la vida eterna: te pedimos que, meditando estos misterios del Santo Rosario de la Virgen María, imitemos lo que contienen y alcancemos lo que prometen. Por Jesucristo nuestro Señor. Amén.",
+  "senal-fin": "En el nombre del Padre, y del Hijo, y del Espíritu Santo. Amén.",
+  "misterio-luminosos-1": "Primer misterio luminoso: El Bautismo de Jesús en el Jordán.\nMateo 3, 13-17. Fruto: La fidelidad a nuestro bautismo.\n\nEl Padre proclama: «Este es mi Hijo amado». Pidamos vivir como hijos de Dios, renovando la gracia de nuestro bautismo.",
+  "misterio-luminosos-2": "Segundo misterio luminoso: Las bodas de Caná.\nJuan 2, 1-12. Fruto: La confianza en María.\n\nMaría advierte la necesidad y dice: «Hagan todo lo que Él les diga». Pidamos confiarle a ella nuestras preocupaciones.",
+  "misterio-luminosos-3": "Tercer misterio luminoso: El anuncio del Reino de Dios y la invitación a la conversión.\nMarcos 1, 14-15. Fruto: La conversión.\n\nJesús anuncia la Buena Noticia y llama a cambiar de vida. Pidamos un corazón nuevo, capaz de perdonar y empezar de nuevo.",
+  "misterio-luminosos-4": "Cuarto misterio luminoso: La Transfiguración del Señor.\nLucas 9, 28-36. Fruto: El deseo de santidad.\n\nEn el monte, el rostro de Jesús brilla y el Padre dice: «Escúchenlo». Pidamos la gracia de escuchar su Palabra.",
+  "misterio-luminosos-5": "Quinto misterio luminoso: La institución de la Eucaristía.\nLucas 22, 14-20. Fruto: El amor a la Eucaristía.\n\nEn la Última Cena, Jesús se entrega como Pan de Vida. Pidamos recibirlo con fe y vivir en acción de gracias.",
+  "misterio-dolorosos-1": "Primer misterio doloroso: La oración de Jesús en el Huerto.\nLucas 22, 39-46. Fruto: La aceptación de la voluntad de Dios.\n\nJesús ora con angustia y dice: «Que no se haga mi voluntad, sino la tuya». Pidamos fortaleza en las horas difíciles.",
+  "misterio-dolorosos-2": "Segundo misterio doloroso: La flagelación de Jesús.\nJuan 19, 1. Fruto: La pureza y el dominio de sí.\n\nJesús soporta en silencio el dolor injusto. Pidamos por quienes sufren violencia y por la conversión de los que la causan.",
+  "misterio-dolorosos-3": "Tercer misterio doloroso: La coronación de espinas.\nMateo 27, 27-31. Fruto: La humildad ante las humillaciones.\n\nSe burlan del Rey verdadero con una corona de espinas. Pidamos mansedumbre y valor ante el desprecio.",
+  "misterio-dolorosos-4": "Cuarto misterio doloroso: Jesús con la cruz a cuestas camino del Calvario.\nJuan 19, 16-17. Fruto: La paciencia en las pruebas.\n\nJesús carga la cruz por amor a nosotros. Pidamos llevar nuestras cruces con paciencia y ayudar a otros con las suyas.",
+  "misterio-dolorosos-5": "Quinto misterio doloroso: La crucifixión y muerte de Jesús.\nJuan 19, 25-30. Fruto: El amor a Cristo crucificado.\n\nDesde la cruz, Jesús perdona y nos entrega a su Madre. Pidamos la gracia de perdonar y de estar junto a quien sufre.",
+  "misterio-gloriosos-1": "Primer misterio glorioso: La Resurrección del Señor.\nMarcos 16, 1-7. Fruto: La fe.\n\nEl sepulcro está vacío: ¡Cristo vive! Pidamos una fe firme y la esperanza de la vida eterna.",
+  "misterio-gloriosos-2": "Segundo misterio glorioso: La Ascensión del Señor a los cielos.\nHechos 1, 6-11. Fruto: La esperanza.\n\nJesús sube al Padre y nos promete estar con nosotros todos los días. Pidamos vivir con la mirada puesta en el cielo.",
+  "misterio-gloriosos-3": "Tercer misterio glorioso: La venida del Espíritu Santo.\nHechos 2, 1-13. Fruto: Los dones del Espíritu Santo.\n\nReunidos con María, los apóstoles reciben el fuego del Espíritu. Pidamos sus dones para anunciar a Jesús con alegría.",
+  "misterio-gloriosos-4": "Cuarto misterio glorioso: La Asunción de la Virgen María al cielo.\nApocalipsis 12, 1. Fruto: La gracia de una buena muerte.\n\nMaría es llevada en cuerpo y alma a la gloria. Pidamos su compañía en la hora de nuestra muerte.",
+  "misterio-gloriosos-5": "Quinto misterio glorioso: La Coronación de María como Reina del cielo y de la tierra.\nApocalipsis 12, 1. Fruto: La confianza en María.\n\nMaría, Reina y Madre, intercede por sus hijos. Pidamos su protección para nuestras familias y nuestra patria.",
+  "coronilla-padre-eterno": "Padre Eterno, te ofrezco el Cuerpo y la Sangre, el Alma y la Divinidad de tu amadísimo Hijo, nuestro Señor Jesucristo, como propiciación de nuestros pecados y los del mundo entero.",
+  "coronilla-pasion": "Por su dolorosa Pasión, ten misericordia de nosotros y del mundo entero.",
+  "coronilla-santo-dios": "Santo Dios, Santo Fuerte, Santo Inmortal, ten piedad de nosotros y del mundo entero.",
+  "coronilla-confio": "Oh Sangre y Agua que brotaste del Corazón de Jesús como fuente de misericordia para nosotros, en Vos confío. Jesús, en Vos confío."
+ },
+ "oraciones": [
+  {
+   "id": "padrenuestro",
+   "t": "Padre Nuestro. Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén."
+  },
+  {
+   "id": "avemaria",
+   "t": "Ave María. Dios te salve, María, llena eres de gracia; el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "gloria",
+   "t": "Gloria. Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén."
+  },
+  {
+   "id": "credo",
+   "t": "Credo de los Apóstoles. Creo en Dios, Padre todopoderoso, Creador del cielo y de la tierra. Creo en Jesucristo, su único Hijo, nuestro Señor, que fue concebido por obra y gracia del Espíritu Santo; nació de Santa María Virgen; padeció bajo el poder de Poncio Pilato; fue crucificado, muerto y sepultado; descendió a los infiernos; al tercer día resucitó de entre los muertos; subió a los cielos y está sentado a la derecha de Dios, Padre todopoderoso. Desde allí ha de venir a juzgar a vivos y muertos. Creo en el Espíritu Santo, la santa Iglesia católica, la comunión de los santos, el perdón de los pecados, la resurrección de la carne y la vida eterna. Amén."
+  },
+  {
+   "id": "salve",
+   "t": "La Salve. Dios te salve, Reina y Madre de misericordia, vida, dulzura y esperanza nuestra; Dios te salve. A ti llamamos los desterrados hijos de Eva; a ti suspiramos, gimiendo y llorando en este valle de lágrimas. Ea, pues, Señora, abogada nuestra, vuelve a nosotros esos tus ojos misericordiosos; y después de este destierro, muéstranos a Jesús, fruto bendito de tu vientre. ¡Oh clemente, oh piadosa, oh dulce Virgen María! Ruega por nosotros, santa Madre de Dios, para que seamos dignos de alcanzar las promesas de nuestro Señor Jesucristo. Amén."
+  },
+  {
+   "id": "angel",
+   "t": "Ángel de la Guarda. Ángel de mi guarda, dulce compañía, no me desampares ni de noche ni de día. No me dejes solo, que me perdería. Amén."
+  },
+  {
+   "id": "miguel",
+   "t": "San Miguel Arcángel. San Miguel Arcángel, defiéndenos en la batalla. Sé nuestro amparo contra la perversidad y asechanzas del demonio. Reprímale Dios, pedimos suplicantes, y tú, príncipe de la milicia celestial, arroja al infierno con el divino poder a Satanás y a los otros espíritus malignos que andan dispersos por el mundo para la perdición de las almas. Amén."
+  },
+  {
+   "id": "acto",
+   "t": "Acto de Contrición. Dios mío, me arrepiento de todo corazón de todos mis pecados, porque al pecar, no solo merezco las penas que causan, sino porque principalmente te ofendí a ti, sumo Bien y digno de amor sobre todas las cosas. Propongo firmemente, con tu gracia, no pecar más y evitar las ocasiones próximas de pecado. Amén."
+  },
+  {
+   "id": "jesus",
+   "t": "Jesús, en Vos confío. Jesús misericordioso, en Vos confío. Por tu dolorosa Pasión, ten misericordia de nosotros y del mundo entero. Amén."
+  },
+  {
+   "id": "bendicion",
+   "t": "Bendición de los alimentos. Bendícenos, Señor, y bendice estos alimentos que por tu bondad vamos a recibir. Por Cristo nuestro Señor. Amén."
+  },
+  {
+   "id": "espiritu",
+   "t": "Ven, Espíritu Santo. Ven, Espíritu Santo, llena los corazones de tus fieles y enciende en ellos el fuego de tu amor. Envía tu Espíritu y todo será creado. Y renovarás la faz de la tierra. Amén."
+  },
+  {
+   "id": "angelus",
+   "t": "El Ángelus. El Ángel del Señor anunció a María.\nY concibió por obra del Espíritu Santo.\nDios te salve, María...\nHe aquí la esclava del Señor.\nHágase en mí según tu palabra.\nDios te salve, María...\nY el Verbo se hizo carne.\nY habitó entre nosotros.\nDios te salve, María...\nRuega por nosotros, santa Madre de Dios.\nPara que seamos dignos de alcanzar las promesas de nuestro Señor Jesucristo.\nOremos: Te suplicamos, Señor, que derrames tu gracia en nuestras almas, para que los que, por el anuncio del Ángel, hemos conocido la encarnación de tu Hijo Jesucristo, por su Pasión y su Cruz seamos llevados a la gloria de la Resurrección. Por Jesucristo nuestro Señor. Amén."
+  },
+  {
+   "id": "reginacaeli",
+   "t": "Regina Caeli. Reina del cielo, alégrate, aleluya.\nPorque el Señor, a quien has merecido llevar, aleluya.\nHa resucitado según su palabra, aleluya.\nRuega al Señor por nosotros, aleluya.\nGoza y alégrate, Virgen María, aleluya.\nPorque verdaderamente ha resucitado el Señor, aleluya."
+  },
+  {
+   "id": "magnificat",
+   "t": "Magníficat. Proclama mi alma la grandeza del Señor, se alegra mi espíritu en Dios, mi salvador; porque ha mirado la humildad de su esclava. Desde ahora me felicitarán todas las generaciones, porque el Poderoso ha hecho obras grandes por mí: su nombre es santo."
+  },
+  {
+   "id": "manana",
+   "t": "Oración al comenzar el día. Señor Jesús, te ofrezco este día. Iluminá mis decisiones, bendecí mi trabajo y ayudame a tratar a los demás con amor. Que mis palabras y mis acciones sean un reflejo de tu paz. Amén."
+  },
+  {
+   "id": "enfermos",
+   "t": "Oración por los enfermos. Señor de la vida, acompañá a quienes atraviesan la enfermedad. Dales fortaleza y consuelo, sostené a sus familias e iluminá a quienes los atienden. Que nunca les falten tu paz, tu misericordia y el amor de quienes los rodean. Amén."
+  },
+  {
+   "id": "difuntos",
+   "t": "Por los fieles difuntos. Dales, Señor, el descanso eterno.\nY brille para ellos la luz perpetua.\nDescansen en paz. Amén."
+  },
+  {
+   "id": "familia",
+   "t": "Oración por la familia. Padre bueno, cuidá nuestro hogar. Enseñanos a escucharnos, perdonarnos y acompañarnos en las dificultades. Que nuestra familia sea un lugar de respeto, ternura y fe. Por Jesucristo nuestro Señor. Amén."
+  },
+  {
+   "id": "trabajo",
+   "t": "Oración por el trabajo. Dios de bondad, bendecí el trabajo de nuestras manos y acompañá a quienes buscan empleo. Ayudanos a trabajar con honestidad, servir a los demás y cuidar a nuestras familias. Amén."
+  },
+  {
+   "id": "gratitud",
+   "t": "Oración de agradecimiento. Gracias, Señor, por la vida, por los encuentros, por el pan de cada día y por las oportunidades de comenzar de nuevo. Abre mis ojos para reconocer tus dones y compartirlos con generosidad. Amén."
+  },
+  {
+   "id": "estudiantes",
+   "t": "Oración por los estudiantes. Espíritu Santo, iluminá mi inteligencia y fortalecé mi constancia. Ayudame a estudiar con responsabilidad, a aprender de mis errores y a poner mis conocimientos al servicio de los demás. Amén."
+  },
+  {
+   "id": "san-jose",
+   "t": "Oración a San José. San José, custodio de Jesús y esposo de María, acompañá a nuestras familias y a quienes trabajan cada día. Enseñanos el silencio, la fidelidad, la paciencia y la confianza en Dios. Rogá por nosotros. Amén."
+  },
+  {
+   "id": "examen",
+   "t": "Examen de conciencia para la noche. Señor, gracias por tu presencia en este día. Ayudame a reconocer el bien recibido y realizado. Mostrame dónde faltó el amor, dame la gracia de pedir perdón y prepará mi corazón para empezar mejor mañana. Amén."
+  },
+  {
+   "id": "descanso",
+   "t": "Oración de la noche. Señor, gracias por este día. Perdona mis faltas, cuida a mi familia y a quienes sufren. En tus manos pongo mis preocupaciones y mi descanso. Amén."
+  },
+  {
+   "id": "senor-mio",
+   "t": "Señor mío Jesucristo. Señor mío Jesucristo, Dios y hombre verdadero, Creador, Padre y Redentor mío; por ser Vos quien sois, bondad infinita, y porque os amo sobre todas las cosas, me pesa de todo corazón haberos ofendido. También me pesa porque podéis castigarme con las penas del infierno. Ayudado de vuestra divina gracia, propongo firmemente nunca más pecar, confesarme y cumplir la penitencia que me fuere impuesta. Amén."
+  },
+  {
+   "id": "comunion-espiritual",
+   "t": "Comunión espiritual. Jesús mío, creo que estás realmente presente en el Santísimo Sacramento del altar. Te amo sobre todas las cosas y deseo recibirte en mi alma. Ya que ahora no puedo recibirte sacramentalmente, ven al menos espiritualmente a mi corazón. Como si ya te hubiese recibido, te abrazo y me uno todo a ti. No permitas que jamás me separe de ti. Amén."
+  },
+  {
+   "id": "adoracion",
+   "t": "Adoración al Santísimo. Sea por siempre bendito y alabado Jesús Sacramentado. Señor Jesús, te adoramos presente en la Eucaristía. Fortalecé nuestra fe, alimentá nuestra esperanza y acrecentá nuestra caridad. Amén."
+  },
+  {
+   "id": "ofrenda-dia",
+   "t": "Ofrecimiento del día. Señor Jesús, te ofrezco mi oración, mi trabajo, mis alegrías y mis dificultades de este día. Que todo lo haga por amor y al servicio de quienes me rodean. Amén."
+  },
+  {
+   "id": "antes-trabajar",
+   "t": "Antes de comenzar a trabajar. Señor, bendecí el trabajo que hoy voy a realizar. Dame prudencia, paciencia, justicia y cuidado para cumplir bien mis tareas y respetar a mis compañeros. Amén."
+  },
+  {
+   "id": "padres",
+   "t": "Por nuestros padres. Dios Padre bueno, bendecí a nuestros padres y a quienes nos cuidaron. Recompensá su esfuerzo, acompañalos en la salud y la enfermedad, y enseñanos a amarlos con gratitud. Amén."
+  },
+  {
+   "id": "hijos",
+   "t": "Por los hijos. Señor Jesús, poné tu mirada sobre nuestros hijos. Acompañalos en su crecimiento, protegé sus pasos y ayudanos a educarlos con paciencia, escucha y amor. Amén."
+  },
+  {
+   "id": "matrimonio",
+   "t": "Por los matrimonios. Señor Jesús, que santificaste el amor humano, fortalecé la unión de los esposos. Enseñales a perdonarse, acompañarse y renovar cada día su entrega. Amén."
+  },
+  {
+   "id": "paz",
+   "t": "Oración por la paz. Señor, hacenos instrumentos de tu paz. Que nuestras palabras consuelen, nuestras decisiones sean justas y nuestros actos ayuden a sanar las heridas de nuestro mundo. Amén."
+  },
+  {
+   "id": "perdon",
+   "t": "Para aprender a perdonar. Padre misericordioso, vos conocés las heridas que llevo. Dame la gracia de no alimentar el rencor, de buscar la verdad con caridad y de aprender a perdonar sin negar la justicia. Amén."
+  },
+  {
+   "id": "esperanza",
+   "t": "En momentos difíciles. Jesús, cuando me faltan fuerzas, sostené mi esperanza. Cuando el miedo me paralice, ayudame a confiar. Caminá conmigo en las dificultades y haceme reconocer tu presencia. Amén."
+  },
+  {
+   "id": "hospital",
+   "t": "Por quienes cuidan enfermos. Señor de misericordia, fortalecé a médicos, enfermeros, cuidadores y familiares. Iluminá sus decisiones y concedeles descanso, sabiduría y compasión. Amén."
+  },
+  {
+   "id": "vocaciones",
+   "t": "Por las vocaciones. Padre bueno, despertá en tu pueblo vocaciones al sacerdocio, a la vida consagrada, al matrimonio y al servicio fraterno. Que cada persona encuentre el camino para responder a tu amor. Amén."
+  },
+  {
+   "id": "papa",
+   "t": "Por el Santo Padre. Señor Jesús, que encomendaste a Pedro el cuidado de tu Iglesia, sostené al Santo Padre con tu Espíritu. Concedele sabiduría, fortaleza y paz para servir a tu pueblo. Amén."
+  },
+  {
+   "id": "argentina",
+   "t": "Por la Argentina. Dios de la vida, bendecí a la Argentina. Que sepamos construir una sociedad donde haya trabajo digno, justicia, diálogo, solidaridad y paz. Cuidá a nuestras familias y comunidades. Amén."
+  },
+  {
+   "id": "bautismo",
+   "t": "Renovación de las promesas bautismales. Señor, renuevo mi deseo de vivir como hijo tuyo. Ayudame a rechazar el pecado, a creer en el Padre, el Hijo y el Espíritu Santo, y a caminar en comunión con tu Iglesia. Amén."
+  },
+  {
+   "id": "san-antonio",
+   "t": "Oración a San Antonio de Padua. San Antonio de Padua, testigo de la Palabra y servidor de los pobres, ayudanos a buscar a Cristo con sinceridad, a practicar la caridad y a vivir con sencillez. Rogá por nosotros. Amén."
+  },
+  {
+   "id": "santa-rita",
+   "t": "Oración a Santa Rita. Santa Rita, que perseveraste en la fe en medio de grandes dificultades, intercedé por quienes atraviesan situaciones dolorosas. Ayudanos a confiar en la misericordia de Dios. Amén."
+  },
+  {
+   "id": "san-cayetano",
+   "t": "Oración a San Cayetano. San Cayetano, intercedé por quienes buscan el pan y el trabajo. Que nadie se sienta abandonado y que sepamos compartir los bienes recibidos. Amén."
+  },
+  {
+   "id": "nuestra-senora-lujan",
+   "t": "Nuestra Señora de Luján. Virgen de Luján, Madre y Patrona de la Argentina, acompañá a nuestro pueblo. Protegé a las familias, confortá a quienes sufren y acercanos siempre a tu Hijo Jesús. Amén."
+  },
+  {
+   "id": "rosario-familia",
+   "t": "Por la familia que reza. María, Madre de Jesús y madre nuestra, acompañá a las familias que se reúnen a rezar el Rosario. Enseñanos a contemplar la vida de Cristo y a vivir su Evangelio. Amén."
+  },
+  {
+   "id": "antes-biblia",
+   "t": "Antes de leer la Biblia. Ven, Espíritu Santo. Abrí mi entendimiento y mi corazón para escuchar la Palabra de Dios. Que la medite con atención y la transforme en obras de amor. Amén."
+  },
+  {
+   "id": "despues-biblia",
+   "t": "Después de leer la Biblia. Te doy gracias, Señor, por tu Palabra. Que permanezca en mi corazón, oriente mis pasos y dé fruto en el encuentro con los demás. Amén."
+  },
+  {
+   "id": "al-despertar",
+   "t": "Al despertar. Señor, gracias por abrir mis ojos a un nuevo día. Ayudame a comenzar con esperanza, a reconocer lo esencial y a responder con generosidad a cada persona que encuentre."
+  },
+  {
+   "id": "antes-de-dormir",
+   "t": "Antes de dormir. Padre bueno, recibí las alegrías y los cansancios de esta jornada. Enseñame a descansar en tu paz y a reparar mañana aquello que hoy no supe hacer bien."
+  },
+  {
+   "id": "por-los-abuelos",
+   "t": "Por los abuelos. Dios de la ternura, bendecí a nuestros abuelos. Que sus historias sean escuchadas y que nunca les falten compañía, respeto y cuidados."
+  },
+  {
+   "id": "por-los-padres",
+   "t": "Por los padres. Señor Jesús, acompañá a quienes son padres. Dales paciencia para educar, humildad para aprender y fortaleza para amar en los días difíciles."
+  },
+  {
+   "id": "por-las-madres",
+   "t": "Por las madres. María, madre de Jesús, acompañá a todas las madres. Que encuentren apoyo, descanso y alegría en el cuidado de sus familias."
+  },
+  {
+   "id": "por-los-hijos",
+   "t": "Por los hijos. Padre de misericordia, cuidá a nuestros hijos. Ayudanos a ofrecerles ejemplo de esperanza, escucha y amor responsable."
+  },
+  {
+   "id": "por-el-matrimonio",
+   "t": "Por el matrimonio. Señor, renová el amor entre los esposos. Que sepan dialogar con verdad, agradecer lo cotidiano y cuidarse en las dificultades."
+  },
+  {
+   "id": "por-la-amistad",
+   "t": "Por la amistad. Jesús, gracias por quienes nos acompañan. Enseñanos a construir amistades fieles y a estar presentes cuando alguien nos necesita."
+  },
+  {
+   "id": "por-los-migrantes",
+   "t": "Por quienes migran. Dios que acogés a todos, protegé a quienes deben dejar su tierra. Que encuentren seguridad, trabajo digno y personas dispuestas a recibirlos."
+  },
+  {
+   "id": "por-los-sin-trabajo",
+   "t": "Por quienes buscan empleo. Señor, sostené a quienes buscan trabajo. Abrí caminos de dignidad y hacenos solidarios con quienes están atravesando incertidumbre."
+  },
+  {
+   "id": "por-los-cuidadores",
+   "t": "Por quienes cuidan. Padre de bondad, acompañá a quienes cuidan enfermos, niños y mayores. Concedeles paciencia, recursos, descanso y compañía."
+  },
+  {
+   "id": "por-los-medicos",
+   "t": "Por el personal de salud. Señor de la vida, iluminá a quienes trabajan por la salud de los demás. Sostené sus manos y su ánimo, especialmente en las guardias más difíciles."
+  },
+  {
+   "id": "por-los-docentes",
+   "t": "Por los docentes. Espíritu de sabiduría, acompañá a quienes enseñan. Que sepan despertar curiosidad, respetar los procesos y transmitir esperanza."
+  },
+  {
+   "id": "por-las-personas-solas",
+   "t": "Por quienes se sienten solos. Jesús cercano, hacete presente en quienes viven soledad. Mové nuestros corazones para acercarnos sin juzgar y escuchar con paciencia."
+  },
+  {
+   "id": "por-los-que-sufren",
+   "t": "Por quienes sufren. Cristo compasivo, mirá a quienes atraviesan pérdidas, angustias o dificultades. Que encuentren alivio, ayuda y una comunidad que los acompañe."
+  },
+  {
+   "id": "por-la-paz",
+   "t": "Por la paz. Dios de la paz, enseñanos a rechazar la violencia y a defender la dignidad de cada persona. Hacenos constructores de diálogo en nuestros hogares y comunidades."
+  },
+  {
+   "id": "por-la-argentina",
+   "t": "Por Argentina. Señor, bendecí a nuestra Argentina. Que sepamos trabajar por la justicia, la honestidad, la fraternidad y el cuidado de quienes más necesitan."
+  },
+  {
+   "id": "por-rosario",
+   "t": "Por nuestras ciudades. Padre bueno, cuidá nuestras ciudades y pueblos. Que crezcan la solidaridad, el trabajo honesto y los espacios donde todos puedan vivir en paz."
+  },
+  {
+   "id": "por-las-parroquias",
+   "t": "Por las parroquias. Señor Jesús, renová nuestras comunidades parroquiales. Ayudanos a recibir a todos con respeto y a compartir la fe con alegría y servicio."
+  },
+  {
+   "id": "por-los-sacerdotes",
+   "t": "Por los sacerdotes. Buen Pastor, acompañá a los sacerdotes en su misión. Dales humildad, fidelidad al Evangelio y comunidades que los sostengan con afecto y oración."
+  },
+  {
+   "id": "por-las-vocaciones",
+   "t": "Por las vocaciones. Señor de la vida, ayudá a cada persona a descubrir su camino. Que escuche tu llamado y responda libremente con generosidad."
+  },
+  {
+   "id": "por-la-unidad",
+   "t": "Por la unidad de los cristianos. Padre de todos, guiá a quienes siguen a Jesucristo hacia el respeto, la escucha y la unidad. Que nuestros gestos testimonien tu amor."
+  },
+  {
+   "id": "por-los-jovenes",
+   "t": "Por los jóvenes. Jesús, acompañá a los jóvenes que buscan su lugar en el mundo. Que hallen oportunidades, orientación y libertad para elegir el bien."
+  },
+  {
+   "id": "por-la-infancia",
+   "t": "Por la infancia. Dios de la ternura, defendé la dignidad de cada niño. Que tengan alimento, cuidado, protección y oportunidades de crecer en paz."
+  },
+  {
+   "id": "por-las-familias-separadas",
+   "t": "Por familias en conflicto. Padre misericordioso, acompañá a las familias que atraviesan conflictos. Ayudalas a cuidarse, dialogar con prudencia y proteger a los más vulnerables."
+  },
+  {
+   "id": "ante-una-decision",
+   "t": "Ante una decisión importante. Espíritu Santo, ayudame a pensar con claridad, escuchar buenos consejos y elegir con responsabilidad. Que no me guíen el miedo ni la prisa."
+  },
+  {
+   "id": "en-la-tristeza",
+   "t": "Cuando estoy triste. Jesús, recibí mi tristeza sin exigir palabras. Dame paciencia conmigo mismo y el valor de pedir compañía cuando la necesite."
+  },
+  {
+   "id": "en-la-alegria",
+   "t": "En los momentos de alegría. Señor, gracias por esta alegría. Que pueda celebrarla con gratitud, sin olvidar a quienes necesitan una palabra de consuelo."
+  },
+  {
+   "id": "antes-de-estudiar",
+   "t": "Antes de estudiar. Espíritu de verdad, abrí mi inteligencia. Enseñame a dedicar tiempo, preguntar con humildad y compartir lo que aprendo."
+  },
+  {
+   "id": "antes-del-trabajo",
+   "t": "Antes de trabajar. Dios creador, acompañá mis tareas de hoy. Que trabaje con seguridad, honestidad y respeto hacia quienes comparten esta jornada conmigo."
+  },
+  {
+   "id": "despues-del-trabajo",
+   "t": "Al terminar de trabajar. Señor, gracias por lo que pude realizar. Te confío lo pendiente y te pido sabiduría para descansar y cuidar mis vínculos."
+  },
+  {
+   "id": "por-los-difuntos",
+   "t": "Recordando a quienes partieron. Dios de la esperanza, recibí con misericordia a nuestros seres queridos difuntos. Consolá a quienes los extrañamos y sostené nuestra confianza en la vida eterna."
+  },
+  {
+   "id": "ante-la-confesion",
+   "t": "Antes de la confesión. Señor Jesús, dame sinceridad para reconocer mis faltas y valentía para cambiar. Que me acerque a tu misericordia con un corazón abierto."
+  },
+  {
+   "id": "despues-de-comulgar",
+   "t": "Después de la comunión. Jesús, gracias por acercarte a mi vida. Ayudame a llevar tu amor a mis palabras, decisiones y gestos de servicio."
+  },
+  {
+   "id": "ante-el-santisimo",
+   "t": "Ante el Santísimo. Señor Jesús, en este silencio te presento mi vida tal como es. Que tu presencia me enseñe a amar y a escuchar con profundidad."
+  },
+  {
+   "id": "por-la-creacion",
+   "t": "Por el cuidado de la creación. Dios creador, enseñanos a cuidar la tierra, el agua y a todos los seres vivos. Que seamos responsables con los bienes que compartimos."
+  },
+  {
+   "id": "persignacion",
+   "t": "La señal de la Cruz. Por la señal de la Santa Cruz, de nuestros enemigos líbranos, Señor, Dios nuestro. En el nombre del Padre, y del Hijo, y del Espíritu Santo. Amén."
+  },
+  {
+   "id": "yo-confieso",
+   "t": "Yo confieso. Yo confieso ante Dios todopoderoso y ante ustedes, hermanos, que he pecado mucho de pensamiento, palabra, obra y omisión. Por mi culpa, por mi culpa, por mi gran culpa. Por eso ruego a Santa María, siempre Virgen, a los ángeles, a los santos y a ustedes, hermanos, que intercedan por mí ante Dios, nuestro Señor. Amén."
+  },
+  {
+   "id": "acordaos",
+   "t": "Acordaos (San Bernardo). Acordaos, oh piadosísima Virgen María, que jamás se ha oído decir que ninguno de los que han acudido a vuestra protección, implorando vuestra asistencia y reclamando vuestro socorro, haya sido abandonado de Vos. Animado con esta confianza, a Vos también acudo, oh Madre, Virgen de las vírgenes; y aunque gimiendo bajo el peso de mis pecados, me atrevo a comparecer ante vuestra presencia soberana. No desechéis, oh Madre de Dios, mis humildes súplicas, antes bien, escuchadlas y acogedlas benignamente. Amén."
+  },
+  {
+   "id": "bajo-tu-amparo",
+   "t": "Bajo tu amparo. Bajo tu amparo nos acogemos, santa Madre de Dios; no desprecies las súplicas que te dirigimos en nuestras necesidades, antes bien, líbranos de todo peligro, oh Virgen gloriosa y bendita. Amén."
+  },
+  {
+   "id": "oh-senora-mia",
+   "t": "Oh Señora mía. Oh Señora mía, oh Madre mía, yo me ofrezco enteramente a Vos, y en prueba de mi filial afecto, os consagro en este día mis ojos, mis oídos, mi lengua, mi corazón; en una palabra, todo mi ser. Ya que soy todo vuestro, oh Madre de bondad, guardadme y defendedme como cosa y posesión vuestra. Amén."
+  },
+  {
+   "id": "bendita-pureza",
+   "t": "Bendita sea tu pureza. Bendita sea tu pureza, y eternamente lo sea, pues todo un Dios se recrea en tan graciosa belleza. A ti, celestial Princesa, Virgen sagrada María, te ofrezco en este día alma, vida y corazón. Mírame con compasión, no me dejes, Madre mía. Amén."
+  },
+  {
+   "id": "alma-de-cristo",
+   "t": "Alma de Cristo. Alma de Cristo, santifícame. Cuerpo de Cristo, sálvame. Sangre de Cristo, embriágame. Agua del costado de Cristo, lávame. Pasión de Cristo, confórtame. ¡Oh buen Jesús, óyeme! Dentro de tus llagas, escóndeme. No permitas que me aparte de ti. Del enemigo malo, defiéndeme. En la hora de mi muerte, llámame, y mándame ir a ti, para que con tus santos te alabe, por los siglos de los siglos. Amén."
+  },
+  {
+   "id": "a-san-jose",
+   "t": "A ti, bienaventurado San José. A ti, bienaventurado San José, acudimos en nuestra tribulación, y después de implorar el auxilio de tu santísima Esposa, solicitamos también confiadamente tu patrocinio. Por aquella caridad que con la Inmaculada Virgen María, Madre de Dios, te tuvo unido, y por el paterno amor con que abrazaste al Niño Jesús, humildemente te suplicamos que vuelvas benigno los ojos a la herencia que con su Sangre adquirió Jesucristo, y con tu poder y auxilio socorras nuestras necesidades. Protege, oh providentísimo custodio de la divina Familia, la escogida descendencia de Jesucristo; aparta de nosotros toda mancha de error y de corrupción; asístenos propicio desde el cielo, en esta lucha contra el poder de las tinieblas; y como en otro tiempo libraste de la muerte la vida amenazada del Niño Jesús, así ahora defiende a la santa Iglesia de Dios de las asechanzas de sus enemigos y de toda adversidad. Y a cada uno de nosotros protégenos con tu constante patrocinio, para que, a ejemplo tuyo y sostenidos por tu auxilio, podamos vivir y morir santamente y alcanzar en el cielo la eterna bienaventuranza. Amén."
+  },
+  {
+   "id": "instrumento-paz",
+   "t": "Hazme un instrumento de tu paz. Señor, hazme un instrumento de tu paz: donde haya odio, ponga yo amor; donde haya ofensa, ponga yo perdón; donde haya discordia, ponga yo unión; donde haya error, ponga yo verdad; donde haya duda, ponga yo fe; donde haya desesperación, ponga yo esperanza; donde haya tinieblas, ponga yo luz; donde haya tristeza, ponga yo alegría. Oh Maestro, que no busque yo tanto ser consolado como consolar; ser comprendido, como comprender; ser amado, como amar. Porque dando es como se recibe; perdonando es como se es perdonado; y muriendo es como se resucita a la vida eterna. Amén."
+  },
+  {
+   "id": "letanias",
+   "t": "Letanías de la Virgen (Lauretanas). Señor, ten piedad. Cristo, ten piedad. Señor, ten piedad.\nCristo, óyenos. Cristo, escúchanos.\nDios, Padre celestial, ten piedad de nosotros.\nDios Hijo, Redentor del mundo, ten piedad de nosotros.\nDios Espíritu Santo, ten piedad de nosotros.\nSantísima Trinidad, que eres un solo Dios, ten piedad de nosotros.\nSanta María, ruega por nosotros.\nSanta Madre de Dios, ruega por nosotros.\nSanta Virgen de las vírgenes, ruega por nosotros.\nMadre de Cristo, ruega por nosotros.\nMadre de la Iglesia, ruega por nosotros.\nMadre de la misericordia, ruega por nosotros.\nMadre de la divina gracia, ruega por nosotros.\nMadre de la esperanza, ruega por nosotros.\nMadre purísima, ruega por nosotros.\nMadre castísima, ruega por nosotros.\nMadre virginal, ruega por nosotros.\nMadre sin mancha, ruega por nosotros.\nMadre amable, ruega por nosotros.\nMadre admirable, ruega por nosotros.\nMadre del buen consejo, ruega por nosotros.\nMadre del Creador, ruega por nosotros.\nMadre del Salvador, ruega por nosotros.\nVirgen prudentísima, ruega por nosotros.\nVirgen digna de veneración, ruega por nosotros.\nVirgen digna de alabanza, ruega por nosotros.\nVirgen poderosa, ruega por nosotros.\nVirgen clemente, ruega por nosotros.\nVirgen fiel, ruega por nosotros.\nEspejo de justicia, ruega por nosotros.\nTrono de la sabiduría, ruega por nosotros.\nCausa de nuestra alegría, ruega por nosotros.\nVaso espiritual, ruega por nosotros.\nVaso digno de honor, ruega por nosotros.\nVaso insigne de devoción, ruega por nosotros.\nRosa mística, ruega por nosotros.\nTorre de David, ruega por nosotros.\nTorre de marfil, ruega por nosotros.\nCasa de oro, ruega por nosotros.\nArca de la alianza, ruega por nosotros.\nPuerta del cielo, ruega por nosotros.\nEstrella de la mañana, ruega por nosotros.\nSalud de los enfermos, ruega por nosotros.\nRefugio de los pecadores, ruega por nosotros.\nConsuelo de los migrantes, ruega por nosotros.\nConsuelo de los afligidos, ruega por nosotros.\nAuxilio de los cristianos, ruega por nosotros.\nReina de los ángeles, ruega por nosotros.\nReina de los patriarcas, ruega por nosotros.\nReina de los profetas, ruega por nosotros.\nReina de los apóstoles, ruega por nosotros.\nReina de los mártires, ruega por nosotros.\nReina de los confesores, ruega por nosotros.\nReina de las vírgenes, ruega por nosotros.\nReina de todos los santos, ruega por nosotros.\nReina concebida sin pecado original, ruega por nosotros.\nReina asunta a los cielos, ruega por nosotros.\nReina del santísimo Rosario, ruega por nosotros.\nReina de la familia, ruega por nosotros.\nReina de la paz, ruega por nosotros.\nCordero de Dios, que quitas el pecado del mundo, perdónanos, Señor.\nCordero de Dios, que quitas el pecado del mundo, escúchanos, Señor.\nCordero de Dios, que quitas el pecado del mundo, ten piedad de nosotros.\nRuega por nosotros, santa Madre de Dios, para que seamos dignos de alcanzar las promesas de nuestro Señor Jesucristo. Amén."
+  },
+  {
+   "id": "eterno-descanso",
+   "t": "Por los difuntos (Dales, Señor). Dales, Señor, el descanso eterno, y brille para ellos la luz perpetua. Descansen en paz. Amén."
+  },
+  {
+   "id": "te-adoro",
+   "t": "Te adoro, Dios mío. Te adoro, Dios mío, y te amo con todo mi corazón. Te doy gracias por haberme creado, hecho cristiano y conservado en este día (o en esta noche). Te ofrezco mis acciones; haz que todas sean según tu santa voluntad y para tu mayor gloria. Líbrame del pecado y de todo mal. Que tu gracia esté siempre conmigo y con todos mis seres queridos. Amén."
+  }
+ ],
+ "via": [
+  {
+   "id": "via-1",
+   "t": "Estación 1. Jesús es condenado a muerte. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús acepta en silencio una condena injusta. Pidamos no juzgar con dureza y defender a los inocentes."
+  },
+  {
+   "id": "via-2",
+   "t": "Estación 2. Jesús carga con la cruz. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús abraza la cruz por amor. Pidamos llevar nuestras cargas con confianza."
+  },
+  {
+   "id": "via-3",
+   "t": "Estación 3. Jesús cae por primera vez. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús cae bajo el peso. Pidamos levantarnos después de cada caída."
+  },
+  {
+   "id": "via-4",
+   "t": "Estación 4. Jesús encuentra a su Madre. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. María y Jesús se encuentran en el dolor. Pidamos acompañar a las madres que sufren."
+  },
+  {
+   "id": "via-5",
+   "t": "Estación 5. Simón de Cirene ayuda a Jesús a llevar la cruz. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Simón ayuda a cargar la cruz. Pidamos ser cirineos para quien lo necesita."
+  },
+  {
+   "id": "via-6",
+   "t": "Estación 6. La Verónica enjuga el rostro de Jesús. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Verónica se anima a consolar. Pidamos valentía para hacer el bien."
+  },
+  {
+   "id": "via-7",
+   "t": "Estación 7. Jesús cae por segunda vez. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús cae otra vez y sigue adelante. Pidamos perseverancia."
+  },
+  {
+   "id": "via-8",
+   "t": "Estación 8. Jesús consuela a las mujeres de Jerusalén. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús, en su dolor, piensa en los demás. Pidamos un corazón compasivo."
+  },
+  {
+   "id": "via-9",
+   "t": "Estación 9. Jesús cae por tercera vez. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús cae por tercera vez. Pidamos esperanza cuando todo parece perdido."
+  },
+  {
+   "id": "via-10",
+   "t": "Estación 10. Jesús es despojado de sus vestiduras. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Le quitan todo a Jesús. Pidamos por quienes son despojados de su dignidad."
+  },
+  {
+   "id": "via-11",
+   "t": "Estación 11. Jesús es clavado en la cruz. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús es clavado en la cruz y perdona. Pidamos la gracia del perdón."
+  },
+  {
+   "id": "via-12",
+   "t": "Estación 12. Jesús muere en la cruz. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús entrega su vida por nosotros. Pidamos gratitud ante tanto amor."
+  },
+  {
+   "id": "via-13",
+   "t": "Estación 13. Jesús es bajado de la cruz. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. María recibe a su Hijo en brazos. Pidamos por los que lloran a sus seres queridos."
+  },
+  {
+   "id": "via-14",
+   "t": "Estación 14. Jesús es sepultado. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. Jesús es puesto en el sepulcro. Pidamos esperar la Resurrección."
+  }
+ ],
+ "papas": [
+  {
+   "id": "papa-0",
+   "t": "Al volver a casa, encontraréis a los niños. Hacedles una caricia y decidles: esta es la caricia del Papa. San Juan XXIII."
+  },
+  {
+   "id": "papa-1",
+   "t": "El hombre contemporáneo escucha más a gusto a los que dan testimonio que a los que enseñan, o si escuchan a los que enseñan, es porque dan testimonio. San Pablo VI."
+  },
+  {
+   "id": "papa-2",
+   "t": "¡No tengáis miedo! ¡Abrid, más todavía, abrid de par en par las puertas a Cristo! San Juan Pablo II."
+  },
+  {
+   "id": "papa-3",
+   "t": "El hombre no puede vivir sin amor. Él permanece para sí mismo un ser incomprensible, su vida está privada de sentido si no se le revela el amor. San Juan Pablo II."
+  },
+  {
+   "id": "papa-4",
+   "t": "¡Duc in altum! ¡Rema mar adentro! San Juan Pablo II."
+  },
+  {
+   "id": "papa-5",
+   "t": "No se comienza a ser cristiano por una decisión ética o una gran idea, sino por el encuentro con un acontecimiento, con una Persona, que da un nuevo horizonte a la vida y, con ello, una orientación decisiva. Benedicto XVI."
+  },
+  {
+   "id": "papa-6",
+   "t": "¡No tengáis miedo de Cristo! Él no quita nada, y lo da todo. Benedicto XVI."
+  },
+  {
+   "id": "papa-7",
+   "t": "Dios no se cansa nunca de perdonar, somos nosotros los que nos cansamos de acudir a su misericordia. Francisco."
+  },
+  {
+   "id": "papa-8",
+   "t": "¡No nos dejemos robar la esperanza! Francisco."
+  },
+  {
+   "id": "papa-9",
+   "t": "Vive Cristo, esperanza nuestra, y Él es la más hermosa juventud de este mundo. Todo lo que Él toca se vuelve joven, se hace nuevo, se llena de vida. Francisco."
+  },
+  {
+   "id": "papa-10",
+   "t": "¡La paz esté con todos ustedes! León XIV."
+  },
+  {
+   "id": "papa-11",
+   "t": "Dios nos quiere, Dios los ama a todos, y el mal no prevalecerá. León XIV."
+  }
+ ],
+ "nov": [
+  {
+   "id": "novena-inmaculada-1",
+   "t": "Novena a la Inmaculada Concepción. Día 1. Llena de gracia. Dios preparó a María desde el primer instante de su vida. También a nosotros nos ama antes de que hagamos algo para merecerlo. María, llena de gracia, ayudame a reconocer el amor de Dios que me precede. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-inmaculada-2",
+   "t": "Novena a la Inmaculada Concepción. Día 2. Elegida para una misión. La pureza de María no la aparta del mundo: la prepara para servir. Cada vocación es un regalo para los demás. Madre, ayudame a descubrir para qué me llama Dios hoy. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-inmaculada-3",
+   "t": "Novena a la Inmaculada Concepción. Día 3. La escucha. María guardaba todo en su corazón. El silencio y la escucha hacen lugar a la Palabra. Virgen atenta, enseñame a escuchar a Dios y a los que me rodean. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-inmaculada-4",
+   "t": "Novena a la Inmaculada Concepción. Día 4. El sí confiado. Ante lo que no entendía, María confió. La fe no elimina las preguntas, pero nos sostiene en ellas. María, dame un corazón que confíe aun cuando no veo el camino. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-inmaculada-5",
+   "t": "Novena a la Inmaculada Concepción. Día 5. Madre del perdón. Sin pecado, María no se aleja de los pecadores: los acompaña hacia la misericordia de su Hijo. Madre de misericordia, acompañame a pedir perdón y a perdonar. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-inmaculada-6",
+   "t": "Novena a la Inmaculada Concepción. Día 6. La humildad. La grandeza de María está en reconocerse servidora. Dios mira a los pequeños. Virgen humilde, librame del orgullo y enseñame a servir. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-inmaculada-7",
+   "t": "Novena a la Inmaculada Concepción. Día 7. La familia de Nazaret. María vivió la fe en lo cotidiano de un hogar sencillo, entre trabajos y preocupaciones. Madre, cuidá a nuestras familias y bendecí nuestras casas. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-inmaculada-8",
+   "t": "Novena a la Inmaculada Concepción. Día 8. Al pie de la cruz. La pureza de María se volvió fortaleza en el dolor. Permaneció junto a su Hijo hasta el final. María, acompañá a quienes hoy sufren y no tienen consuelo. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-inmaculada-9",
+   "t": "Novena a la Inmaculada Concepción. Día 9. Esperanza nuestra. María inmaculada nos muestra lo que Dios quiere hacer con cada uno: una vida plena y reconciliada. Madre, mantené viva en mí la esperanza del cielo. Virgen Inmaculada, Madre purísima, mirá con ternura a esta familia que hoy te reza. Enseñanos a decir sí a Dios como vos, y presentale a tu Hijo lo que hoy ponemos en tus manos. Amén."
+  },
+  {
+   "id": "novena-navidad-1",
+   "t": "Novena de Navidad. Día 1. Dios cumple sus promesas. Durante siglos el pueblo esperó al Mesías. Dios no se olvida de lo que promete. Señor, renová mi esperanza en tus promesas. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-navidad-2",
+   "t": "Novena de Navidad. Día 2. Preparen el camino. Juan el Bautista invita a allanar el camino. Hay piedras en el corazón que podemos quitar. Jesús, ayudame a quitar lo que te impide llegar a mí. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-navidad-3",
+   "t": "Novena de Navidad. Día 3. El sí de María. Gracias al sí de una joven de Nazaret, Dios entra en la historia. María, enseñame a decir sí a Dios en lo pequeño. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-navidad-4",
+   "t": "Novena de Navidad. Día 4. José, el justo. José cuida en silencio y obedece en la noche. Su fe se hace protección y trabajo. San José, cuidá a nuestras familias y a quienes trabajan. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-navidad-5",
+   "t": "Novena de Navidad. Día 5. Camino a Belén. María y José viajan cansados y sin certezas. Dios camina con los que caminan. Señor, acompañá a los que viajan, a los migrantes y a los que no tienen techo. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-navidad-6",
+   "t": "Novena de Navidad. Día 6. No había lugar. No hubo lugar en la posada. Hoy también Jesús busca un lugar donde ser recibido. Jesús, que mi corazón y mi casa tengan lugar para vos y para el que llega. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-navidad-7",
+   "t": "Novena de Navidad. Día 7. Los pastores. Los primeros en recibir la noticia fueron los pobres y sencillos que velaban de noche. Señor, dame un corazón sencillo para alegrarme con tu llegada. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-navidad-8",
+   "t": "Novena de Navidad. Día 8. La luz en la noche. La estrella guía a los que buscan. Dios se deja encontrar por quien lo busca con sinceridad. Jesús, luz del mundo, iluminá a los que buscan sentido. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-navidad-9",
+   "t": "Novena de Navidad. Día 9. Nos ha nacido un Salvador. Mañana celebramos que Dios se hizo uno de nosotros. Es tiempo de reconciliación y de fiesta. Niño Dios, traé paz a nuestras familias y reconciliá lo que está dividido. Niño Jesús, que viniste a nuestra tierra para quedarte con nosotros, nacé en nuestras familias, en nuestro barrio y en nuestra patria. Que nadie se sienta solo en esta Navidad. Amén."
+  },
+  {
+   "id": "novena-lujan-1",
+   "t": "Novena a Nuestra Señora de Luján. Día 1. Una Madre que se queda. Según la tradición, la carreta no quiso avanzar: María eligió quedarse entre nosotros. Madre de Luján, quedate en mi casa y en mi vida. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-lujan-2",
+   "t": "Novena a Nuestra Señora de Luján. Día 2. El negrito Manuel. Un hombre sencillo y esclavizado cuidó la imagen con amor toda su vida. Dios exalta a los humildes. María, enseñame a servir con la fidelidad de Manuel. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-lujan-3",
+   "t": "Novena a Nuestra Señora de Luján. Día 3. Peregrinos. Millones caminan cada año hacia Luján. La fe también se vive con los pies y en comunidad. Madre, acompañá a los que peregrinan y a los que no pueden hacerlo. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-lujan-4",
+   "t": "Novena a Nuestra Señora de Luján. Día 4. Por las familias. Muchas familias llevan a Luján sus alegrías y sus heridas. Virgen de Luján, curá las heridas de nuestras familias y mantenelas unidas. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-lujan-5",
+   "t": "Novena a Nuestra Señora de Luján. Día 5. Por los trabajadores. El trabajo digno es camino de santidad y sostén del hogar. Madre, cuidá a los trabajadores y a quienes buscan empleo. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-lujan-6",
+   "t": "Novena a Nuestra Señora de Luján. Día 6. Por los enfermos. Al santuario llegan muchos enfermos con esperanza. María es Salud de los enfermos. Madre, consolá a los enfermos y a quienes los cuidan. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-lujan-7",
+   "t": "Novena a Nuestra Señora de Luján. Día 7. Por los jóvenes. Los jóvenes peregrinan con cansancio y alegría. Necesitan horizontes y esperanza. Virgen de Luján, acompañá a nuestros jóvenes. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-lujan-8",
+   "t": "Novena a Nuestra Señora de Luján. Día 8. Por la patria. Bajo los colores celeste y blanco de su manto, pedimos por la unión de los argentinos. Madre, ayudanos a construir una patria justa y fraterna. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-lujan-9",
+   "t": "Novena a Nuestra Señora de Luján. Día 9. Madre de todos. En Luján todos son recibidos. María no hace diferencias entre sus hijos. Madre, que nadie se sienta excluido de tu amor. Virgen de Luján, Madre del pueblo argentino, que quisiste quedarte junto al río para acompañar a tus hijos: cuidá nuestra patria, consolá a los que sufren y guiá nuestros pasos hacia Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-1",
+   "t": "Novena al Espíritu Santo. Día 1. El Espíritu prometido. Jesús promete no dejarnos solos: el Espíritu es el Consolador. Espíritu Santo, quiero abrirte mi corazón. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-2",
+   "t": "Novena al Espíritu Santo. Día 2. Don de sabiduría. La sabiduría nos hace gustar las cosas de Dios y ver la vida con sus ojos. Dame sabiduría para ordenar mi vida según lo que importa. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-3",
+   "t": "Novena al Espíritu Santo. Día 3. Don de entendimiento. El entendimiento nos ayuda a comprender la Palabra y los signos de Dios. Abrí mi mente para entender tu Palabra. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-4",
+   "t": "Novena al Espíritu Santo. Día 4. Don de consejo. El consejo ilumina nuestras decisiones, grandes y pequeñas. Guiame en las decisiones que tengo por delante. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-5",
+   "t": "Novena al Espíritu Santo. Día 5. Don de fortaleza. La fortaleza nos sostiene en las pruebas y nos da valor para hacer el bien. Dame fuerza para no rendirme ante las dificultades. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-6",
+   "t": "Novena al Espíritu Santo. Día 6. Don de ciencia. La ciencia nos ayuda a ver a Dios a través de las cosas creadas. Enseñame a descubrirte en la creación y en las personas. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-7",
+   "t": "Novena al Espíritu Santo. Día 7. Don de piedad. La piedad nos hace sentir hijos de Dios y hermanos de todos. Despertá en mí la confianza de un hijo. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-8",
+   "t": "Novena al Espíritu Santo. Día 8. Don de temor de Dios. Es el respeto amoroso que no quiere ofender a quien tanto nos ama. Que nunca me aparte de tu amor. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-espiritu-9",
+   "t": "Novena al Espíritu Santo. Día 9. Con María, esperando. María estaba en el Cenáculo. Con ella esperamos el fuego de Pentecostés. Ven, Espíritu Santo, y renová tu Iglesia. Ven, Espíritu Santo, llená nuestros corazones y encendé en ellos el fuego de tu amor. Renová la faz de la tierra y hacenos testigos de Jesús. Amén."
+  },
+  {
+   "id": "novena-san-jose-1",
+   "t": "Novena a San José. Día 1. Hombre justo. José fue justo: obró con rectitud y misericordia aun cuando no entendía. San José, enseñame a obrar con rectitud y bondad. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "novena-san-jose-2",
+   "t": "Novena a San José. Día 2. Los sueños de José. Dios le habló en sueños y José obedeció sin demora. Ayudame a escuchar a Dios y a responder con prontitud. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "novena-san-jose-3",
+   "t": "Novena a San José. Día 3. Esposo de María. José amó y protegió a María con respeto y delicadeza. Bendecí a los esposos y a los novios. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "novena-san-jose-4",
+   "t": "Novena a San José. Día 4. Padre de Jesús. José enseñó a Jesús a rezar, a trabajar y a vivir en comunidad. Acompañá a los padres en la tarea de educar. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "novena-san-jose-5",
+   "t": "Novena a San José. Día 5. El trabajador. Con sus manos de carpintero, José sostuvo a la Sagrada Familia. Cuidá a los trabajadores y a los que no tienen trabajo. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "novena-san-jose-6",
+   "t": "Novena a San José. Día 6. El migrante. José huyó a Egipto para proteger al Niño. Protegé a los migrantes y a los perseguidos. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "novena-san-jose-7",
+   "t": "Novena a San José. Día 7. El silencioso. No conservamos ninguna palabra suya; su vida habla por él. Enseñame a hacer el bien sin buscar reconocimiento. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "novena-san-jose-8",
+   "t": "Novena a San José. Día 8. Custodio de la Iglesia. Quien cuidó a Jesús cuida ahora a su Cuerpo, la Iglesia. Protegé a la Iglesia, al Papa y a nuestros sacerdotes. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  },
+  {
+   "id": "novena-san-jose-9",
+   "t": "Novena a San José. Día 9. Patrono de la buena muerte. José murió acompañado por Jesús y María. Acompañá a los moribundos y concedeme una muerte serena. San José, padre bueno y trabajador, que cuidaste a Jesús y a María: cuidá nuestras familias, nuestro trabajo y nuestra Iglesia. Acompañanos en la hora de nuestra muerte. Amén."
+  }
+ ]
+}
