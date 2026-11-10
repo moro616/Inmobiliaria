@@ -66,6 +66,7 @@
   }
   function atras() {
     detenerVoz();
+    if (actual().p === 'historia') { cerrarHistoria(); return; }
     if (actual().p === 'lector') { pila.pop(); document.body.classList.remove('modo-rezo'); render(); return; }
     if (document.body.classList.contains('modo-rezo')) { salirRezo(); return; }
     if (pila.length > 1) { pila.pop(); render(); window.scrollTo(0, 0); return; }
@@ -125,12 +126,13 @@
     <div class="card"><span class="eyebrow">📖 Palabra de Dios</span><h3>${ev ? h(ev.titulo) : 'Evangelio del día'}</h3>
       <p class="small muted">Las lecturas de la Misa se consultan en Vatican News, la fuente oficial de la Santa Sede.</p>${btn('📖 Leer el Evangelio de hoy', 'ir:lecturas', 'ancho')}</div>
     ${(() => { const [f, i] = fraseDelDia(); return f ? `<button class="frase" data-a="frase:${i}" style="background-image:linear-gradient(180deg,rgba(5,10,23,.2),rgba(5,10,23,.88)),url(img/misterios/${IMGS[i % IMGS.length]}.webp);margin-bottom:16px"><span class="eyebrow" style="color:#f3d98f">Frase del día</span><q>${h(f.t)}</q><small>${h(f.a)}</small></button>` : ''; })()}
+    <h2 class="seccion">Palabras de los Papas</h2>${filaHistorias()}
     <h2 class="seccion">Tu espacio de fe</h2><div class="grilla">
       ${[['🙏', 'Oraciones', 'Clásicas y para cada momento', 'oraciones'], ['🕯', 'Novenas', 'Nueve días de oración', 'novenas'], ['📖', 'Biblia', 'Palabra de Dios', 'biblia'],
         ['💙', 'Divina Misericordia', 'Coronilla guiada', 'rezar:coronilla'], ['✝', 'Vía Crucis', '14 estaciones', 'viacrucis'], ['📰', 'Noticias', 'Papa, Iglesia y Argentina', 'noticias'],
-        ['📅', 'Calendario', 'Santos y tiempos litúrgicos', 'calendario'], ['🎓', 'Formación', 'Aprender la fe', 'formacion'], ['🎶', 'Música católica', 'Athenas, alabanza y más', 'musica'], ['📺', 'Videos y radio', 'Misa y programas', 'medios'],
+        ['📅', 'Calendario', 'Santos y tiempos litúrgicos', 'calendario'], ['🎓', 'Formación', 'Aprender la fe', 'formacion'], ['🎶', 'Música', 'Para rezar y alabar', 'musica'], ['🕊️', 'Frases de los Papas', 'En formato historia', 'papas'], ['📺', 'Videos y radio', 'Misa y programas', 'medios'],
         ['✍️', 'Cuaderno espiritual', 'Tus anotaciones', 'cuaderno'], ['📚', 'Biblioteca', 'Libros para leer', 'biblioteca'], ['✨', 'Frases', 'Pensamientos de santos', 'frases'], ['🌿', '30 días', 'Camino de oración', 'camino'], ['💛', 'Mis intenciones', 'Mis pedidos a Dios', 'intenciones'], ['⭐', 'Favoritas', 'Oraciones guardadas', 'favoritos']]
-        .map(([i, t, s, a], n) => `<button class="tile" style="--h:${[38, 268, 28, 212, 0, 200, 150, 248, 330, 300, 22, 16, 45, 120, 48, 52][n % 16]}" data-a="${a.includes(':') ? a : 'ir:' + a}"><span class="sim">${i}</span><strong>${t}</strong><small>${s}</small></button>`).join('')}
+        .map(([i, t, s, a], n) => `<button class="tile" style="--h:${[38, 268, 28, 212, 0, 200, 150, 248, 330, 300, 190, 22, 16, 45, 120, 48, 52][n % 17]}" data-a="${a.includes(':') ? a : 'ir:' + a}"><span class="sim">${i}</span><strong>${t}</strong><small>${s}</small></button>`).join('')}
     </div>${pie()}`;
   };
 
@@ -252,7 +254,7 @@
     if (rezoTipo !== 'coronilla') { if (S.rosario.tipo !== tipo || desdeCero) S.rosario = { tipo, i: 0 }; rezoSec = secuenciaRosario(tipo); }
     else { if (desdeCero) S.coronilla.i = 0; rezoSec = secuenciaCoronilla(); }
     const st = estadoRezo(); st.i = Math.max(0, Math.min(st.i, rezoSec.length - 1)); guardar();
-    pila.push({ p: 'rezo', arg: tipo }); document.body.classList.add('modo-rezo'); N.Pantalla.mantenerEncendida(true); Sonido.musica(true); renderRezo();
+    Repro.pausar(); pila.push({ p: 'rezo', arg: tipo }); document.body.classList.add('modo-rezo'); N.Pantalla.mantenerEncendida(true); Sonido.musica(true); renderRezo();
   }
   function salirRezo() {
     detenerVoz(); Sonido.musica(false); N.Pantalla.mantenerEncendida(false); document.body.classList.remove('modo-rezo');
@@ -490,7 +492,127 @@
 
   /* ---------- Medios ---------- */
   let medioTipo = 'Todos';
-  /* ---------- Música católica (reproductor de Spotify dentro de la app) ---------- */
+  /* ================= Música ================= */
+  /* Pistas propias de la app: melodías de dominio público y composiciones originales (scripts/audio/synth.py).
+   * Se pueden compartir libremente junto con la app. */
+  const PISTAS = [
+    { id: 'luz-de-maria', t: 'Luz de María', a: 'Original · Mi Fe Católica', s: 'Piano y cuerdas', img: 'gozosos-1' },
+    { id: 'adoracion', t: 'Adoración', a: 'Original · Mi Fe Católica', s: 'Órgano para el silencio', img: 'luminosos-5' },
+    { id: 'claustro', t: 'Silencio del claustro', a: 'Original · estilo gregoriano', s: 'Para rezar y meditar', img: 'dolorosos-1' },
+    { id: 'canon-re', t: 'Canon en Re', a: 'J. Pachelbel (c. 1700)', s: 'Versión de meditación', img: 'gloriosos-4' },
+    { id: 'himno-alegria', t: 'Himno de la alegría', a: 'L. van Beethoven (1824)', s: 'Piano, órgano y cuerdas', img: 'gloriosos-1' },
+    { id: 'noche-de-paz', t: 'Noche de paz', a: 'F. X. Gruber (1818)', s: 'Villancico tradicional', img: 'gozosos-3' },
+    { id: 'meditacion', t: 'Meditación', a: 'Original · Mi Fe Católica', s: 'La música del Rosario', img: 'luminosos-3' }
+  ].map(p => ({ ...p, src: `audio/musica/${p.id}.ogg`, tapa: `img/misterios/${p.img}.webp` }));
+  const fmtT = s => !isFinite(s) ? '0:00' : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+
+  /* ---------- Reproductor global (sigue sonando mientras navegás) ---------- */
+  const Repro = (() => {
+    const a = typeof Audio !== 'undefined' ? new Audio() : null;
+    let lista = [], i = -1, url = null;
+    const el = id => document.getElementById(id);
+    function ui() {
+      const p = lista[i], mini = el('mini');
+      if (mini) {
+        mini.classList.toggle('oculto', !p);
+        if (p) {
+          el('miniTit').textContent = p.t; el('miniSub').textContent = p.a || '';
+          el('miniTapa').style.backgroundImage = p.tapa ? `url("${p.tapa}")` : '';
+          el('miniPlay').innerHTML = a.paused ? ICO.play : ICO.pausa; el('miniPlay').setAttribute('aria-label', a.paused ? 'Reproducir' : 'Pausar');
+          el('miniBarra').style.width = (a.duration ? a.currentTime / a.duration * 100 : 0) + '%';
+          document.body.classList.toggle('con-mini', true);
+        } else document.body.classList.remove('con-mini');
+      }
+      const rp = el('rpPlay'); if (rp && p) { rp.innerHTML = a.paused ? ICO.play : ICO.pausa; }
+      const rb = el('rpBarra'); if (rb && a.duration && !rb.matches(':active')) rb.value = a.currentTime / a.duration * 1000;
+      const rt = el('rpTiempo'); if (rt) rt.textContent = isFinite(a.duration) && a.duration > 0 ? `${fmtT(a.currentTime)} / ${fmtT(a.duration)}` : (p ? fmtT(a.currentTime) : '');
+      document.querySelectorAll('[data-pista]').forEach(b => b.classList.toggle('sonando', !!p && b.dataset.pista === p.id && !a.paused));
+    }
+    if (a) {
+      ['play', 'pause', 'loadedmetadata'].forEach(ev => a.addEventListener(ev, ui));
+      let ult = 0; a.addEventListener('timeupdate', () => { const n = Date.now(); if (n - ult > 500) { ult = n; ui(); } });
+      a.addEventListener('ended', () => { if (i < lista.length - 1) tocar(lista, i + 1); else { a.currentTime = 0; ui(); } });
+      a.addEventListener('error', () => { if (lista[i]) aviso('No se pudo reproducir «' + lista[i].t + '».'); });
+    }
+    async function tocar(l, k) {
+      if (!a) return; lista = l; i = k; const p = l[k];
+      if (url) { URL.revokeObjectURL(url); url = null; }
+      let src = p.src;
+      if (p.blobId) { const b = await MisCanciones.blob(p.blobId); if (!b) { aviso('No se encontró el archivo.'); return; } url = src = URL.createObjectURL(b); }
+      Sonido.musica(false); await detenerVoz();
+      a.src = src; a.volume = 1; try { await a.play(); } catch (e) { }
+      ui();
+    }
+    return {
+      tocar, ui,
+      actual: () => lista[i],
+      alternar() { if (!a || !lista[i]) return; if (a.paused) a.play().catch(() => { }); else a.pause(); },
+      sig() { if (lista.length) tocar(lista, (i + 1) % lista.length); },
+      ant() { if (!lista.length) return; if (a.currentTime > 4) { a.currentTime = 0; return; } tocar(lista, (i - 1 + lista.length) % lista.length); },
+      ir(frac) { if (a && a.duration) a.currentTime = frac * a.duration; },
+      pausar() { if (a) a.pause(); },
+      cerrar() { if (a) { a.pause(); a.removeAttribute('src'); } lista = []; i = -1; ui(); }
+    };
+  })();
+
+  /* ---------- Mis canciones (archivos del teléfono, guardados solo en el dispositivo) ---------- */
+  const MisCanciones = (() => {
+    let dbp = null, cache = null;
+    const abrir = () => dbp || (dbp = new Promise((ok, ko) => {
+      const r = indexedDB.open('mfc-musica', 1);
+      r.onupgradeneeded = () => r.result.createObjectStore('canciones', { keyPath: 'id' });
+      r.onsuccess = () => ok(r.result); r.onerror = () => ko(r.error);
+    }));
+    const op = (modo, fn) => abrir().then(db => new Promise((ok, ko) => {
+      const t = db.transaction('canciones', modo), r = fn(t.objectStore('canciones'));
+      t.oncomplete = () => ok(r && r.result); t.onerror = () => ko(t.error); t.onabort = () => ko(t.error);
+    }));
+    return {
+      lista: () => cache,
+      async cargar() { try { const l = await op('readonly', st => st.getAll()); cache = l.map(({ id, nombre, fecha, tam }) => ({ id, nombre, fecha, tam })).sort((x, y) => x.id - y.id); } catch (e) { cache = []; } return cache; },
+      async agregar(files) {
+        let n = 0, saltados = 0;
+        for (const [k, f] of [...files].entries()) {
+          if (!(/^audio\//.test(f.type) || /\.(mp3|m4a|aac|ogg|opus|wav|flac)$/i.test(f.name)) || f.size > 80 * 1024 * 1024) { saltados++; continue; }
+          try { await op('readwrite', st => st.put({ id: Date.now() + k, nombre: f.name.replace(/\.[^.]+$/, '').replace(/[_]+/g, ' ').slice(0, 120), fecha: new Date().toISOString().slice(0, 10), tam: f.size, blob: f })); n++; } catch (e) { saltados++; }
+        }
+        await this.cargar(); return { n, saltados };
+      },
+      async borrar(id) { await op('readwrite', st => st.delete(Number(id))); await this.cargar(); },
+      async blob(id) { try { const r = await op('readonly', st => st.get(Number(id))); return r && r.blob; } catch (e) { return null; } }
+    };
+  })();
+  const pistasMias = () => (MisCanciones.lista() || []).map(c => ({ id: 'mia-' + c.id, blobId: c.id, t: c.nombre, a: 'Mis canciones', tapa: '' }));
+
+  /* ---------- Videos de YouTube (se ven completos dentro de la app) ---------- */
+  function leerYouTube(texto) {
+    try {
+      const x = new URL(String(texto).trim()), host = x.hostname.replace(/^(www|m|music)\./, '');
+      let v = null; const l = x.searchParams.get('list');
+      if (host === 'youtu.be') v = x.pathname.slice(1).split('/')[0];
+      else if (/^youtube(-nocookie)?\.com$/.test(host)) {
+        if (x.pathname === '/watch') v = x.searchParams.get('v');
+        else { const m = x.pathname.match(/^\/(shorts|embed|live|v)\/([\w-]+)/); if (m) v = m[2]; }
+      } else return null;
+      if (v && !/^[\w-]{6,20}$/.test(v)) v = null;
+      const lista = l && /^[\w-]{10,64}$/.test(l) ? l : null;
+      if (v) return { tipo: 'video', id: v, url: x.href };
+      if (lista) return { tipo: 'lista', id: lista, url: x.href };
+    } catch (e) { }
+    return null;
+  }
+  const ytEmbed = v => v.tipo === 'lista' ? `https://www.youtube.com/embed/videoseries?list=${v.id}&rel=0&playsinline=1` : `https://www.youtube.com/embed/${v.id}?rel=0&playsinline=1&modestbranding=1`;
+  const ytTapa = v => v.tapa || (v.tipo === 'video' ? `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg` : '');
+  async function agregarVideo(texto) {
+    const v = leerYouTube(texto);
+    if (!v) { aviso('Ese enlace no es de YouTube. Copiá el link del video o de la playlist.'); return; }
+    if ((S.videos || []).some(x => x.id === v.id)) { aviso('Ese video ya está en tu lista.'); S.videoSel = v.id; guardar(); render(); return; }
+    v.titulo = v.tipo === 'lista' ? 'Playlist de YouTube' : 'Video de YouTube';
+    try { const j = JSON.parse(await N.descargarTexto('https://www.youtube.com/oembed?format=json&url=' + encodeURIComponent(v.url), 10000)); if (j.title) v.titulo = String(j.title).slice(0, 140); if (j.author_name) v.autor = String(j.author_name).slice(0, 80); if (/^https:\/\//.test(j.thumbnail_url || '')) v.tapa = j.thumbnail_url; } catch (e) { }
+    S.videos = [v, ...(S.videos || [])].slice(0, 200); S.videoSel = v.id; guardar(); Repro.pausar(); render(); aviso('Video agregado'); window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ---------- Spotify (reproductor oficial dentro de la app) ---------- */
   const MUSICA = [
     { cat: 'athenas', tipo: 'artist', id: '71IIrUaZMShJKwuwIZVVwu', t: 'Athenas', s: 'Artista · todas sus canciones', h: 330 },
     { cat: 'athenas', tipo: 'playlist', id: '5nPelpGdGjhebP6tY5Qb4u', t: 'Lo mejor de Athenas', s: 'Playlist oficial de Athenas', h: 330 },
@@ -499,7 +621,7 @@
     { cat: 'athenas', tipo: 'playlist', id: '65qYXQ3yT8f1zpf7BU5qfQ', t: 'Athenas · Entre tus manos', s: 'Playlist de Athenas', h: 200 },
     { cat: 'alabanza', tipo: 'playlist', id: '1VfwAMYqbxxMY0TvJFvVgj', t: 'Top 50 canciones católicas', s: 'Las más escuchadas', h: 45 },
     { cat: 'alabanza', tipo: 'playlist', id: '6XXlzAvKk2l72UPCZ8t7dm', t: 'Canciones de Misa (Argentina)', s: 'Para la celebración', h: 212 },
-    { cat: 'alabanza', tipo: 'playlist', id: '40ZvIDWgx2Gc5H0aFEXIWd', t: 'Athenas, Hakuna y Jésed', s: 'Lo mejor de la música católica joven', h: 16 },
+    { cat: 'alabanza', tipo: 'playlist', id: '40ZvIDWgx2Gc5H0aFEXIWd', t: 'Athenas, Hakuna y Jésed', s: 'Música católica joven', h: 16 },
     { cat: 'oracion', tipo: 'playlist', id: '2UvXaPadYPoifQH4xf9gJC', t: 'Canto gregoriano', s: 'Monjes de Silos', h: 250 },
     { cat: 'oracion', tipo: 'playlist', id: '1Ff6fMK5IuULSr96OqloVx', t: 'Canto gregoriano de Silos', s: 'Monasterio de Santo Domingo de Silos', h: 220 },
     { cat: 'artistas', tipo: 'artist', id: '7Lemn0MD6Cb2QfmeZJ5BwS', t: 'Hakuna Group Music', s: 'Artista', h: 150 },
@@ -518,25 +640,120 @@
     await Promise.all(MUSICA.filter(m => !portadas[m.id]).map(async m => {
       try { const j = JSON.parse(await N.descargarTexto('https://open.spotify.com/oembed?url=' + encodeURIComponent(spLink(m)), 10000)); if (/^https:\/\//.test(j.thumbnail_url || '')) { portadas[m.id] = j.thumbnail_url; cambios = true; } } catch (e) { }
     }));
-    if (cambios) { S.portadasMusica = portadas; guardar(); if (actual().p === 'musica') document.querySelectorAll('[data-portada]').forEach(el => { const u = portadas[el.dataset.portada]; if (u) el.style.backgroundImage = `url("${u}")`; }); }
+    if (cambios) { S.portadasMusica = portadas; guardar(); document.querySelectorAll('[data-portada]').forEach(el => { const u = portadas[el.dataset.portada]; if (u) el.style.backgroundImage = `url("${u}")`; }); }
   }
+
+  /* ---------- Pantalla de música ---------- */
+  const TABS_MUSICA = [['app', '🎼', 'De la app'], ['mias', '📁', 'Mis canciones'], ['videos', '▶️', 'YouTube'], ['spotify', '🟢', 'Spotify']];
   P.musica = () => {
-    const sel = MUSICA.find(m => m.id === S.musicaSel) || MUSICA[1];
-    const l = MUSICA.filter(m => musicaCat === 'todo' || m.cat === musicaCat);
-    setTimeout(cargarPortadas, 50);
-    const pt = m => (portadas || S.portadasMusica || {})[m.id];
-    return `${titulo('Música católica', 'Escuchá alabanza, adoración y canto gregoriano sin salir de la app.')}
-      <section class="reproductor">
-        <div class="rep-cab"><span class="eyebrow">🎶 Sonando ahora</span><strong>${h(sel.t)}</strong></div>
-        <iframe class="spotify" title="Reproductor: ${h(sel.t)}" src="https://open.spotify.com/embed/${sel.tipo}/${sel.id}?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <div class="rep-pie"><span>Sin sesión de Spotify: fragmentos de 30 s.</span>${btn('Completa en Spotify ↗', 'url:' + spLink(sel), 'chico')}</div>
-      </section>
-      <div class="chips">${CAT_MUSICA.map(([k, v]) => `<button class="chip ${musicaCat === k ? 'activo' : ''}" data-a="mcat:${k}">${v}</button>`).join('')}</div>
-      <div class="discos">${l.map(m => `<button class="disco ${m.id === sel.id ? 'activo' : ''}" data-a="msel:${m.id}" style="--h:${m.h}">
-        <span class="tapa-disco ${m.tipo === 'artist' ? 'redonda' : ''}" data-portada="${m.id}" ${pt(m) ? `style="background-image:url('${h(pt(m))}')"` : ''}><i>${m.tipo === 'artist' ? '🎤' : '🎵'}</i>${m.id === sel.id ? '<b class="eq" aria-hidden="true"><i></i><i></i><i></i></b>' : ''}</span>
-        <strong>${h(m.t)}</strong><small>${h(m.s)}</small></button>`).join('')}</div>
-      <div class="aviso">Necesita conexión a internet. La música la provee Spotify; si tenés la app de Spotify con tu cuenta, el botón «Completa en Spotify» abre las canciones enteras.</div>${pie()}`;
+    const tab = S.musicaTab || 'app';
+    if (tab === 'mias' && MisCanciones.lista() === null) MisCanciones.cargar().then(() => { if (actual().p === 'musica') render(); });
+    let cuerpo = '';
+    if (tab === 'app') {
+      const p = Repro.actual() && !Repro.actual().blobId ? Repro.actual() : PISTAS[0];
+      cuerpo = `<section class="rp" style="--tapa:url('${p.tapa}')"><div class="rp-fondo" style="background-image:url('${p.tapa}')" aria-hidden="true"></div>
+          <div class="rp-tapa" style="background-image:url('${p.tapa}')"></div>
+          <div class="rp-info"><span class="eyebrow">🎼 Música de Mi Fe Católica</span><h2>${h(p.t)}</h2><small>${h(p.a)} · ${h(p.s || '')}</small></div>
+          <input type="range" id="rpBarra" min="0" max="1000" value="0" aria-label="Avance">
+          <div class="rp-tiempo" id="rpTiempo">0:00 / 0:00</div>
+          <div class="rp-ctrl"><button class="redondo" data-a="rp:ant" aria-label="Anterior">${ICO.ant}</button>
+            <button class="play" id="rpPlay" data-a="rp:play:${p.id}" aria-label="Reproducir">${ICO.play}</button>
+            <button class="redondo" data-a="rp:sig" aria-label="Siguiente">${ICO.sig}</button></div></section>
+        <div class="pistas">${PISTAS.map((x, k) => `<button class="pista" data-a="pista:${k}" data-pista="${x.id}"><span class="pista-tapa" style="background-image:url('${x.tapa}')"><b class="eq" aria-hidden="true"><i></i><i></i><i></i></b></span>
+          <span class="pista-txt"><strong>${h(x.t)}</strong><small>${h(x.a)}</small></span><span class="pista-ic" aria-hidden="true">▶</span></button>`).join('')}</div>
+        <div class="aviso">Estas piezas son de la app: melodías de dominio público y composiciones originales, interpretadas digitalmente. Funcionan sin internet y podés compartir la app con quien quieras.</div>`;
+    } else if (tab === 'mias') {
+      const l = MisCanciones.lista();
+      cuerpo = `${btn('➕ Agregar canciones del teléfono', 'misagregar', 'primario ancho')}<input type="file" id="archivoMusica" accept="audio/*" multiple hidden>
+        <div class="lista" style="margin-top:14px">${l === null ? '<div class="card muted">Cargando…</div>' : l.length ? l.map((c, k) => `<div class="mia" data-pista="mia-${c.id}"><button class="pista" data-a="mia:${k}"><span class="pista-tapa mia-tapa"><i>🎵</i><b class="eq" aria-hidden="true"><i></i><i></i><i></i></b></span>
+          <span class="pista-txt"><strong>${h(c.nombre)}</strong><small>${(c.tam / 1048576).toFixed(1)} MB · ${h(c.fecha)}</small></span></button><button class="mia-borrar" data-a="miaborrar:${c.id}" aria-label="Quitar ${h(c.nombre)}">🗑</button></div>`).join('')
+          : '<div class="card vacio"><span>🎧</span><p><b>Todavía no agregaste canciones.</b><br>Podés sumar audios que tengas en el celular: grabaciones del coro de tu parroquia, cantos de tu grupo o música que hayas comprado.</p></div>'}</div>
+        <div class="aviso">Las canciones se guardan solo en este teléfono, no se suben a ningún lado ni viajan con la app al compartirla.</div>`;
+    } else if (tab === 'videos') {
+      const vs = S.videos || [], sel = vs.find(v => v.id === S.videoSel) || vs[0];
+      cuerpo = `${sel ? `<section class="yt"><div class="yt-marco"><iframe title="${h(sel.titulo)}" src="${ytEmbed(sel)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="yt-info"><strong>${h(sel.titulo)}</strong>${sel.autor ? `<small>${h(sel.autor)}</small>` : ''}</div>
+          <div class="fila">${btn('↗ Abrir en YouTube', 'url:' + sel.url, 'chico')}${btn('Compartir', 'ytcomp:' + sel.id, 'chico')}</div></section>` : ''}
+        <div class="card yt-agregar"><h3>Agregar un video o una playlist</h3><p class="small muted">En YouTube tocá <b>Compartir › Copiar enlace</b> y pegalo acá. Sirve para canciones de Athenas, videos del Papa, Misas y más.</p>
+          <div class="yt-fila"><input class="buscar" id="ytUrl" type="url" inputmode="url" placeholder="https://youtu.be/…">${btn('📋', 'ytpegar', 'chico')}</div>${btn('➕ Agregar', 'ytadd', 'primario ancho')}
+          <div class="fila" style="margin-top:10px">${btn('🔎 Buscar Athenas en YouTube', 'url:https://www.youtube.com/results?search_query=Athenas+m%C3%BAsica+cat%C3%B3lica', 'chico')}${btn('🔎 Videos del Papa', 'url:https://www.youtube.com/@VaticanNewsES/videos', 'chico')}</div></div>
+        <div class="discos">${vs.map(v => `<div class="disco-v ${sel && v.id === sel.id ? 'activo' : ''}"><button class="disco" data-a="ytsel:${v.id}"><span class="tapa-disco yt-tapa" ${ytTapa(v) ? `style="background-image:url('${h(ytTapa(v))}')"` : ''}><i>▶</i></span><strong>${h(v.titulo)}</strong><small>${v.tipo === 'lista' ? 'Playlist' : 'Video'}${v.autor ? ' · ' + h(v.autor) : ''}</small></button><button class="mia-borrar" data-a="ytborrar:${v.id}" aria-label="Quitar">✕</button></div>`).join('')}</div>
+        <div class="aviso">Los videos se ven completos dentro de la app, desde YouTube (necesita internet). Algunos canales no permiten verlos fuera de YouTube: en ese caso usá «Abrir en YouTube».</div>`;
+    } else {
+      const sel = MUSICA.find(m => m.id === S.musicaSel) || MUSICA[1], l = MUSICA.filter(m => musicaCat === 'todo' || m.cat === musicaCat);
+      setTimeout(cargarPortadas, 50);
+      const pt = m => (portadas || S.portadasMusica || {})[m.id];
+      cuerpo = `<section class="reproductor"><div class="rep-cab"><span class="eyebrow">🟢 Spotify</span><strong>${h(sel.t)}</strong></div>
+          <iframe class="spotify" title="Reproductor: ${h(sel.t)}" src="https://open.spotify.com/embed/${sel.tipo}/${sel.id}?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <div class="rep-pie"><span>Sin sesión de Spotify: fragmentos de 30 s.</span>${btn('Completa en Spotify ↗', 'url:' + spLink(sel), 'chico')}</div></section>
+        <div class="chips">${CAT_MUSICA.map(([k, v]) => `<button class="chip ${musicaCat === k ? 'activo' : ''}" data-a="mcat:${k}">${v}</button>`).join('')}</div>
+        <div class="discos">${l.map(m => `<button class="disco ${m.id === sel.id ? 'activo' : ''}" data-a="msel:${m.id}" style="--h:${m.h}">
+          <span class="tapa-disco ${m.tipo === 'artist' ? 'redonda' : ''}" data-portada="${m.id}" ${pt(m) ? `style="background-image:url('${h(pt(m))}')"` : ''}><i>${m.tipo === 'artist' ? '🎤' : '🎵'}</i></span>
+          <strong>${h(m.t)}</strong><small>${h(m.s)}</small></button>`).join('')}</div>`;
+    }
+    setTimeout(Repro.ui, 0);
+    return `${titulo('Música', 'Para rezar, alabar y acompañar tu día.')}
+      <div class="tabs-musica">${TABS_MUSICA.map(([k, i, v]) => `<button class="${tab === k ? 'activo' : ''}" data-a="mtab:${k}"><span>${i}</span>${v}</button>`).join('')}</div>
+      ${cuerpo}${pie()}`;
   };
+
+  /* ================= Frases de los Papas (formato historia) ================= */
+  // Frases textuales con su fuente. Las imágenes son las pinturas de dominio público de la app.
+  const PAPAS = [
+    { id: 'juan23', n: 'San Juan XXIII', c: 'J23', y: '1958–1963', h: 30, f: [
+      { t: 'Al volver a casa, encontraréis a los niños. Hacedles una caricia y decidles: esta es la caricia del Papa.', s: 'Discurso de la luna, 11 de octubre de 1962', img: 'gozosos-4' }] },
+    { id: 'pablo6', n: 'San Pablo VI', c: 'P6', y: '1963–1978', h: 200, f: [
+      { t: 'El hombre contemporáneo escucha más a gusto a los que dan testimonio que a los que enseñan, o si escuchan a los que enseñan, es porque dan testimonio.', s: 'Evangelii nuntiandi, 41 (1975)', img: 'luminosos-2' }] },
+    { id: 'jp2', n: 'San Juan Pablo II', c: 'JP2', y: '1978–2005', h: 0, f: [
+      { t: '¡No tengáis miedo! ¡Abrid, más todavía, abrid de par en par las puertas a Cristo!', s: 'Homilía de inicio de pontificado, 22 de octubre de 1978', img: 'gloriosos-1' },
+      { t: 'El hombre no puede vivir sin amor. Él permanece para sí mismo un ser incomprensible, su vida está privada de sentido si no se le revela el amor.', s: 'Redemptor hominis, 10 (1979)', img: 'gozosos-2' },
+      { t: '¡Duc in altum! ¡Rema mar adentro!', s: 'Novo millennio ineunte, 1 (2001)', img: 'luminosos-1' }] },
+    { id: 'b16', n: 'Benedicto XVI', c: 'B16', y: '2005–2013', h: 270, f: [
+      { t: 'No se comienza a ser cristiano por una decisión ética o una gran idea, sino por el encuentro con un acontecimiento, con una Persona, que da un nuevo horizonte a la vida y, con ello, una orientación decisiva.', s: 'Deus caritas est, 1 (2005)', img: 'luminosos-3' },
+      { t: '¡No tengáis miedo de Cristo! Él no quita nada, y lo da todo.', s: 'Homilía de inicio de pontificado, 24 de abril de 2005', img: 'gloriosos-2' }] },
+    { id: 'francisco', n: 'Francisco', c: 'F', y: '2013–2025', h: 140, f: [
+      { t: 'Dios no se cansa nunca de perdonar, somos nosotros los que nos cansamos de acudir a su misericordia.', s: 'Evangelii gaudium, 3 (2013)', img: 'dolorosos-1' },
+      { t: '¡No nos dejemos robar la esperanza!', s: 'Evangelii gaudium, 86 (2013)', img: 'gloriosos-3' },
+      { t: 'Vive Cristo, esperanza nuestra, y Él es la más hermosa juventud de este mundo. Todo lo que Él toca se vuelve joven, se hace nuevo, se llena de vida.', s: 'Christus vivit, 1 (2019)', img: 'gloriosos-5' }] },
+    { id: 'leon14', n: 'León XIV', c: 'L14', y: 'desde 2025', h: 45, f: [
+      { t: '¡La paz esté con todos ustedes!', s: 'Primer saludo desde el balcón de San Pedro, 8 de mayo de 2025', img: 'gozosos-5' },
+      { t: 'Dios nos quiere, Dios los ama a todos, y el mal no prevalecerá.', s: 'Primer saludo desde el balcón de San Pedro, 8 de mayo de 2025', img: 'luminosos-4' }] }
+  ];
+  const HISTORIAS = PAPAS.flatMap(p => p.f.map(f => ({ ...f, papa: p })));
+  const DUR_HIST = 9000;
+  let histTimer = null;
+  const avatarPapa = p => `<span class="av-papa" style="--h:${p.h};background-image:url('img/misterios/${p.f[0].img}.webp')"><b>${h(p.c)}</b></span>`;
+  const filaHistorias = () => `<div class="historias" role="list">${PAPAS.map(p => `<button class="hist-burbuja ${(S.histVistas || []).includes(p.id) ? 'vista' : ''}" role="listitem" data-a="historia:${HISTORIAS.findIndex(x => x.papa === p)}">${avatarPapa(p)}<small>${h(p.n.replace('San ', ''))}</small></button>`).join('')}</div>`;
+  P.papas = () => `${titulo('Frases de los Papas', 'Palabras que marcaron a la Iglesia, para rezar y compartir.')}
+    ${filaHistorias()}
+    <div class="lista">${HISTORIAS.map((x, k) => `<button class="frase-papa" data-a="historia:${k}" style="background-image:linear-gradient(90deg,rgba(5,10,23,.92),rgba(5,10,23,.55)),url(img/misterios/${x.img}.webp)">
+      <q>${h(x.t)}</q><small>${h(x.papa.n)} · ${h(x.s)}</small></button>`).join('')}</div>
+    <div class="aviso">Frases textuales tomadas de documentos y discursos publicados por la Santa Sede. Las pinturas son de dominio público.</div>${pie()}`;
+  function detenerHistoria() { clearTimeout(histTimer); histTimer = null; }
+  function renderHistoria(k) {
+    detenerHistoria();
+    k = Math.max(0, Math.min(HISTORIAS.length - 1, Number(k) || 0));
+    const x = HISTORIAS[k], p = x.papa, delPapa = HISTORIAS.filter(y => y.papa === p), pos = delPapa.indexOf(x);
+    S.histVistas = [...new Set([...(S.histVistas || []), p.id])]; guardar();
+    document.body.classList.add('modo-rezo');
+    main.innerHTML = `<section class="historia" data-k="${k}">
+      <div class="hist-img" style="background-image:url(img/misterios/${x.img}.webp)" aria-hidden="true"></div>
+      <div class="hist-barras">${delPapa.map((_, i) => `<i class="${i < pos ? 'llena' : i === pos ? 'activa' : ''}"><b style="animation-duration:${DUR_HIST}ms"></b></i>`).join('')}</div>
+      <div class="hist-top">${avatarPapa(p)}<div><strong>${h(p.n)}</strong><small>${h(p.y)}</small></div><button class="btn-atras" data-a="hist:cerrar" aria-label="Cerrar">${ICO.cerrar}</button></div>
+      <button class="hist-zona izq" data-a="hist:ant" aria-label="Anterior"></button><button class="hist-zona der" data-a="hist:sig" aria-label="Siguiente"></button>
+      <div class="hist-texto"><span class="hist-comillas" aria-hidden="true">“</span><q>${h(x.t).split(' ').map((w, i) => `<span style="animation-delay:${(0.25 + i * 0.07).toFixed(2)}s">${w} </span>`).join('')}</q>
+        <small>— ${h(p.n)}<br>${h(x.s)}</small></div>
+      <div class="hist-acciones">${btn('↗ Compartir', 'hist:compartir:' + k, 'chico')}${btnLeer('leer:papa:' + k, '🔊 Escuchar', 'chico')}</div>
+    </section>`;
+    histTimer = setTimeout(() => { if (actual().p === 'historia') moverHistoria(1); }, DUR_HIST);
+  }
+  function moverHistoria(d) {
+    const k = Number(actual().arg) + d;
+    if (k < 0) return renderHistoria(0);
+    if (k >= HISTORIAS.length) { cerrarHistoria(); aviso('¡Viste todas las frases! 🙏'); return; }
+    pila[pila.length - 1] = { p: 'historia', arg: k }; renderHistoria(k);
+  }
+  function cerrarHistoria() { detenerHistoria(); detenerVoz(); document.body.classList.remove('modo-rezo'); if (actual().p === 'historia') pila.pop(); if (!pila.length) pila = [{ p: 'inicio' }]; render(); }
 
   P.medios = () => `${titulo('Videos, Misa y radio', 'Transmisiones y programas de canales católicos oficiales. Se abren en YouTube o en el sitio de cada medio.')}
     <div class="chips">${['Todos', 'En vivo', 'Videos', 'Audios'].map(t => `<button class="chip ${t === medioTipo ? 'activo' : ''}" data-a="medio:${t}">${t}</button>`).join('')}</div>
@@ -567,7 +784,7 @@
       ['🕯', 'Novenas', 'Inmaculada, Navidad, Luján y más', 'ir:novenas'], ['✝', 'Vía Crucis', '14 estaciones', 'ir:viacrucis'], ['📖', 'La Biblia', 'El Libro del Pueblo de Dios', 'ir:biblia'],
       ['📜', 'Lecturas del día', 'Evangelio y liturgia', 'ir:lecturas'], ['📅', 'Calendario litúrgico', 'Santos, fiestas y colores', 'ir:calendario'], ['📰', 'Noticias', 'Papa, Iglesia y Argentina', 'ir:noticias'],
       ['📺', 'Videos, Misa y radio', 'Canales oficiales', 'ir:medios'], ['🎓', 'Formación católica', 'Mandamientos, sacramentos y más', 'ir:formacion'], ['🌿', '30 días de oración', 'Camino diario', 'ir:camino'],
-      ['🎶', 'Música católica', 'Athenas, alabanza y canto gregoriano', 'ir:musica'], ['✍️', 'Cuaderno espiritual', 'Anotaciones personales', 'ir:cuaderno'], ['📚', 'Biblioteca', 'Lector estilo libro', 'ir:biblioteca'], ['✨', 'Galería de frases', 'Pensamientos de los santos', 'ir:frases'], ['💛', 'Mis intenciones', '', 'ir:intenciones'], ['⭐', 'Oraciones favoritas', '', 'ir:favoritos'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]]
+      ['🎶', 'Música', 'De la app, tus canciones, YouTube y Spotify', 'ir:musica'], ['🕊️', 'Frases de los Papas', 'Para rezar y compartir', 'ir:papas'], ['✍️', 'Cuaderno espiritual', 'Anotaciones personales', 'ir:cuaderno'], ['📚', 'Biblioteca', 'Lector estilo libro', 'ir:biblioteca'], ['✨', 'Galería de frases', 'Pensamientos de los santos', 'ir:frases'], ['💛', 'Mis intenciones', '', 'ir:intenciones'], ['⭐', 'Oraciones favoritas', '', 'ir:favoritos'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]]
       .map(([i, t, s, a]) => item(i, t, s, a)).join('')}</div>${pie()}`;
 
   /* ---------- Ajustes ---------- */
@@ -634,13 +851,16 @@
   }
   P.voces = () => `${titulo('Voz del teléfono', 'Cómo lograr que la lectura en voz alta se escuche clara y en español.')}
     <div class="card"><ol class="pasos">
-      <li><b>Instalá «Servicios de voz de Google»</b> (gratis). Es la voz más clara en español.${btn('Abrir en Play Store', 'url:https://play.google.com/store/apps/details?id=com.google.android.tts', 'chico primario')}</li>
-      <li>Abrí <b>Ajustes del teléfono</b> y buscá <b>«Texto a voz»</b> (suele estar en Accesibilidad o en Idioma y entrada).</li>
+      <li><b>Instalá o actualizá «Servicios de voz de Google»</b> (gratis). Es la voz más clara en español.${btn('Abrir en Play Store', 'appstore:com.google.android.tts', 'chico primario')}</li>
+      <li>Abrí los <b>Ajustes del teléfono</b> (el ícono de engranaje), tocá la <b>lupa</b> y escribí <b>«texto a voz»</b>. También podés llegar así:
+        <details class="ayuda-det" open><summary>Xiaomi, Redmi o POCO</summary><p>Ajustes › <b>Ajustes adicionales</b> › <b>Idiomas e introducción de texto</b> › <b>Salida de texto a voz</b>.</p></details>
+        <details class="ayuda-det"><summary>Samsung</summary><p>Ajustes › <b>Administración general</b> › <b>Salida de texto a voz</b>.</p></details>
+        <details class="ayuda-det"><summary>Motorola y otros</summary><p>Ajustes › <b>Sistema</b> › <b>Idiomas y entrada</b> › <b>Salida de texto a voz</b> (o en <b>Accesibilidad</b>).</p></details></li>
       <li>En <b>Motor preferido</b> elegí <b>Servicios de voz de Google</b>.</li>
-      <li>En <b>Idioma</b> elegí <b>Español (Estados Unidos)</b> — es el acento latinoamericano — y descargá la voz si te lo pide.</li>
-      <li>Volvé a la app y tocá <b>Probar voz del teléfono</b>.</li></ol>
-      <div class="fila">${btn('⚙️ Abrir ajustes de voz', 'voces', 'chico')}${btnLeer('leer:prueba', '▶ Probar voz del teléfono', 'chico')}</div></div>
-    <div class="aviso">En algunos Xiaomi el motor que viene instalado no tiene español y lee las palabras como si fueran en inglés. Con la voz de Google se soluciona.</div>${pie()}`;
+      <li>Tocá el engranaje ⚙️ al lado del motor › <b>Idioma</b> › <b>Español (Estados Unidos)</b>, que es el acento latinoamericano, y descargá la voz si te lo pide.</li>
+      <li>Volvé a la app y probá:</li></ol>
+      ${btnLeer('leer:prueba', '▶ Probar voz del teléfono', 'primario ancho')}</div>
+    <div class="aviso">Por seguridad, Android no deja que una app abra directamente esos ajustes: hay que entrar a mano una sola vez. En algunos Xiaomi el motor que viene instalado no tiene español y lee las palabras como si fueran en inglés; con la voz de Google se soluciona.</div>${pie()}`;
 
   P.actualizar = () => {
     const u = window.__actualizacion;
@@ -805,6 +1025,8 @@
   function render() {
     aplicarAjustes();
     const { p, arg } = actual();
+    if (p === 'historia') { renderHistoria(arg); return; }
+    detenerHistoria();
     if (p === 'rezo') { renderRezo(); return; }
     if (p === 'lector') { if (!lectorLibro) lectorLibro = LIBROS().find(b => b.id === arg); renderLector(); return; }
     document.body.classList.remove('modo-rezo');
@@ -821,6 +1043,9 @@
     const vm = $('#volm'); if (vm) vm.addEventListener('input', () => { S.volMusica = Number(vm.value); guardar(); Sonido.volumen(S.volMusica); });
     const bn = $('#buscarNota'); if (bn) bn.addEventListener('input', e => { notaBusca = e.target.value; const pos = e.target.selectionStart; render(); const nb = $('#buscarNota'); nb.focus(); nb.setSelectionRange(pos, pos); });
     const fi = $('#archivoResp'); if (fi) fi.addEventListener('change', restaurar);
+    const rb = $('#rpBarra'); if (rb) rb.addEventListener('change', () => Repro.ir(rb.value / 1000));
+    const am = $('#archivoMusica'); if (am) am.addEventListener('change', async () => { if (!am.files.length) return; aviso('Guardando canciones…'); const r = await MisCanciones.agregar(am.files); aviso(r.n ? `Se agregaron ${r.n} canción${r.n > 1 ? 'es' : ''}` + (r.saltados ? ` (${r.saltados} no eran audio)` : '') : 'No se pudo agregar: elegí archivos de audio (MP3, M4A, OGG…).'); render(); });
+    const yu = $('#ytUrl'); if (yu) yu.addEventListener('keydown', e => { if (e.key === 'Enter') agregarVideo(yu.value); });
   }
 
   async function cambiarRecordatorio(id, on) {
@@ -897,7 +1122,8 @@
         else if (tipo === 'via') leer(`Estación ${S.viacrucis + 1}. ${ESTACIONES[S.viacrucis]}. Te adoramos, oh Cristo, y te bendecimos. Porque por tu santa Cruz redimiste al mundo. ${MEDIT[S.viacrucis]}`);
         else if (tipo === 'camino') { const e = window.MFC_LIBRE[S.camino - 1]; leer(`${e.titulo}. ${e.oracion} Para vivir hoy: ${e.accion}`); }
         else if (tipo === 'leccion') { const l = window.MFC_FORMACION.find(x => x.id === id); leer(`${l.titulo}. ${l.intro} ${l.puntos.join('. ')}`); }
-        else if (tipo === 'prueba') leer('Dios te salve, María, llena eres de gracia, el Señor es contigo.');
+        else if (tipo === 'prueba') leer('Dios te salve, María, llena eres de gracia, el Señor es contigo. Amén.').then(() => { const i = N.Voz.idioma(); if (i) aviso('Voz usada: ' + i + '. ¿Se escuchó bien?'); });
+        else if (tipo === 'papa') { detenerHistoria(); const x = HISTORIAS[Number(id)]; leer(`${x.t} ${x.papa.n}.`); }
         break;
       }
       case 'fav': { const i = S.favoritos.indexOf(arg); if (i >= 0) S.favoritos.splice(i, 1); else S.favoritos.push(arg); guardar(); render(); aviso(i >= 0 ? 'Quitada de favoritas' : 'Guardada en favoritas'); break; }
@@ -920,6 +1146,26 @@
       case 'letra': S.letra = arg; guardar(); render(); break;
       case 'tema': S.tema = arg; guardar(); render(); break;
       case 'voces': { const ok = await N.Voz.abrirAjustesVoz(); if (!ok || actual().p !== 'voces') { if (actual().p !== 'voces') ir('voces'); else aviso('Abrí Ajustes del teléfono y buscá «Texto a voz».'); } break; }
+      case 'mtab': S.musicaTab = arg; guardar(); render(); break;
+      case 'rp': { const [que, id] = arg.split(':'); if (que === 'play') { const act = Repro.actual(); if (act && !act.blobId) Repro.alternar(); else Repro.tocar(PISTAS, Math.max(0, PISTAS.findIndex(x => x.id === id))); } else if (que === 'sig') { if (!Repro.actual()) Repro.tocar(PISTAS, 0); else Repro.sig(); } else Repro.ant(); setTimeout(() => { if (actual().p === 'musica' && (S.musicaTab || 'app') === 'app') render(); }, 120); break; }
+      case 'pista': { const k = Number(arg), act = Repro.actual(); if (act && act.id === PISTAS[k].id) Repro.alternar(); else await Repro.tocar(PISTAS, k); if ((S.musicaTab || 'app') === 'app') { render(); } break; }
+      case 'mia': { const l = pistasMias(), k = Number(arg), act = Repro.actual(); if (act && act.id === l[k].id) Repro.alternar(); else Repro.tocar(l, k); break; }
+      case 'miaborrar': if (confirm('¿Quitar esta canción de la app? (El archivo original del teléfono no se borra.)')) { const act = Repro.actual(); if (act && act.blobId === Number(arg)) Repro.cerrar(); await MisCanciones.borrar(arg); render(); } break;
+      case 'misagregar': { const f = $('#archivoMusica'); if (f) f.click(); break; }
+      case 'ytadd': { const u = $('#ytUrl'); if (u && u.value.trim()) agregarVideo(u.value); else aviso('Pegá primero el enlace del video.'); break; }
+      case 'ytpegar': { try { const t = await navigator.clipboard.readText(); if (t) { $('#ytUrl').value = t; agregarVideo(t); } else aviso('No hay nada copiado.'); } catch (e) { aviso('Mantené apretado el cuadro y elegí «Pegar».'); $('#ytUrl').focus(); } break; }
+      case 'ytsel': S.videoSel = arg; guardar(); Repro.pausar(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); break;
+      case 'ytborrar': S.videos = (S.videos || []).filter(v => v.id !== arg); if (S.videoSel === arg) S.videoSel = null; guardar(); render(); break;
+      case 'ytcomp': { const v = (S.videos || []).find(x => x.id === arg); if (v) { const r = await N.compartir(v.titulo, `${v.titulo}\n${v.url}\n\nCompartido desde Mi Fe Católica 🙏`); if (r === 'copiado') aviso('Enlace copiado'); } break; }
+      case 'mini': if (arg === 'play') Repro.alternar(); else if (arg === 'sig') Repro.sig(); else Repro.cerrar(); break;
+      case 'historia': Repro.pausar(); pila.push({ p: 'historia', arg: Number(arg) }); renderHistoria(Number(arg)); break;
+      case 'hist': {
+        if (arg === 'cerrar') cerrarHistoria();
+        else if (arg === 'sig' || arg === 'ant') { await detenerVoz(); moverHistoria(arg === 'sig' ? 1 : -1); }
+        else if (arg.startsWith('compartir:')) { detenerHistoria(); const x = HISTORIAS[Number(arg.split(':')[1])]; const r = await N.compartir('Frase de ' + x.papa.n, `«${x.t}»\n— ${x.papa.n}, ${x.s}\n\nCompartido desde Mi Fe Católica 🙏`); if (r === 'copiado') aviso('Frase copiada'); }
+        break;
+      }
+      case 'appstore': N.abrirTienda(arg); break;
       case 'mcat': { musicaCat = arg; const tmp = document.createElement('div'); tmp.innerHTML = P.musica(); ['.chips', '.discos'].forEach(q => { const d = main.querySelector(q), o = tmp.querySelector(q); if (d && o) d.innerHTML = o.innerHTML; }); break; } // sin recargar el reproductor
       case 'msel': S.musicaSel = arg; guardar(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); break;
       case 'probarnat': { if (hablando) { detenerVoz(); break; } await detenerVoz(); hablando = true; aviso('▶ Escuchando la voz grabada…'); const ok = await Sonido.clip('avemaria'); hablando = false; if (!ok) aviso('No se pudo reproducir el audio.'); break; }

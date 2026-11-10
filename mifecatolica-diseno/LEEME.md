@@ -18,3 +18,10 @@ Para que el botón «Instalar voces» abra el instalador nativo, agregar en `and
 ```xml
 <intent><action android:name="android.speech.tts.engine.CHECK_TTS_DATA" /></intent>
 ```
+
+## Música, historias de los Papas y videos
+
+- `scripts/synth.py` genera las 6 piezas instrumentales de `audio/musica/` (melodías de dominio público y composiciones originales):
+  `python3 scripts/synth.py salida/` y luego codificar a Opus con ffmpeg (`-c:a libopus -b:a 64k`, `loudnorm=I=-17`).
+- Sección **Música**: reproductor propio con mini reproductor fijo, «Mis canciones» (archivos del teléfono en IndexedDB), YouTube (videos completos pegando el enlace) y Spotify.
+- **Frases de los Papas** en formato historia, con fuente de cada frase.

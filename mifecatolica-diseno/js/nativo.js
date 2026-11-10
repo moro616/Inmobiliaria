@@ -98,6 +98,13 @@
     return true;
   }
 
+  /** Abre la ficha de una app en Play Store (app de la tienda; si no hay, la web). */
+  async function abrirTienda(paquete) {
+    if (!/^[\w.]+$/.test(paquete)) return;
+    if (esNativo) { try { root.location.href = 'market://details?id=' + paquete; return; } catch (e) { } }
+    abrirEnlace('https://play.google.com/store/apps/details?id=' + paquete);
+  }
+
   /* ---------- Descargas HTTP (noticias, versión) ---------- */
   async function descargarTexto(url, timeoutMs = 15000) {
     if (!/^https:\/\//.test(url)) throw new Error('solo-https');
@@ -190,5 +197,5 @@
     async abrirPermisoInstalar() { try { await P.Actualizador.abrirPermisoInstalar(); } catch (e) { } }
   };
 
-  root.Nativo = { esNativo, Voz, Pantalla, abrirEnlace, descargarTexto, compartir, Recordatorios, infoApp, alBotonAtras, salir, estiloBarras, Actualizador };
+  root.Nativo = { esNativo, abrirTienda, Voz, Pantalla, abrirEnlace, descargarTexto, compartir, Recordatorios, infoApp, alBotonAtras, salir, estiloBarras, Actualizador };
 })(window);
