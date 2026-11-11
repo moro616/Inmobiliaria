@@ -36,6 +36,11 @@ qué está terminado, qué falta y cómo seguir.
 - **Frases de los Papas** en formato historia, con música de fondo.
 - Sección **Vayan y anuncien** (`P.mision`, `GESTOS`, `anunciar` en `www/js/app.js`): lema «Bienvenidos todos · Vayan y anuncien»,
   gesto de servicio diario con racha semanal y botones para compartir la frase del día, el Evangelio y la invitación al Rosario.
+- Sección **¿Cómo llegás hoy?** (`ESTADOS`, `P.encuentro`, `P.estado` en `www/js/app.js`): la persona elige cómo se siente y recibe
+  una palabra de aliento, una lectura, tres oraciones de la app y un paso concreto. Los textos son propios de la app, no citas.
+  **Verificar** los teléfonos de ayuda que se muestran en «Estoy triste» y «Me siento solo» (135 y 0800 345 1435).
+- **Foto del Papa:** la pantalla «Vayan y anuncien» muestra `www/img/papa-leon.jpg` si ese archivo existe (hoy no existe y se ve una
+  pintura). Usar solo una foto con permiso o licencia libre.
 - Recordatorios: aviso de prueba, detección de permisos, reprogramación al abrir la app.
 - **Voz nueva grabada** (Chatterbox Multilingual, licencia MIT):
   - Rosario y Coronilla completos: 35 de 35 audios, incluidas las Letanías.

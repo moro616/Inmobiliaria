@@ -134,7 +134,7 @@
     <div class="card"><span class="eyebrow">📖 Palabra de Dios</span><h3>${ev ? h(ev.titulo) : 'Evangelio del día'}</h3>
       <p class="small muted">Las lecturas de la Misa se consultan en Vatican News, la fuente oficial de la Santa Sede.</p>${btn('📖 Leer el Evangelio de hoy', 'ir:lecturas', 'ancho')}</div>
     ${(() => { const [f, i] = fraseDelDia(); return f ? `<button class="frase" data-a="frase:${i}" style="background-image:linear-gradient(180deg,rgba(5,10,23,.2),rgba(5,10,23,.88)),url(img/misterios/${IMGS[i % IMGS.length]}.webp);margin-bottom:16px"><span class="eyebrow" style="color:#f3d98f">Frase del día</span><q>${h(f.t)}</q><small>${h(f.a)}</small></button>` : ''; })()}
-    ${tarjetaLema()}
+    ${tarjetaLlegada()}${tarjetaLema()}
     <h2 class="seccion">Palabras de los Papas</h2>${filaHistorias()}
     <h2 class="seccion">Tu espacio de fe</h2><div class="grilla">
       ${[['🙏', 'Oraciones', 'Clásicas y para cada momento', 'oraciones'], ['🕯', 'Novenas', 'Nueve días de oración', 'novenas'], ['📖', 'Biblia', 'Palabra de Dios', 'biblia'],
@@ -789,14 +789,14 @@
   P.mision = () => {
     const m = mision(), hecho = !!m.hechos[claveDia()], gesto = GESTOS[diaDelAnio() % GESTOS.length], total = Object.keys(m.hechos).length, racha = rachaMision();
     const semana = Array.from({ length: 7 }, (_, k) => { const d = new Date(); d.setDate(d.getDate() - (6 - k)); return { l: 'DLMMJVS'[d.getDay()], ok: !!m.hechos[claveDia(d)], hoy: k === 6 }; });
-    return `<section class="mision-hero"><div class="mision-img" style="background-image:url(img/misterios/luminosos-3.webp)" aria-hidden="true"></div>
+    return `<section class="mision-hero"><div class="mision-img" style="background-image:url(img/misterios/luminosos-3.webp)" aria-hidden="true"></div><img class="papa-foto" src="img/papa-leon.jpg" alt="Papa León XIV" onerror="this.remove()">
         <span class="eyebrow">Nuestro lema</span><h1>${LEMA.a}.<br><em>${LEMA.b}.</em></h1>
         <blockquote>«${LEMA.cita}»<cite>${LEMA.ref}</cite></blockquote></section>
       <p class="muted" style="margin:0 2px 16px">Una invitación a no quedarnos puertas adentro: recibir a todos, servir y llevar la fe con palabras y con gestos.</p>
       <div class="mision-resumen"><div><b>${racha}</b><small>${racha === 1 ? 'día seguido' : 'días seguidos'}</small></div><div><b>${total}</b><small>gestos de servicio</small></div><div><b>${m.anuncios}</b><small>anuncios compartidos</small></div></div>
-      <section class="card paso"><div class="paso-cab"><span class="paso-n">1</span><div><h3>Bienvenidos todos</h3><small>Abrí la puerta: invitá a alguien</small></div></div>
-        <p class="small muted">En la Iglesia hay lugar para todos. Invitá a un amigo, un familiar o un vecino a rezar con vos.</p>
-        ${btn('🤝 Invitar a alguien a rezar', 'manuncio:bienvenida', 'ancho')}</section>
+      <section class="card paso"><div class="paso-cab"><span class="paso-n">1</span><div><h3>Bienvenidos todos</h3><small>Vení como estés, y abrile la puerta a otro</small></div></div>
+        <p class="small muted">En la Iglesia hay lugar para todos, también para vos hoy. Contale a Dios cómo llegás, e invitá a un amigo, un familiar o un vecino a rezar.</p>
+        <div class="fila">${btn('🤍 ¿Cómo llegás hoy?', 'ir:encuentro', 'primario')}${btn('🤝 Invitar a alguien', 'manuncio:bienvenida')}</div></section>
       <section class="card paso ${hecho ? 'cumplido' : ''}"><div class="paso-cab"><span class="paso-n">2</span><div><h3>Servir</h3><small>El gesto de hoy</small></div></div>
         <p class="gesto">${h(gesto)}</p>
         <div class="semana">${semana.map(x => `<span class="${x.ok ? 'ok' : ''} ${x.hoy ? 'hoy' : ''}"><i>${x.ok ? '✓' : ''}</i>${x.l}</span>`).join('')}</div>
@@ -819,6 +819,36 @@
     const m = mision(); if (que === 'bienvenida') m.bienvenidas++; m.anuncios++; guardar();
     aviso(r === 'copiado' ? 'Texto copiado: pegalo donde quieras' : '¡Gracias por anunciar! 📣'); if (actual().p === 'mision') render();
   }
+
+  /* ================= Encuentro: «¿Cómo llegás hoy?» (Bienvenidos todos) ================= */
+  // Palabras propias de la app (no son citas). Las lecturas se indican solo por su referencia bíblica.
+  const ESTADOS = [
+    { id: 'triste', ico: '😔', t: 'Estoy triste', h: 220, ayuda: true, p: 'No tenés que disimular delante de Dios. Él conoce tu tristeza y no se aleja: se sienta a tu lado. Contale con tus palabras qué te duele; llorar también es rezar.', l: ['Salmo 34 (33), 18-20', 'Dios está cerca de quien tiene el corazón herido'], o: ['en-la-tristeza', 'esperanza', 'acordaos'], paso: 'Contale a una persona de confianza cómo te sentís. No cargues solo con esto.' },
+    { id: 'miedo', ico: '😰', t: 'Tengo miedo o ansiedad', h: 260, p: 'El miedo achica el mundo; Dios lo vuelve a abrir. No te pide que no sientas miedo: te pide que le des la mano. Hoy alcanza con dar un solo paso.', l: ['Salmo 23 (22)', 'El Señor es mi pastor, nada me puede faltar'], o: ['jesus', 'bajo-tu-amparo', 'angel'], paso: 'Respirá hondo tres veces y en cada una repetí despacio: «Jesús, en Vos confío».' },
+    { id: 'solo', ico: '🫂', t: 'Me siento solo', h: 200, ayuda: true, p: 'Para Dios no sos uno más: te conoce por tu nombre y te estaba esperando. La Iglesia también es tu casa, aunque haga mucho que no vengas.', l: ['Isaías 43, 1-5', 'No temas, yo te llamé por tu nombre'], o: ['por-las-personas-solas', 'alma-de-cristo', 'por-la-amistad'], paso: 'Acercate a tu parroquia y presentate, o llamá hoy a alguien con quien hace tiempo que no hablás.' },
+    { id: 'enfermo', ico: '🤒', t: 'Estoy enfermo o cuido a alguien', h: 150, p: 'Jesús nunca pasó de largo frente a un enfermo. Tu cansancio y tu dolor no son tiempo perdido: ofrecidos a Dios, se vuelven oración.', l: ['Marcos 5, 25-34', 'La mujer que tocó el manto de Jesús'], o: ['enfermos', 'por-los-cuidadores', 'hospital'], paso: 'Pedí la Unción de los enfermos o la visita de un sacerdote si la enfermedad es seria. Para eso está la Iglesia.' },
+    { id: 'duelo', ico: '🕯️', t: 'Perdí a un ser querido', h: 30, p: 'El amor no se termina con la muerte. Quien partió sigue en las manos de Dios, y vos podés seguir queriéndolo de una manera nueva: rezando por él.', l: ['Juan 11, 17-27', 'Yo soy la Resurrección y la Vida'], o: ['por-los-difuntos', 'eterno-descanso', 'difuntos'], paso: 'Encendé una vela y ofrecé una Misa por esa persona. Hablale a Dios de ella con todo detalle.' },
+    { id: 'perdon', ico: '🙇', t: 'Me equivoqué y necesito perdón', h: 280, p: 'No hay pecado más grande que la misericordia de Dios. Él no te espera con una lista de reproches: te espera con los brazos abiertos, como el padre de la parábola.', l: ['Lucas 15, 11-32', 'El hijo que volvió a casa'], o: ['acto', 'yo-confieso', 'ante-la-confesion'], paso: 'Acercate a la confesión esta semana. No hace falta saber cómo: decile al sacerdote que hace mucho que no vas.' },
+    { id: 'enojo', ico: '😤', t: 'Estoy enojado o peleado', h: 0, p: 'El enojo dice que algo te importa. Dáselo a Dios antes de devolverlo. Perdonar no es decir que no pasó nada: es soltar la piedra que llevás en la mano.', l: ['Mateo 18, 21-22', 'Perdonar setenta veces siete'], o: ['perdon', 'instrumento-paz', 'por-las-familias-separadas'], paso: 'Rezá hoy un Padre Nuestro por la persona con la que estás peleado. Solo eso, por ahora.' },
+    { id: 'trabajo', ico: '💼', t: 'Me preocupa el trabajo o la plata', h: 45, p: 'Dios sabe lo que necesitás antes de que se lo pidas. Hacé hoy lo que esté a tu alcance y dejá en sus manos lo que no depende de vos.', l: ['Mateo 6, 25-34', 'No se inquieten por el día de mañana'], o: ['por-los-sin-trabajo', 'san-cayetano', 'trabajo'], paso: 'Contale tu situación a alguien de tu comunidad o a Cáritas de tu parroquia. Pedir ayuda no es vergüenza.' },
+    { id: 'dudas', ico: '🌫️', t: 'Estoy lejos de Dios o tengo dudas', h: 240, p: 'No hace falta tener todo claro para volver. Las dudas no espantan a Dios: Él camina con vos aunque no lo reconozcas, como con los discípulos de Emaús.', l: ['Lucas 24, 13-35', 'Los discípulos de Emaús'], o: ['espiritu', 'te-adoro', 'antes-biblia'], paso: 'Empezá con algo chico: un Padre Nuestro hoy, y mañana otro. Dios hace el resto.' },
+    { id: 'decision', ico: '🧭', t: 'Tengo que tomar una decisión', h: 180, p: 'Dios no juega a las escondidas con tu vida. Pedile luz, escuchá con calma y fijate qué camino te deja más paz y te hace más capaz de amar.', l: ['Santiago 1, 5', 'Si a alguien le falta sabiduría, que se la pida a Dios'], o: ['ante-una-decision', 'espiritu', 'a-san-jose'], paso: 'Antes de decidir, hablalo con alguien sabio y dejá pasar una noche rezando.' },
+    { id: 'cansado', ico: '😮‍💨', t: 'Estoy cansado', h: 320, p: 'No tenés que poder con todo. Jesús no te pide más esfuerzo: te invita a descansar en Él. A veces lo más santo que podés hacer es parar.', l: ['Mateo 11, 28-30', 'Vengan a mí los que están cansados y agobiados'], o: ['descanso', 'esperanza', 'ofrenda-dia'], paso: 'Regalate diez minutos de silencio sin pantalla. Si podés, frente a un sagrario.' },
+    { id: 'gracias', ico: '😊', t: 'Estoy agradecido o contento', h: 120, p: '¡Qué bueno! La alegría también viene de Dios y crece cuando se comparte. Dar gracias es la oración más simple y una de las más lindas.', l: ['Lucas 17, 11-19', 'El que volvió para dar gracias'], o: ['gratitud', 'en-la-alegria', 'magnificat'], paso: 'Contale a alguien lo que te alegró hoy y agradecele a una persona que te hizo bien.' }
+  ];
+  const tarjetaLlegada = () => `<button class="llegada" data-a="ir:encuentro"><span class="llegada-ic" aria-hidden="true">🤍</span><span class="lema-txt"><small>Bienvenidos todos</small><strong>¿Cómo llegás hoy?</strong><em>Contale a Dios cómo estás</em></span><span class="flecha">›</span></button>`;
+  P.encuentro = () => `${titulo('¿Cómo llegás hoy?', 'Vengas como vengas, acá hay lugar para vos. Elegí lo que más se parece a tu día.')}
+    <div class="estados">${ESTADOS.map(e => `<button class="estado" style="--h:${e.h}" data-a="ir:estado:${e.id}"><span>${e.ico}</span><strong>${h(e.t)}</strong></button>`).join('')}</div>
+    <div class="aviso">Lo que elegís no se guarda ni se envía a ningún lado.</div>${pie()}`;
+  P.estado = id => { const e = ESTADOS.find(x => x.id === id); if (!e) return P.encuentro();
+    return `<section class="bienvenida" style="--h:${e.h}"><span class="bienvenida-ic" aria-hidden="true">${e.ico}</span><span class="eyebrow">${h(e.t)}</span><h1>Bienvenido.<br>Acá hay lugar para vos.</h1><p>${h(e.p)}</p></section>
+      <section class="card"><span class="eyebrow">📖 Para leer</span><h3>${h(e.l[0])}</h3><p class="small muted">${h(e.l[1])}.</p>${btn('Abrir la Biblia', 'ir:biblia', 'chico')}</section>
+      <h2 class="seccion">Para rezar ahora</h2>
+      <div class="lista">${e.o.map(o => oracion(o)).filter(Boolean).map(o => item('🙏', o.title, '', 'oracion:' + o.id)).join('')}</div>
+      <section class="card destacada"><span class="eyebrow">👣 Un paso para hoy</span><p class="gesto" style="margin-bottom:0">${h(e.paso)}</p></section>
+      <div class="fila">${btn('🤲 Pedir que recen por mí', 'pedirrezo', 'primario')}${btn('✍️ Escribirle a Dios', 'nota:nueva')}</div>
+      ${e.ayuda ? `<div class="alerta ayuda-crisis"><b>Si sentís que no podés más, pedí ayuda hoy mismo.</b> No estás solo. En la Argentina podés llamar gratis al <b>135</b> (CABA y Gran Buenos Aires) o al <b>0800 345 1435</b> (todo el país), Centro de Asistencia al Suicida. También podés hablar con un sacerdote o ir a la guardia más cercana.</div>` : ''}
+      ${pie()}`; };
 
   P.medios = () => `${titulo('Videos, Misa y radio', 'Transmisiones y programas de canales católicos oficiales. Se abren en YouTube o en el sitio de cada medio.')}
     <div class="chips">${['Todos', 'En vivo', 'Videos', 'Audios'].map(t => `<button class="chip ${t === medioTipo ? 'activo' : ''}" data-a="medio:${t}">${t}</button>`).join('')}</div>
@@ -1160,7 +1190,7 @@
     if (el.tagName === 'A') ev.preventDefault();
     const a = el.dataset.a, [cmd, ...resto] = a.split(':'), arg = resto.join(':');
     switch (cmd) {
-      case 'ir': ir(arg); break;
+      case 'ir': { const [pg, ...r] = arg.split(':'); ir(pg, r.length ? r.join(':') : undefined); break; }
       case 'atras': atras(); break;
       case 'url': N.abrirEnlace(arg); break;
       case 'oracion': ir('oracion', arg); break;
@@ -1223,6 +1253,7 @@
       case 'ytborrar': S.videos = (S.videos || []).filter(v => v.id !== arg); if (S.videoSel === arg) S.videoSel = null; guardar(); render(); break;
       case 'ytcomp': { const v = (S.videos || []).find(x => x.id === arg); if (v) { const r = await N.compartir(v.titulo, `${v.titulo}\n${v.url}\n\nCompartido desde Mi Fe Católica 🙏`); if (r === 'copiado') aviso('Enlace copiado'); } break; }
       case 'mini': if (arg === 'play') Repro.alternar(); else if (arg === 'sig') Repro.sig(); else Repro.cerrar(); break;
+      case 'pedirrezo': { const r = await N.compartir('¿Rezás por mí?', '🤲 ¿Podés rezar hoy por mí? Estoy pasando un momento en el que me haría bien tu oración. ¡Gracias!\n\n— Enviado desde Mi Fe Católica 🙏'); if (r === 'copiado') aviso('Texto copiado: mandáselo a quien quieras'); break; }
       case 'mgesto': { const m = mision(), k = claveDia(); if (m.hechos[k]) delete m.hechos[k]; else { m.hechos[k] = 1; aviso('¡Gracias por servir! Dios te lo pague 🙏'); } guardar(); render(); break; }
       case 'manuncio': await anunciar(arg); break;
       case 'historia': Repro.pausar(); pila.push({ p: 'historia', arg: Number(arg) }); renderHistoria(Number(arg)); break;

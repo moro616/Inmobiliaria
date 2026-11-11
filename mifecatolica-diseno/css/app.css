@@ -559,3 +559,21 @@ body.claro .paso-n { color: #fff; background: linear-gradient(180deg, #c09235, #
 .semana .ok i { background: linear-gradient(180deg, var(--gold2), var(--gold)); border-color: transparent; }
 .semana .hoy i { box-shadow: 0 0 0 3px rgba(230,195,111,.22); } .semana .hoy { color: var(--gold); }
 .paso .item { box-shadow: none; background: var(--bg2); }
+
+/* ---------- Encuentro: ¿Cómo llegás hoy? ---------- */
+.llegada { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 14px 16px; margin: 0 0 10px; border-radius: var(--r); color: var(--tx);
+  border: 1px solid rgba(143,179,240,.4); background: radial-gradient(120% 140% at 0 0, rgba(143,179,240,.22), transparent 60%), linear-gradient(150deg, var(--card2), var(--card)); box-shadow: var(--sombra); transition: transform .14s; }
+.llegada:active { transform: scale(.98); }
+.llegada-ic { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-size: 1.6em; background: linear-gradient(145deg, rgba(143,179,240,.35), rgba(143,179,240,.08)); border: 1px solid rgba(143,179,240,.35); }
+.llegada .lema-txt small { color: var(--accent); } .llegada .flecha { color: var(--accent); font-size: 1.5em; }
+.estados { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+.estado { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-height: 108px; padding: 14px; text-align: left; border-radius: 20px; color: var(--tx); border: 1px solid var(--line);
+  background: radial-gradient(130% 100% at 100% 0, hsl(var(--h) 70% 55% / .2), transparent 60%), var(--card); box-shadow: var(--sombra-suave); transition: transform .14s; }
+.estado:active { transform: scale(.97); }
+.estado span { font-size: 1.9em; line-height: 1; } .estado strong { font-size: .92em; line-height: 1.25; }
+.bienvenida { position: relative; border-radius: 28px; padding: 24px 20px 20px; margin: 4px 0 14px; border: 1px solid var(--line); box-shadow: var(--sombra);
+  background: radial-gradient(120% 90% at 100% 0, hsl(var(--h) 70% 55% / .3), transparent 60%), linear-gradient(160deg, var(--card2), var(--card)); }
+.bienvenida-ic { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font-size: 2em; margin-bottom: 12px; background: hsl(var(--h) 60% 50% / .25); border: 1px solid hsl(var(--h) 70% 65% / .35); }
+.bienvenida h1 { font-size: 1.5em; margin: 4px 0 12px; } .bienvenida p { font-family: var(--serif); font-size: 1.06em; line-height: 1.6; margin: 0; }
+.ayuda-crisis { margin-top: 14px; display: block; line-height: 1.5; }
+.papa-foto { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
