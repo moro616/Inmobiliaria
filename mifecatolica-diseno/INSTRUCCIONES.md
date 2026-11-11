@@ -39,8 +39,9 @@ qué está terminado, qué falta y cómo seguir.
 - Sección **¿Cómo llegás hoy?** (`ESTADOS`, `P.encuentro`, `P.estado` en `www/js/app.js`): la persona elige cómo se siente y recibe
   una palabra de aliento, una lectura, tres oraciones de la app y un paso concreto. Los textos son propios de la app, no citas.
   **Verificar** los teléfonos de ayuda que se muestran en «Estoy triste» y «Me siento solo» (135 y 0800 345 1435).
-- **Foto del Papa:** la pantalla «Vayan y anuncien» muestra `www/img/papa-leon.jpg` si ese archivo existe (hoy no existe y se ve una
-  pintura). Usar solo una foto con permiso o licencia libre.
+- **Foto del Papa:** `www/img/papa-leon.jpg` es «Pope Leo XIV on the loggia (cropped)», de Edgar Beltrán / The Pillar,
+  licencia CC BY-SA 4.0, bajada de Wikimedia Commons y recortada. El crédito se muestra al pie de la pantalla «Vayan y anuncien»
+  y hay que mantenerlo. `scripts/buscar_fotos.py` busca más fotos de licencia libre en Commons.
 - Recordatorios: aviso de prueba, detección de permisos, reprogramación al abrir la app.
 - **Voz nueva grabada** (Chatterbox Multilingual, licencia MIT):
   - Rosario y Coronilla completos: 35 de 35 audios, incluidas las Letanías.

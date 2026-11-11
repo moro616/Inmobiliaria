@@ -785,7 +785,7 @@
   const claveDia = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   const mision = () => (S.mision = S.mision || { hechos: {}, anuncios: 0, bienvenidas: 0 });
   function rachaMision() { const m = mision(), d = new Date(); let n = 0; if (!m.hechos[claveDia(d)]) d.setDate(d.getDate() - 1); while (m.hechos[claveDia(d)]) { n++; d.setDate(d.getDate() - 1); } return n; }
-  const tarjetaLema = () => `<button class="lema" data-a="ir:mision"><span class="lema-ic" aria-hidden="true">📣</span><span class="lema-txt"><small>Nuestro lema</small><strong>${LEMA.a}</strong><em>${LEMA.b}</em></span><span class="flecha">›</span></button>`;
+  const tarjetaLema = () => `<button class="lema" data-a="ir:mision"><span class="lema-ic lema-foto" aria-hidden="true"><img src="img/papa-leon.jpg" alt="" onerror="this.replaceWith('📣')"></span><span class="lema-txt"><small>El lema</small><strong>${LEMA.a}</strong><em>${LEMA.b}</em></span><span class="flecha">›</span></button>`;
   P.mision = () => {
     const m = mision(), hecho = !!m.hechos[claveDia()], gesto = GESTOS[diaDelAnio() % GESTOS.length], total = Object.keys(m.hechos).length, racha = rachaMision();
     const semana = Array.from({ length: 7 }, (_, k) => { const d = new Date(); d.setDate(d.getDate() - (6 - k)); return { l: 'DLMMJVS'[d.getDay()], ok: !!m.hechos[claveDia(d)], hoy: k === 6 }; });
@@ -804,7 +804,8 @@
       <section class="card paso"><div class="paso-cab"><span class="paso-n">3</span><div><h3>Vayan y anuncien</h3><small>Compartí la Buena Noticia</small></div></div>
         <p class="small muted">Elegí qué querés anunciar hoy y mandalo por WhatsApp o por donde quieras.</p>
         <div class="lista" style="margin:0">${item('✨', 'La frase del día', 'Un pensamiento de los santos', 'manuncio:frase')}${item('📖', 'El Evangelio de hoy', 'Con el enlace para leerlo', 'manuncio:evangelio')}${item('📿', 'Invitación al Rosario', 'Los misterios que se rezan hoy', 'manuncio:rosario')}${item('📣', 'El lema', LEMA.a + ' · ' + LEMA.b, 'manuncio:lema')}</div></section>
-      <div class="aviso">Tu avance se guarda solo en este teléfono. Nadie más lo ve: es entre vos y Dios.</div>${pie()}`;
+      <div class="aviso">Tu avance se guarda solo en este teléfono. Nadie más lo ve: es entre vos y Dios.</div>
+      <p class="credito-foto">Foto: el papa León XIV en el balcón de San Pedro, 8 de mayo de 2025. Edgar Beltrán / The Pillar, CC BY-SA 4.0 (recortada), vía Wikimedia Commons.</p>${pie()}`;
   };
   async function anunciar(que) {
     const t = hoy(), firma = '\n\n— Compartido desde Mi Fe Católica 🙏';

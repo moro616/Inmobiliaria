@@ -577,3 +577,10 @@ body.claro .paso-n { color: #fff; background: linear-gradient(180deg, #c09235, #
 .bienvenida h1 { font-size: 1.5em; margin: 4px 0 12px; } .bienvenida p { font-family: var(--serif); font-size: 1.06em; line-height: 1.6; margin: 0; }
 .ayuda-crisis { margin-top: 14px; display: block; line-height: 1.5; }
 .papa-foto { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+
+.mision-hero:has(.papa-foto) { padding-top: 250px; }
+.mision-hero:has(.papa-foto)::before { background: linear-gradient(180deg, rgba(6,12,24,0) 0%, rgba(6,12,24,.15) 40%, rgba(6,12,24,.85) 62%, rgba(6,12,24,.97) 80%); }
+.papa-foto { object-position: center top; }
+.lema-foto { overflow: hidden; padding: 0; border-radius: 50%; width: 58px; height: 58px; }
+.lema-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; transform: scale(1.9); transform-origin: 50% 30%; }
+.credito-foto { font-size: .66em; color: var(--tx2); text-align: center; margin: 0 8px 4px; opacity: .85; }
