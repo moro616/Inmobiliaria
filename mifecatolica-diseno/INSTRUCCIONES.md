@@ -42,6 +42,9 @@ qué está terminado, qué falta y cómo seguir.
 - **Foto del Papa:** `www/img/papa-leon.jpg` es «Pope Leo XIV on the loggia (cropped)», de Edgar Beltrán / The Pillar,
   licencia CC BY-SA 4.0, bajada de Wikimedia Commons y recortada. El crédito se muestra al pie de la pantalla «Vayan y anuncien»
   y hay que mantenerlo. `scripts/buscar_fotos.py` busca más fotos de licencia libre en Commons.
+- **Logo nuevo «Cruz y amanecer»:** `www/icon.svg` (se usa en la cabecera) y, en la carpeta `iconos/res/`, los PNG del ícono de la app
+  y de la pantalla de arranque con los mismos nombres y tamaños que en el proyecto Android. Para la versión oficial, copiarlos sobre
+  `android/app/src/main/res/`. Se regeneran con `node scripts/gen_iconos.js www/icon.svg <res original> <salida>`.
 - Recordatorios: aviso de prueba, detección de permisos, reprogramación al abrir la app.
 - **Voz nueva grabada** (Chatterbox Multilingual, licencia MIT):
   - Rosario y Coronilla completos: 35 de 35 audios, incluidas las Letanías.

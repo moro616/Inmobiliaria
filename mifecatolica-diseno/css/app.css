@@ -584,3 +584,6 @@ body.claro .paso-n { color: #fff; background: linear-gradient(180deg, #c09235, #
 .lema-foto { overflow: hidden; padding: 0; border-radius: 50%; width: 58px; height: 58px; }
 .lema-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; transform: scale(1.9); transform-origin: 50% 30%; }
 .credito-foto { font-size: .66em; color: var(--tx2); text-align: center; margin: 0 8px 4px; opacity: .85; }
+
+.marca .cruz.logo { background: none; overflow: hidden; padding: 0; box-shadow: 0 6px 16px -6px rgba(0,0,0,.7); }
+.marca .cruz.logo img { width: 100%; height: 100%; display: block; }

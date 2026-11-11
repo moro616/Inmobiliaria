@@ -1,5 +1,7 @@
 import sys, zipfile, struct, os
 src, www, out = sys.argv[1:4]
+extra = sys.argv[4] if len(sys.argv) > 4 else None  # carpeta con archivos que reemplazan a los del APK por su ruta (p. ej. res/mipmap-hdpi-v4/ic_launcher.png)
+cambiados_res = []
 zin = zipfile.ZipFile(src)
 zout = zipfile.ZipFile(out, 'w')
 replaced = set()
@@ -7,6 +9,7 @@ for zi in zin.infolist():
     n = zi.filename
     if n.startswith('META-INF/') and n.rsplit('.', 1)[-1] in ('SF', 'RSA', 'DSA', 'EC', 'MF'): continue
     data = zin.read(n)
+    if extra and os.path.exists(os.path.join(extra, n)): data = open(os.path.join(extra, n), 'rb').read(); cambiados_res.append(n)
     if n.startswith('assets/public/') and not n.endswith('/'):
         rel = n[len('assets/public/'):]
         p = os.path.join(www, rel)
@@ -40,4 +43,4 @@ for raiz, _, archivos in os.walk(www):
             z.compress_type = zipfile.ZIP_DEFLATED
         zout.writestr(z, data); nuevos.append(rel)
 zout.close()
-print('reemplazados:', len(replaced), 'nuevos:', nuevos)
+print('reemplazados:', len(replaced), 'recursos:', len(cambiados_res), 'nuevos:', nuevos)
