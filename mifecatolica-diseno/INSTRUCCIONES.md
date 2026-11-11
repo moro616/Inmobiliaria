@@ -16,6 +16,7 @@ qué está terminado, qué falta y cómo seguir.
 
 | Ruta | Qué es |
 |---|---|
+| `MiFeCatolica-3.0.0-final.apk` | La app compilada como quedó (firmada con clave de prueba). Sirve para instalar y probar, y como base de `scripts/repack.py` si no se tiene el proyecto original. |
 | `www/` | Carpeta web completa y actualizada. Es lo que hay que copiar sobre `www/` del proyecto Capacitor. |
 | `scripts/voz_nueva.py` | Graba la voz con Chatterbox, verifica cada frase con Whisper y regraba si no coincide. |
 | `scripts/integrar_voz.py` | Convierte los WAV a Opus, los copia a `www/audio/voz/` y genera `www/js/datos/voz.js`. |
@@ -33,6 +34,8 @@ qué está terminado, qué falta y cómo seguir.
 - Sección **Música**: 7 piezas propias sin internet, «Mis canciones» (archivos del teléfono, en IndexedDB),
   YouTube (pegando el enlace) y Spotify (reproductor embebido). Mini reproductor fijo.
 - **Frases de los Papas** en formato historia, con música de fondo.
+- Sección **Vayan y anuncien** (`P.mision`, `GESTOS`, `anunciar` en `www/js/app.js`): lema «Bienvenidos todos · Vayan y anuncien»,
+  gesto de servicio diario con racha semanal y botones para compartir la frase del día, el Evangelio y la invitación al Rosario.
 - Recordatorios: aviso de prueba, detección de permisos, reprogramación al abrir la app.
 - **Voz nueva grabada** (Chatterbox Multilingual, licencia MIT):
   - Rosario y Coronilla completos: 35 de 35 audios, incluidas las Letanías.

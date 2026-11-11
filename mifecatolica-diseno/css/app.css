@@ -530,3 +530,32 @@ body.letra-grande .hist-texto q, body.letra-muy-grande .hist-texto q { font-size
 .hist-texto small { display: block; margin-top: 14px; color: #f6dfa0; font-size: .8em; font-weight: 600; line-height: 1.4; opacity: 0; animation: palabra .6s ease 1.6s forwards; }
 .hist-acciones { display: flex; gap: 10px; position: relative; z-index: 3; }
 .hist-acciones .btn { flex: 1; background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: none; }
+
+/* ---------- Misión: Bienvenidos todos · Vayan y anuncien ---------- */
+.lema { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 14px 16px; margin: 0 0 6px; border-radius: var(--r); color: var(--tx);
+  border: 1px solid rgba(230,195,111,.45); background: radial-gradient(120% 140% at 0 0, rgba(230,195,111,.24), transparent 60%), linear-gradient(150deg, var(--card2), var(--card)); box-shadow: var(--sombra); transition: transform .14s; }
+.lema:active { transform: scale(.98); }
+.lema-ic { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 1.6em; background: linear-gradient(145deg, rgba(230,195,111,.35), rgba(230,195,111,.1)); border: 1px solid var(--line); }
+.lema-txt { flex: 1; min-width: 0; } .lema-txt small { display: block; color: var(--gold); font-size: .66em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.lema-txt strong { display: block; font-family: var(--serif); font-size: 1.12em; line-height: 1.2; } .lema-txt em { font-family: var(--serif); font-style: italic; color: var(--gold2); font-size: 1.02em; }
+.lema .flecha { color: var(--gold); font-size: 1.5em; }
+.mision-hero { position: relative; overflow: hidden; isolation: isolate; border-radius: 28px; padding: 130px 20px 20px; margin: 4px 0 14px; color: #fff; background: #0b1424; border: 1px solid rgba(230,195,111,.3); box-shadow: 0 18px 40px -18px rgba(0,0,0,.8); }
+.mision-img { position: absolute; inset: 0; z-index: -2; background-size: cover; background-position: center 30%; }
+.mision-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(6,12,24,.1), rgba(6,12,24,.55) 35%, rgba(6,12,24,.95) 75%); }
+.mision-hero .eyebrow { color: #f6dfa0; } .mision-hero h1 { font-size: 1.7em; margin: 4px 0 12px; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.6); } .mision-hero h1 em { color: #f6dfa0; }
+.mision-hero blockquote { margin: 0; padding-left: 12px; border-left: 3px solid #e6c36f; font-family: var(--serif); font-size: .95em; line-height: 1.45; color: #efe7d2; }
+.mision-hero cite { display: block; margin-top: 4px; font-style: normal; font-family: var(--sans); font-size: .78em; font-weight: 700; color: #f6dfa0; }
+.mision-resumen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.mision-resumen div { text-align: center; padding: 12px 6px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--sombra-suave); }
+.mision-resumen b { display: block; font-family: var(--serif); font-size: 1.6em; line-height: 1; color: var(--gold2); } .mision-resumen small { display: block; margin-top: 4px; font-size: .64em; color: var(--tx2); line-height: 1.2; }
+.paso-cab { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; } .paso-cab h3 { margin: 0; } .paso-cab small { color: var(--tx2); font-size: .76em; }
+.paso-n { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-family: var(--serif); font-weight: 700; font-size: 1.1em; color: #23180a; background: linear-gradient(180deg, var(--gold2), var(--gold)); }
+body.claro .paso-n { color: #fff; background: linear-gradient(180deg, #c09235, #93691a); }
+.paso.cumplido { border-color: rgba(111,207,151,.5); }
+.gesto { font-family: var(--serif); font-size: 1.12em; line-height: 1.5; margin: 4px 0 14px; padding: 14px; border-radius: 16px; background: var(--bg2); border: 1px solid var(--line2); }
+.semana { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 14px; }
+.semana span { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: .64em; font-weight: 700; color: var(--tx2); }
+.semana i { width: 100%; max-width: 36px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 1.3em; border: 1.5px solid var(--line); color: #23180a; }
+.semana .ok i { background: linear-gradient(180deg, var(--gold2), var(--gold)); border-color: transparent; }
+.semana .hoy i { box-shadow: 0 0 0 3px rgba(230,195,111,.22); } .semana .hoy { color: var(--gold); }
+.paso .item { box-shadow: none; background: var(--bg2); }

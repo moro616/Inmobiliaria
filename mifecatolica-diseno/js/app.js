@@ -134,13 +134,14 @@
     <div class="card"><span class="eyebrow">📖 Palabra de Dios</span><h3>${ev ? h(ev.titulo) : 'Evangelio del día'}</h3>
       <p class="small muted">Las lecturas de la Misa se consultan en Vatican News, la fuente oficial de la Santa Sede.</p>${btn('📖 Leer el Evangelio de hoy', 'ir:lecturas', 'ancho')}</div>
     ${(() => { const [f, i] = fraseDelDia(); return f ? `<button class="frase" data-a="frase:${i}" style="background-image:linear-gradient(180deg,rgba(5,10,23,.2),rgba(5,10,23,.88)),url(img/misterios/${IMGS[i % IMGS.length]}.webp);margin-bottom:16px"><span class="eyebrow" style="color:#f3d98f">Frase del día</span><q>${h(f.t)}</q><small>${h(f.a)}</small></button>` : ''; })()}
+    ${tarjetaLema()}
     <h2 class="seccion">Palabras de los Papas</h2>${filaHistorias()}
     <h2 class="seccion">Tu espacio de fe</h2><div class="grilla">
       ${[['🙏', 'Oraciones', 'Clásicas y para cada momento', 'oraciones'], ['🕯', 'Novenas', 'Nueve días de oración', 'novenas'], ['📖', 'Biblia', 'Palabra de Dios', 'biblia'],
         ['💙', 'Divina Misericordia', 'Coronilla guiada', 'rezar:coronilla'], ['✝', 'Vía Crucis', '14 estaciones', 'viacrucis'], ['📰', 'Noticias', 'Papa, Iglesia y Argentina', 'noticias'],
-        ['📅', 'Calendario', 'Santos y tiempos litúrgicos', 'calendario'], ['🎓', 'Formación', 'Aprender la fe', 'formacion'], ['🎶', 'Música', 'Para rezar y alabar', 'musica'], ['🕊️', 'Frases de los Papas', 'En formato historia', 'papas'], ['📺', 'Videos y radio', 'Misa y programas', 'medios'],
+        ['📅', 'Calendario', 'Santos y tiempos litúrgicos', 'calendario'], ['🎓', 'Formación', 'Aprender la fe', 'formacion'], ['🎶', 'Música', 'Para rezar y alabar', 'musica'], ['🕊️', 'Frases de los Papas', 'En formato historia', 'papas'], ['📣', 'Vayan y anuncien', 'Mi misión de hoy', 'mision'], ['📺', 'Videos y radio', 'Misa y programas', 'medios'],
         ['✍️', 'Cuaderno espiritual', 'Tus anotaciones', 'cuaderno'], ['📚', 'Biblioteca', 'Libros para leer', 'biblioteca'], ['✨', 'Frases', 'Pensamientos de santos', 'frases'], ['🌿', '30 días', 'Camino de oración', 'camino'], ['💛', 'Mis intenciones', 'Mis pedidos a Dios', 'intenciones'], ['⭐', 'Favoritas', 'Oraciones guardadas', 'favoritos']]
-        .map(([i, t, s, a], n) => `<button class="tile" style="--h:${[38, 268, 28, 212, 0, 200, 150, 248, 330, 300, 190, 22, 16, 45, 120, 48, 52][n % 17]}" data-a="${a.includes(':') ? a : 'ir:' + a}"><span class="sim">${i}</span><strong>${t}</strong><small>${s}</small></button>`).join('')}
+        .map(([i, t, s, a], n) => `<button class="tile" style="--h:${[38, 268, 28, 212, 0, 200, 150, 248, 330, 300, 190, 35, 22, 16, 45, 120, 48, 52][n % 18]}" data-a="${a.includes(':') ? a : 'ir:' + a}"><span class="sim">${i}</span><strong>${t}</strong><small>${s}</small></button>`).join('')}
     </div>${pie()}`;
   };
 
@@ -768,6 +769,57 @@
   }
   function cerrarHistoria() { detenerHistoria(); musicaHistoria(false); detenerVoz(); document.body.classList.remove('modo-rezo'); if (actual().p === 'historia') pila.pop(); if (!pila.length) pila = [{ p: 'inicio' }]; render(); }
 
+  /* ================= Misión: «Bienvenidos todos · Vayan y anuncien» ================= */
+  const LEMA = { a: 'Bienvenidos todos', b: 'Vayan y anuncien', cita: 'Vayan por todo el mundo, anuncien la Buena Noticia a toda la creación.', ref: 'Marcos 16, 15' };
+  const GESTOS = [
+    'Llamá o escribile a alguien que esté solo y preguntale cómo está.', 'Visitá a un enfermo o a una persona mayor de tu barrio.', 'Ofrecé tu ayuda en casa sin que te la pidan.',
+    'Rezá un Ave María por alguien que te cuesta querer.', 'Saludá con una sonrisa a quien atiende en el almacén, el colectivo o la calle.', 'Escuchá a alguien sin mirar el teléfono.',
+    'Compartí algo de comida con quien lo necesite.', 'Pedí perdón a quien hayas ofendido.', 'Perdoná de corazón una ofensa que venís guardando.', 'Agradecé en voz alta a alguien por lo que hace por vos.',
+    'Invitá a alguien a rezar con vos, aunque sea un Padre Nuestro.', 'Acercate a tu parroquia y preguntá en qué podés dar una mano.', 'Doná ropa o abrigo que ya no usás.', 'Acompañá a alguien que está pasando un duelo.',
+    'Hablá bien de alguien que no está presente.', 'Cedé el asiento, el lugar en la fila o el paso.', 'Contale a alguien algo bueno que Dios hizo en tu vida.', 'Enseñale una oración a un chico de tu familia.',
+    'Llevá una palabra de aliento a quien está sin trabajo.', 'Visitá a un vecino nuevo y dale la bienvenida.', 'Ofrecé un mate y un rato de charla a quien lo necesite.', 'Rezá por los que no creen y por los que se alejaron.',
+    'Colaborá con Cáritas o con el comedor de tu barrio.', 'Hacé las paces con un familiar con el que estás distanciado.', 'Cuidá un espacio común: juntá lo que otros tiraron.', 'Mandale un mensaje a tu catequista, tu cura o una religiosa para agradecerle.',
+    'Invitá a alguien a Misa este domingo.', 'Dedicale tiempo sin apuro a un abuelo o a una abuela.', 'Renunciá hoy a una queja y cambiala por un gracias.', 'Compartí el Evangelio de hoy con alguien de tu familia.', 'Recibí con paciencia a quien hoy te interrumpa: puede ser Jesús que pasa.'
+  ];
+  const diaDelAnio = (d = new Date()) => Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5);
+  const claveDia = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const mision = () => (S.mision = S.mision || { hechos: {}, anuncios: 0, bienvenidas: 0 });
+  function rachaMision() { const m = mision(), d = new Date(); let n = 0; if (!m.hechos[claveDia(d)]) d.setDate(d.getDate() - 1); while (m.hechos[claveDia(d)]) { n++; d.setDate(d.getDate() - 1); } return n; }
+  const tarjetaLema = () => `<button class="lema" data-a="ir:mision"><span class="lema-ic" aria-hidden="true">📣</span><span class="lema-txt"><small>Nuestro lema</small><strong>${LEMA.a}</strong><em>${LEMA.b}</em></span><span class="flecha">›</span></button>`;
+  P.mision = () => {
+    const m = mision(), hecho = !!m.hechos[claveDia()], gesto = GESTOS[diaDelAnio() % GESTOS.length], total = Object.keys(m.hechos).length, racha = rachaMision();
+    const semana = Array.from({ length: 7 }, (_, k) => { const d = new Date(); d.setDate(d.getDate() - (6 - k)); return { l: 'DLMMJVS'[d.getDay()], ok: !!m.hechos[claveDia(d)], hoy: k === 6 }; });
+    return `<section class="mision-hero"><div class="mision-img" style="background-image:url(img/misterios/luminosos-3.webp)" aria-hidden="true"></div>
+        <span class="eyebrow">Nuestro lema</span><h1>${LEMA.a}.<br><em>${LEMA.b}.</em></h1>
+        <blockquote>«${LEMA.cita}»<cite>${LEMA.ref}</cite></blockquote></section>
+      <p class="muted" style="margin:0 2px 16px">Una invitación a no quedarnos puertas adentro: recibir a todos, servir y llevar la fe con palabras y con gestos.</p>
+      <div class="mision-resumen"><div><b>${racha}</b><small>${racha === 1 ? 'día seguido' : 'días seguidos'}</small></div><div><b>${total}</b><small>gestos de servicio</small></div><div><b>${m.anuncios}</b><small>anuncios compartidos</small></div></div>
+      <section class="card paso"><div class="paso-cab"><span class="paso-n">1</span><div><h3>Bienvenidos todos</h3><small>Abrí la puerta: invitá a alguien</small></div></div>
+        <p class="small muted">En la Iglesia hay lugar para todos. Invitá a un amigo, un familiar o un vecino a rezar con vos.</p>
+        ${btn('🤝 Invitar a alguien a rezar', 'manuncio:bienvenida', 'ancho')}</section>
+      <section class="card paso ${hecho ? 'cumplido' : ''}"><div class="paso-cab"><span class="paso-n">2</span><div><h3>Servir</h3><small>El gesto de hoy</small></div></div>
+        <p class="gesto">${h(gesto)}</p>
+        <div class="semana">${semana.map(x => `<span class="${x.ok ? 'ok' : ''} ${x.hoy ? 'hoy' : ''}"><i>${x.ok ? '✓' : ''}</i>${x.l}</span>`).join('')}</div>
+        ${btn(hecho ? '✓ ¡Hecho! Gracias por servir' : '✋ Lo hice', 'mgesto', hecho ? 'ancho' : 'primario ancho')}</section>
+      <section class="card paso"><div class="paso-cab"><span class="paso-n">3</span><div><h3>Vayan y anuncien</h3><small>Compartí la Buena Noticia</small></div></div>
+        <p class="small muted">Elegí qué querés anunciar hoy y mandalo por WhatsApp o por donde quieras.</p>
+        <div class="lista" style="margin:0">${item('✨', 'La frase del día', 'Un pensamiento de los santos', 'manuncio:frase')}${item('📖', 'El Evangelio de hoy', 'Con el enlace para leerlo', 'manuncio:evangelio')}${item('📿', 'Invitación al Rosario', 'Los misterios que se rezan hoy', 'manuncio:rosario')}${item('📣', 'El lema', LEMA.a + ' · ' + LEMA.b, 'manuncio:lema')}</div></section>
+      <div class="aviso">Tu avance se guarda solo en este teléfono. Nadie más lo ve: es entre vos y Dios.</div>${pie()}`;
+  };
+  async function anunciar(que) {
+    const t = hoy(), firma = '\n\n— Compartido desde Mi Fe Católica 🙏';
+    let titulo = '', texto = '';
+    if (que === 'frase') { const [f] = fraseDelDia(); if (!f) return; titulo = 'Frase del día'; texto = `«${f.t}»\n— ${f.a}`; }
+    else if (que === 'evangelio') { titulo = 'Evangelio de hoy'; texto = `📖 ${S.evangelioCache && S.evangelioCache.titulo ? S.evangelioCache.titulo : 'Evangelio de hoy'}\n${F.evangelio.web}\n\n«${LEMA.cita}» (${LEMA.ref})`; }
+    else if (que === 'rosario') { const g = R.grupos[R.dias[t.w]]; titulo = 'Recemos el Rosario'; texto = `📿 Hoy se rezan los ${g.nombre}.\n¿Rezamos juntos el Rosario? Aunque sea una decena, cada uno desde su casa.`; }
+    else if (que === 'lema') { titulo = LEMA.a; texto = `${LEMA.a}. ${LEMA.b}.\n\n«${LEMA.cita}»\n${LEMA.ref}`; }
+    else { titulo = 'Te invito a rezar'; texto = '🤝 ¡Bienvenido! Te invito a rezar conmigo. No hace falta saber mucho: alcanza con un Padre Nuestro.\n\nEn la Iglesia hay lugar para todos.'; }
+    const r = await N.compartir(titulo, texto + firma);
+    if (!r) { aviso('No se pudo compartir.'); return; }
+    const m = mision(); if (que === 'bienvenida') m.bienvenidas++; m.anuncios++; guardar();
+    aviso(r === 'copiado' ? 'Texto copiado: pegalo donde quieras' : '¡Gracias por anunciar! 📣'); if (actual().p === 'mision') render();
+  }
+
   P.medios = () => `${titulo('Videos, Misa y radio', 'Transmisiones y programas de canales católicos oficiales. Se abren en YouTube o en el sitio de cada medio.')}
     <div class="chips">${['Todos', 'En vivo', 'Videos', 'Audios'].map(t => `<button class="chip ${t === medioTipo ? 'activo' : ''}" data-a="medio:${t}">${t}</button>`).join('')}</div>
     <div class="lista">${F.medios.filter(m => medioTipo === 'Todos' || m.tipo === medioTipo).map(m => item(m.icono, m.titulo, `${m.tipo} · ${m.desc}`, 'url:' + m.url)).join('')}</div>
@@ -797,7 +849,7 @@
       ['🕯', 'Novenas', 'Inmaculada, Navidad, Luján y más', 'ir:novenas'], ['✝', 'Vía Crucis', '14 estaciones', 'ir:viacrucis'], ['📖', 'La Biblia', 'El Libro del Pueblo de Dios', 'ir:biblia'],
       ['📜', 'Lecturas del día', 'Evangelio y liturgia', 'ir:lecturas'], ['📅', 'Calendario litúrgico', 'Santos, fiestas y colores', 'ir:calendario'], ['📰', 'Noticias', 'Papa, Iglesia y Argentina', 'ir:noticias'],
       ['📺', 'Videos, Misa y radio', 'Canales oficiales', 'ir:medios'], ['🎓', 'Formación católica', 'Mandamientos, sacramentos y más', 'ir:formacion'], ['🌿', '30 días de oración', 'Camino diario', 'ir:camino'],
-      ['🎶', 'Música', 'De la app, tus canciones, YouTube y Spotify', 'ir:musica'], ['🕊️', 'Frases de los Papas', 'Para rezar y compartir', 'ir:papas'], ['✍️', 'Cuaderno espiritual', 'Anotaciones personales', 'ir:cuaderno'], ['📚', 'Biblioteca', 'Lector estilo libro', 'ir:biblioteca'], ['✨', 'Galería de frases', 'Pensamientos de los santos', 'ir:frases'], ['💛', 'Mis intenciones', '', 'ir:intenciones'], ['⭐', 'Oraciones favoritas', '', 'ir:favoritos'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]]
+      ['🎶', 'Música', 'De la app, tus canciones, YouTube y Spotify', 'ir:musica'], ['🕊️', 'Frases de los Papas', 'Para rezar y compartir', 'ir:papas'], ['📣', 'Vayan y anuncien', 'Bienvenidos todos: servir y anunciar', 'ir:mision'], ['✍️', 'Cuaderno espiritual', 'Anotaciones personales', 'ir:cuaderno'], ['📚', 'Biblioteca', 'Lector estilo libro', 'ir:biblioteca'], ['✨', 'Galería de frases', 'Pensamientos de los santos', 'ir:frases'], ['💛', 'Mis intenciones', '', 'ir:intenciones'], ['⭐', 'Oraciones favoritas', '', 'ir:favoritos'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]]
       .map(([i, t, s, a]) => item(i, t, s, a)).join('')}</div>${pie()}`;
 
   /* ---------- Ajustes ---------- */
@@ -1171,6 +1223,8 @@
       case 'ytborrar': S.videos = (S.videos || []).filter(v => v.id !== arg); if (S.videoSel === arg) S.videoSel = null; guardar(); render(); break;
       case 'ytcomp': { const v = (S.videos || []).find(x => x.id === arg); if (v) { const r = await N.compartir(v.titulo, `${v.titulo}\n${v.url}\n\nCompartido desde Mi Fe Católica 🙏`); if (r === 'copiado') aviso('Enlace copiado'); } break; }
       case 'mini': if (arg === 'play') Repro.alternar(); else if (arg === 'sig') Repro.sig(); else Repro.cerrar(); break;
+      case 'mgesto': { const m = mision(), k = claveDia(); if (m.hechos[k]) delete m.hechos[k]; else { m.hechos[k] = 1; aviso('¡Gracias por servir! Dios te lo pague 🙏'); } guardar(); render(); break; }
+      case 'manuncio': await anunciar(arg); break;
       case 'historia': Repro.pausar(); pila.push({ p: 'historia', arg: Number(arg) }); renderHistoria(Number(arg)); break;
       case 'hist': {
         if (arg === 'cerrar') cerrarHistoria();
