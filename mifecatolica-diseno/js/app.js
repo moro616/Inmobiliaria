@@ -1127,8 +1127,8 @@
     <div class="card"><h3>📶 Sin internet</h3><p>Rosario, oraciones, novenas, Vía Crucis, formación y calendario funcionan sin conexión. Noticias, Biblia, lecturas y videos necesitan internet.</p></div>${pie()}`;
   P.privacidad = () => `${titulo('Privacidad', 'Tu oración es tuya.')}
     <div class="card"><p>Mi Fe Católica no tiene cuentas de usuario, no usa publicidad ni rastreadores y no envía tus datos a ningún servidor.</p>
-    <p>Se guardan <b>solo en tu teléfono</b>: tus ajustes, favoritos, intenciones y el avance de tus oraciones.</p>
-    <p>La app se conecta a internet únicamente para: mostrar titulares de noticias (Vatican News, Radio María Argentina), consultar el Evangelio del día, buscar actualizaciones de la app y abrir los sitios que vos elegís. Esos sitios tienen sus propias políticas de privacidad.</p>
+    <p>Se guardan <b>solo en tu teléfono</b>: tus ajustes, favoritos, intenciones, anotaciones, las canciones que agregues, tu camino de fe y el avance de tus oraciones. Lo que elegís en «¿Cómo llegás hoy?» no se guarda.</p>
+    <p>La app se conecta a internet únicamente para: mostrar titulares de noticias (Vatican News, Radio María Argentina), consultar el Evangelio del día, buscar actualizaciones de la app, abrir los sitios que vos elegís y, solo si entrás a esas pestañas de Música, mostrar los reproductores de YouTube y Spotify. Esos sitios tienen sus propias políticas de privacidad.</p>
     <p>Permisos: Internet; notificaciones (solo si activás recordatorios); instalar actualizaciones (solo cuando vos lo pedís).</p></div>${pie()}`;
   P.licencias = () => {
     const cr = window.__creditos || {};
