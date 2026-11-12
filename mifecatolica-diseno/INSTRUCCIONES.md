@@ -58,16 +58,16 @@ qué está terminado, qué falta y cómo seguir.
 - **Voz nueva grabada** (Chatterbox Multilingual, licencia MIT):
   - Rosario y Coronilla completos: 35 de 35 audios, incluidas las Letanías.
   - Frases de los Papas: 11 de 12.
-  - Oraciones: 59 de 95.
+  - Oraciones: 74 de 95.
 
 ## 4. Qué falta
 
-### 4.1 Voz: 96 audios sin grabar
+### 4.1 Voz: 81 audios sin grabar
 
 La lista exacta está en `_estado.json`, campo `faltan`:
 
-- 36 oraciones (identificador `oracion-<id>`). Una de ellas, `oracion-reginacaeli`, se grabó pero se
-  excluyó porque dos frases con «aleluya» salieron mal.
+- 21 oraciones (identificador `oracion-<id>`). Las excluidas por salir dudosas en el control están en `_estado.json`,
+  campo `excluidos_por_dudosos`: `oracion-reginacaeli`.
 - 14 estaciones del Vía Crucis (`via-1` a `via-14`).
 - 45 días de novenas (`novena-<id>-<día>`).
 - 1 frase papal (`papa-4`, «¡Duc in altum!»): se excluyó porque la voz leyó mal el latín. Escribirla como
