@@ -45,6 +45,15 @@ qué está terminado, qué falta y cómo seguir.
 - **Logo nuevo «Cruz y amanecer»:** `www/icon.svg` (se usa en la cabecera) y, en la carpeta `iconos/res/`, los PNG del ícono de la app
   y de la pantalla de arranque con los mismos nombres y tamaños que en el proyecto Android. Para la versión oficial, copiarlos sobre
   `android/app/src/main/res/`. Se regeneran con `node scripts/gen_iconos.js www/icon.svg <res original> <salida>`.
+- **Imágenes para compartir** (`P.tarjeta`, `dibujarTarjeta`, `compartirTarjeta`): arma una imagen 1080×1920 con la frase, el autor y el logo.
+  Para compartir el archivo usa `navigator.share` con archivos o, en la app nativa, `Nativo.compartirImagen`, que **necesita agregar el
+  plugin `@capacitor/filesystem`** al proyecto (`npm i @capacitor/filesystem && npx cap sync`). Sin ese plugin, la app ofrece
+  pantalla completa para sacar una captura.
+- **Guía para confesarse** (`P.confesion`, `EXAMEN`), **Chicos y familia** (`P.chicos`, `CHICOS`), **Mi camino de fe** (`P.logros`, `S.act`),
+  **Modo simple** (`inicioSimple`, `S.simple`, interruptor en Ajustes) y guía para meditar el Evangelio en `P.lecturas`.
+  Los textos del examen de conciencia y de las oraciones «de Mi Fe Católica» son propios: conviene que los revise un sacerdote.
+- **Fotos reales** en `www/img/fotos/`: `lujan.jpg` (Luis Argerich, CC BY 2.0) y `velas.jpg` (Narek Avetisyan, CC BY-SA 4.0),
+  de Wikimedia Commons. El crédito se muestra al pie de cada pantalla que las usa y hay que mantenerlo.
 - Recordatorios: aviso de prueba, detección de permisos, reprogramación al abrir la app.
 - **Voz nueva grabada** (Chatterbox Multilingual, licencia MIT):
   - Rosario y Coronilla completos: 35 de 35 audios, incluidas las Letanías.

@@ -131,6 +131,16 @@
     } catch (e) { return false; }
   }
 
+  /** Comparte una imagen (data URL). Requiere el plugin @capacitor/filesystem; si no está, devuelve false. */
+  async function compartirImagen(dataUrl, titulo, texto) {
+    try {
+      if (!(esNativo && P.Filesystem && P.Share)) return false;
+      const r = await P.Filesystem.writeFile({ path: 'mi-fe-catolica.jpg', data: String(dataUrl).split(',')[1], directory: 'CACHE' });
+      await P.Share.share({ title: titulo, text: texto, files: [r.uri], dialogTitle: 'Compartir imagen' });
+      return true;
+    } catch (e) { return false; }
+  }
+
   /* ---------- Recordatorios diarios (notificaciones locales) ---------- */
   const Recordatorios = {
     disponible() { return esNativo && !!P.LocalNotifications; },
@@ -197,5 +207,5 @@
     async abrirPermisoInstalar() { try { await P.Actualizador.abrirPermisoInstalar(); } catch (e) { } }
   };
 
-  root.Nativo = { esNativo, abrirTienda, Voz, Pantalla, abrirEnlace, descargarTexto, compartir, Recordatorios, infoApp, alBotonAtras, salir, estiloBarras, Actualizador };
+  root.Nativo = { esNativo, compartirImagen, abrirTienda, Voz, Pantalla, abrirEnlace, descargarTexto, compartir, Recordatorios, infoApp, alBotonAtras, salir, estiloBarras, Actualizador };
 })(window);

@@ -587,3 +587,34 @@ body.claro .paso-n { color: #fff; background: linear-gradient(180deg, #c09235, #
 
 .marca .cruz.logo { background: none; overflow: hidden; padding: 0; box-shadow: 0 6px 16px -6px rgba(0,0,0,.7); }
 .marca .cruz.logo img { width: 100%; height: 100%; display: block; }
+
+/* ---------- Banner con foto, confesión, chicos, hitos, tarjetas, modo simple ---------- */
+.banner-foto { position: relative; overflow: hidden; isolation: isolate; border-radius: 28px; padding: 140px 20px 20px; margin: 4px 0 16px; color: #fff; background-color: #0b1424; background-size: cover; background-position: center; border: 1px solid rgba(230,195,111,.3); box-shadow: 0 18px 40px -18px rgba(0,0,0,.8); }
+.banner-foto::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(6,12,24,.15), rgba(6,12,24,.6) 45%, rgba(6,12,24,.95) 80%); }
+.banner-foto .eyebrow { color: #f6dfa0; } .banner-foto h1 { color: #fff; margin: 4px 0 8px; font-size: 1.6em; text-shadow: 0 2px 12px rgba(0,0,0,.6); } .banner-foto p { margin: 0; color: #e9e2cf; font-size: .92em; }
+.bienvenida { overflow: hidden; padding-top: 130px; }
+.bienvenida-foto { position: absolute; left: 0; right: 0; top: 0; height: 150px; background-size: cover; background-position: center 60%; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent); opacity: .9; }
+.bienvenida-ic { position: relative; box-shadow: 0 0 0 4px var(--card); background-color: var(--card2); }
+.examen { margin: 6px 0 12px; padding-left: 1.2em; } .examen li { margin-bottom: 10px; line-height: 1.45; } .examen li::marker { color: var(--gold); }
+.pasos-conf { list-style: none; counter-reset: paso; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.pasos-conf li { counter-increment: paso; position: relative; padding: 14px 14px 14px 62px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--sombra-suave); font-size: .94em; line-height: 1.5; }
+.pasos-conf li::before { content: counter(paso); position: absolute; left: 14px; top: 14px; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-family: var(--serif); font-weight: 700; color: #23180a; background: linear-gradient(180deg, var(--gold2), var(--gold)); }
+body.claro .pasos-conf li::before { color: #fff; background: linear-gradient(180deg, #c09235, #93691a); }
+.chicos { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+.chico { border-radius: 24px; padding: 18px; border: 1px solid hsl(var(--h) 70% 65% / .35); background: radial-gradient(120% 100% at 100% 0, hsl(var(--h) 75% 55% / .22), transparent 60%), var(--card); box-shadow: var(--sombra-suave); }
+.chico h3 { margin-bottom: 8px; } .chico .texto-oracion { font-size: 1.14em; margin-bottom: 12px; } .chico small { color: var(--tx2); font-size: .72em; } .chico .fila > .btn { flex: 0 0 auto; }
+.hitos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+.hito { display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 18px; background: var(--card); border: 1px dashed var(--line); opacity: .55; }
+.hito span { font-size: 1.7em; filter: grayscale(1); } .hito strong { font-size: .9em; } .hito small { color: var(--tx2); font-size: .72em; line-height: 1.3; }
+.hito.ok { opacity: 1; border-style: solid; border-color: rgba(230,195,111,.5); background: radial-gradient(120% 100% at 100% 0, rgba(230,195,111,.2), transparent 60%), var(--card); } .hito.ok span { filter: none; }
+.tarjeta-marco { margin: 0 auto 14px; width: min(72%, 300px); aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden; background: var(--card); border: 1px solid var(--line); box-shadow: 0 20px 40px -18px rgba(0,0,0,.8); }
+.tarjeta-marco img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .3s; } .tarjeta-marco img.cargando { opacity: 0; }
+.tarjeta-full { position: fixed; inset: 0; z-index: 100; background: #000; display: grid; place-items: center; }
+.tarjeta-full img { max-width: 100%; max-height: 100%; }
+.simple { display: flex; flex-direction: column; gap: 14px; padding-top: 4px; }
+.simple-fecha { text-align: center; color: var(--gold); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .78em; margin: 0; }
+.simple-btn { display: flex; align-items: center; gap: 18px; width: 100%; min-height: 104px; padding: 16px 20px; text-align: left; border-radius: 26px; color: var(--tx); border: 1.5px solid rgba(230,195,111,.4); background: linear-gradient(150deg, var(--card2), var(--card)); box-shadow: var(--sombra); transition: transform .14s; }
+.simple-btn:active { transform: scale(.98); }
+.simple-btn > span:first-child { flex: none; width: 68px; height: 68px; border-radius: 22px; display: grid; place-items: center; font-size: 2.2em; background: linear-gradient(145deg, rgba(230,195,111,.3), rgba(230,195,111,.08)); border: 1px solid var(--line); }
+.simple-btn strong { display: block; font-family: var(--serif); font-size: 1.3em; line-height: 1.2; } .simple-btn small { color: var(--tx2); font-size: .86em; }
+.simple-salir { border: 0; background: none; color: var(--tx2); text-decoration: underline; padding: 10px; font-size: .84em; }
