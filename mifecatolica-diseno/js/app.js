@@ -160,9 +160,9 @@
     <h2 class="seccion">Tu espacio de fe</h2><div class="grilla">
       ${[['🙏', 'Oraciones', 'Clásicas y para cada momento', 'oraciones'], ['🕯', 'Novenas', 'Nueve días de oración', 'novenas'], ['📖', 'Biblia', 'Palabra de Dios', 'biblia'],
         ['💙', 'Divina Misericordia', 'Coronilla guiada', 'rezar:coronilla'], ['✝', 'Vía Crucis', '14 estaciones', 'viacrucis'], ['📰', 'Noticias', 'Papa, Iglesia y Argentina', 'noticias'],
-        ['📅', 'Calendario', 'Santos y tiempos litúrgicos', 'calendario'], ['🎓', 'Formación', 'Aprender la fe', 'formacion'], ['🎶', 'Música', 'Para rezar y alabar', 'musica'], ['🕊️', 'Frases de los Papas', 'En formato historia', 'papas'], ['📣', 'Vayan y anuncien', 'Mi misión de hoy', 'mision'], ['⛪', 'Confesión', 'Guía paso a paso', 'confesion'], ['🧒', 'Chicos y familia', 'Rezar con los más chicos', 'chicos'], ['🌱', 'Mi camino de fe', 'Tus días de oración', 'logros'], ['📺', 'Videos y radio', 'Misa y programas', 'medios'],
+        ['📅', 'Calendario', 'Santos y tiempos litúrgicos', 'calendario'], ['🎓', 'Formación', 'Aprender la fe', 'formacion'], ['🎶', 'Música', 'Para rezar y alabar', 'musica'], ['🕊️', 'Frases de los Papas', 'En formato historia', 'papas'], ['📣', 'Vayan y anuncien', 'Mi misión de hoy', 'mision'], ['⛪', 'Confesión', 'Guía paso a paso', 'confesion'], ['🧒', 'Chicos y familia', 'Rezar con los más chicos', 'chicos'], ['🌱', 'Mi camino de fe', 'Tus días de oración', 'logros'], ['📘', 'Crecer en la fe', 'Biblia, oración y Misa', 'crecer'], ['📺', 'Videos y radio', 'Misa y programas', 'medios'],
         ['✍️', 'Cuaderno espiritual', 'Tus anotaciones', 'cuaderno'], ['📚', 'Biblioteca', 'Libros para leer', 'biblioteca'], ['✨', 'Frases', 'Pensamientos de santos', 'frases'], ['🌿', '30 días', 'Camino de oración', 'camino'], ['💛', 'Mis intenciones', 'Mis pedidos a Dios', 'intenciones'], ['⭐', 'Favoritas', 'Oraciones guardadas', 'favoritos']]
-        .map(([i, t, s, a], n) => `<button class="tile" style="--h:${[38, 268, 28, 212, 0, 200, 150, 248, 330, 300, 190, 35, 280, 20, 140, 22, 16, 45, 120, 48, 52][n % 21]}" data-a="${a.includes(':') ? a : 'ir:' + a}"><span class="sim">${i}</span><strong>${t}</strong><small>${s}</small></button>`).join('')}
+        .map(([i, t, s, a], n) => `<button class="tile" style="--h:${[38, 268, 28, 212, 0, 200, 150, 248, 330, 300, 190, 35, 280, 20, 140, 215, 22, 16, 45, 120, 48, 52][n % 22]}" data-a="${a.includes(':') ? a : 'ir:' + a}"><span class="sim">${i}</span><strong>${t}</strong><small>${s}</small></button>`).join('')}
     </div>${pie()}`;
   };
 
@@ -997,6 +997,92 @@
     aviso('Este teléfono no deja compartir la imagen directo: usá «Pantalla completa» y sacá una captura.');
   }
 
+  /* ================= Crecer en la fe: guías prácticas, planes de lectura y silencio ================= */
+  // Textos propios de la app, escritos con sencillez. No reemplazan la catequesis ni el acompañamiento de un sacerdote.
+  const GUIAS = {
+    biblia: { ico: '📖', t: 'Aprender a leer la Biblia', s: 'Por dónde empezar y cómo no perderse', intro: 'La Biblia no es un libro para leer de corrido como una novela: es una biblioteca de 73 libros, escritos a lo largo de muchos siglos. No hace falta saber mucho para empezar. Hace falta empezar bien.',
+      pasos: [['Empezá por los Evangelios', 'Ahí está Jesús: lo que dijo y lo que hizo. El de Marcos es el más corto (16 capítulos) y el más fácil para arrancar. Después podés seguir con Lucas, Juan y los Hechos de los Apóstoles.'],
+        ['Aprendé a buscar una cita', '«Juan 3, 16» quiere decir: libro de Juan, capítulo 3, versículo 16. «Lucas 15, 11-32» es del versículo 11 al 32. A veces el libro va abreviado: Mt (Mateo), Mc (Marcos), Lc (Lucas), Jn (Juan).'],
+        ['Poco, pero todos los días', 'Diez minutos alcanzan. Es mejor un pasaje corto leído con atención que tres capítulos a las apuradas. Elegí una hora fija y un lugar tranquilo.'],
+        ['Antes de leer, rezá', 'Pedile al Espíritu Santo que te ayude a entender. La Biblia es una carta de Dios para vos: se lee de rodillas en el corazón.'],
+        ['Leé en cuatro pasos', 'Leer: ¿qué dice el texto? Meditar: ¿qué me dice a mí hoy? Rezar: ¿qué le respondo a Dios? Vivir: ¿qué gesto concreto me llevo? La Iglesia llama a este camino «lectio divina».'],
+        ['Si algo no se entiende, seguí', 'Hay páginas difíciles, sobre todo en el Antiguo Testamento. No te frenes: mirá las notas al pie, preguntale a un sacerdote o a tu catequista y seguí adelante. La Biblia se entiende mejor leída con la Iglesia.'],
+        ['Anotá lo que te toca', 'Una frase que te quedó, una pregunta, un propósito. Con el tiempo vas a tener tu propio camino escrito.']],
+      enlaces: [['🗓', 'Planes de lectura', 'Un capítulo por día, con tu avance', 'ir:planes'], ['🙏', 'Oración antes de leer la Biblia', '', 'oracion:antes-biblia'], ['📚', 'Abrir la Biblia', 'El Libro del Pueblo de Dios', 'ir:biblia'], ['✍️', 'Mi cuaderno', 'Anotar lo que me quedó', 'ir:cuaderno']] },
+    rezar: { ico: '🙏', t: 'Cómo rezar si no sé rezar', s: 'Cinco pasos para hablar con Dios', intro: 'Rezar es hablar con Alguien que te quiere. No hay palabras correctas ni hace falta sentir nada especial. Probá con estos cinco pasos; llevan cinco minutos.',
+      pasos: [['Frená', 'Buscá un lugar tranquilo, respirá hondo y hacé la señal de la Cruz. Decile: «Señor, acá estoy».'],
+        ['Decile gracias', 'Pensá en tres cosas buenas de hoy, aunque sean chicas: una comida, una persona, haber llegado hasta acá.'],
+        ['Pedile perdón', 'Contale con sencillez en qué no estuviste bien. Él ya lo sabe y no se asusta.'],
+        ['Pedile lo que necesitás', 'Por vos y por otros, con nombre y apellido. No hace falta explicarle todo: Él entiende.'],
+        ['Quedate un minuto en silencio', 'No digas nada. Dejate mirar por Dios. Terminá con un Padre Nuestro.']],
+      cierre: 'Vas a distraerte: le pasa a todo el mundo, también a los santos. Cuando te des cuenta, volvé con calma. Lo que cuenta es la constancia, no la perfección.',
+      enlaces: [['🤫', 'Cinco minutos de silencio', 'Con temporizador y música suave', 'ir:silencio'], ['🤍', '¿Cómo llegás hoy?', 'Una palabra según cómo estás', 'ir:encuentro'], ['🙏', 'Padre Nuestro', '', 'oracion:padrenuestro']] },
+    misa: { ico: '⛪', t: 'Vivir mejor la Misa', s: 'Qué pasa en cada parte y cómo participar', intro: 'La Misa es el encuentro más grande con Jesús: Él nos habla en su Palabra y se nos da en la Eucaristía. Entender sus partes ayuda a vivirla por dentro.',
+      pasos: [['Ritos iniciales', 'Nos reunimos como familia, pedimos perdón y alabamos a Dios con el Gloria. Llegá unos minutos antes para hacer silencio.'],
+        ['Liturgia de la Palabra', 'Dios nos habla: las lecturas, el salmo y el Evangelio. Después, la homilía, el Credo y la oración de los fieles. Ayuda mucho leer el Evangelio antes de ir.'],
+        ['Liturgia de la Eucaristía', 'Presentamos el pan y el vino. En la consagración se hacen presentes el Cuerpo y la Sangre de Cristo. Rezamos juntos el Padre Nuestro, nos damos la paz y comulgamos.'],
+        ['Rito de conclusión', 'El sacerdote nos bendice y nos envía: «Pueden ir en paz». La Misa termina y empieza la misión: llevar a Jesús a los demás.']],
+      cierre: 'Tres ideas simples: ofrecé la Misa por una intención concreta; si no podés comulgar, hacé una comunión espiritual; y al terminar quedate un minuto para dar gracias.',
+      enlaces: [['📜', 'Lecturas de hoy', 'Para leer antes de ir', 'ir:lecturas'], ['🙏', 'Comunión espiritual', '', 'oracion:comunion-espiritual'], ['🙏', 'Después de la comunión', '', 'oracion:despues-de-comulgar'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]] },
+    adoracion: { ico: '🕯', t: 'Rezar ante el Santísimo', s: 'Cómo hacer un rato de adoración', intro: 'En el sagrario y en la custodia está Jesús, realmente presente en la Eucaristía. Adorar es estar con Él. No hace falta hacer nada especial: alcanza con ir.',
+      pasos: [['Entrá en silencio', 'Hacé una genuflexión o inclinate ante el sagrario y buscá un lugar. Apagá el teléfono o ponelo en silencio.'],
+        ['Miralo y dejate mirar', 'Decile que creés que está ahí. Si no sentís nada, no importa: Él sí te ve.'],
+        ['Hablale con confianza', 'Contale tu día, tus miedos, tus alegrías. Presentale a las personas que querés.'],
+        ['Escuchá', 'Leé despacio un pasaje del Evangelio y quedate con una frase.'],
+        ['Quedate', 'Aunque sean cinco minutos. El tiempo delante del Señor nunca es tiempo perdido.']],
+      enlaces: [['🙏', 'Adoración al Santísimo', '', 'oracion:adoracion'], ['🙏', 'Ante el Santísimo', '', 'oracion:ante-el-santisimo'], ['🙏', 'Alma de Cristo', '', 'oracion:alma-de-cristo']] },
+    plan: { ico: '🗓', t: 'Un plan sencillo para cada día', s: 'Pequeños momentos que sostienen la fe', intro: 'La fe crece con hábitos chicos y fieles, no con grandes esfuerzos de vez en cuando. Este plan lleva pocos minutos por día. Empezá por uno solo y sumá de a poco.',
+      pasos: [['A la mañana: ofrecé el día', 'Antes de mirar el teléfono, un minuto: «Señor, te ofrezco este día».'],
+        ['Al mediodía: una pausa', 'El Ángelus o un Padre Nuestro, para acordarte de quién sos.'],
+        ['A la tarde: la Palabra o el Rosario', 'El Evangelio del día, o aunque sea un misterio del Rosario mientras caminás o viajás.'],
+        ['A la noche: repasá el día', 'Tres cosas para agradecer, una para pedir perdón y un propósito para mañana.'],
+        ['El domingo: la Misa', 'Es el centro de la semana. Si podés, andá con tu familia.'],
+        ['Una vez por mes: la confesión', 'Para empezar de nuevo con el corazón liviano.']],
+      enlaces: [['🙏', 'Ofrecimiento del día', '', 'oracion:ofrenda-dia'], ['🔔', 'El Ángelus', '', 'oracion:angelus'], ['🌙', 'Examen de conciencia para la noche', '', 'oracion:examen'], ['⛪', 'Guía para confesarte', '', 'ir:confesion'], ['🌱', 'Mi camino de fe', 'Tus días de oración', 'ir:logros']] }
+  };
+  const PLANES = [
+    { id: 'marcos', t: 'El Evangelio de Marcos', s: 'El más corto: ideal para empezar', re: /^(San )?Marcos|seg[uú]n (san )?Marcos/i },
+    { id: 'lucas', t: 'El Evangelio de Lucas', s: 'La misericordia de Jesús', re: /^(San )?Lucas|seg[uú]n (san )?Lucas/i },
+    { id: 'juan', t: 'El Evangelio de Juan', s: 'Para conocer el corazón de Jesús', re: /^(San )?Juan$|seg[uú]n (san )?Juan/i },
+    { id: 'hechos', t: 'Hechos de los Apóstoles', s: 'Cómo vivían los primeros cristianos', re: /Hechos/i },
+    { id: 'salmos', t: 'Diez salmos para rezar', s: 'Oraciones para cada estado del alma', re: /^Salmos?$/i, caps: [23, 51, 63, 91, 103, 121, 130, 139, 27, 8] }
+  ];
+  function capitulosPlan(pl) { const l = (window.MFC_BIBLIA || []).find(x => pl.re.test(x.n)); if (!l) return [];
+    const caps = pl.caps ? pl.caps.map(c => l.caps.find(([n]) => Number(n) === c)).filter(Boolean) : l.caps; return caps.map(([c, u]) => ({ c, u, libro: l.n })); }
+  const avancePlan = pl => { const caps = capitulosPlan(pl), hechos = (S.planes || {})[pl.id] || {}; return { caps, hechos, n: caps.filter(x => hechos[x.c]).length, sig: caps.find(x => !hechos[x.c]) }; };
+  P.crecer = () => { const act = PLANES.map(pl => ({ pl, a: avancePlan(pl) })).find(x => x.a.n > 0 && x.a.sig);
+    return `${titulo('Crecer en la fe', 'Ideas prácticas para fortalecer tu vínculo con Dios, paso a paso.')}
+      ${act ? `<button class="momento" data-a="ir:plan:${act.pl.id}"><span class="momento-ic" aria-hidden="true">📖</span><span class="lema-txt"><small>Seguí tu lectura</small><strong>${h(act.a.sig.libro)} ${act.a.sig.c}</strong><em>${act.a.n} de ${act.a.caps.length} · ${h(act.pl.t)}</em></span><span class="flecha">›</span></button>` : ''}
+      <div class="lista">${Object.entries(GUIAS).map(([k, g]) => item(g.ico, g.t, g.s, 'ir:guia:' + k)).join('')}${item('🗓', 'Planes de lectura de la Biblia', 'Un capítulo por día, con tu avance', 'ir:planes')}${item('🤫', 'Cinco minutos de silencio', 'Temporizador con música suave', 'ir:silencio')}${item('⛪', 'Guía para confesarte', 'Examen y paso a paso', 'ir:confesion')}${item('🧒', 'Rezar con los chicos', 'Oraciones para la familia', 'ir:chicos')}</div>
+      <div class="aviso">Son guías sencillas escritas para esta app. Para profundizar, acercate a tu parroquia: la fe se vive en comunidad.</div>${pie()}`; };
+  P.guia = k => { const g = GUIAS[k]; if (!g) return P.crecer();
+    return `${titulo(g.t, h(g.s))}<section class="card destacada"><p class="texto-oracion" style="font-size:1em;margin:0">${h(g.intro)}</p></section>
+      <ol class="pasos-conf">${g.pasos.map(([t, x]) => `<li><b>${h(t)}.</b> ${h(x)}</li>`).join('')}</ol>
+      ${g.cierre ? `<section class="card"><p style="margin:0">${h(g.cierre)}</p></section>` : ''}
+      <h2 class="seccion">Para seguir</h2><div class="lista">${g.enlaces.map(([i, t, s2, a]) => item(i, t, s2, a)).join('')}</div>${pie()}`; };
+  P.planes = () => `${titulo('Planes de lectura', 'Un capítulo por día. Marcá lo que vas leyendo y la app recuerda por dónde vas.')}
+    <div class="lista">${PLANES.map(pl => { const a = avancePlan(pl); if (!a.caps.length) return ''; const pct = Math.round(a.n / a.caps.length * 100);
+      return `<button class="plan-item" data-a="ir:plan:${pl.id}"><span class="txt"><strong>${h(pl.t)}</strong><small>${a.caps.length} días · ${h(pl.s)}</small><span class="progreso"><span style="width:${pct}%"></span></span></span><span class="plan-pct">${a.n === a.caps.length ? '✓' : pct + '%'}</span></button>`; }).join('')}</div>
+    <div class="lista">${item('📖', 'Cómo leer la Biblia', 'Consejos para empezar', 'ir:guia:biblia')}${item('🙏', 'Oración antes de leer la Biblia', '', 'oracion:antes-biblia')}</div>
+    <div class="aviso">Cada capítulo se abre en el sitio oficial de la Santa Sede (necesita internet). Tu avance se guarda solo en este teléfono.</div>${pie()}`;
+  P.plan = id => { const pl = PLANES.find(x => x.id === id); if (!pl) return P.planes(); const a = avancePlan(pl);
+    return `${titulo(pl.t, `${a.n} de ${a.caps.length} leídos`)}<div class="progreso"><div style="width:${a.caps.length ? a.n / a.caps.length * 100 : 0}%"></div></div>
+      ${a.sig ? `<section class="card destacada"><span class="eyebrow">Hoy te toca</span><h3>${h(a.sig.libro)} ${a.sig.c}</h3><div class="fila">${btn('📖 Leer', 'url:' + a.sig.u, 'primario')}${btn('✓ Ya lo leí', `plancap:${pl.id}:${a.sig.c}`)}</div></section>` : `<section class="card destacada"><h3>¡Terminaste este plan! 🎉</h3><p class="small muted">Podés elegir otro o volver a empezar cuando quieras.</p>${btn('Ver otros planes', 'ir:planes', 'primario ancho')}</section>`}
+      <div class="plan-caps">${a.caps.map((x, k) => `<div class="plan-cap ${a.hechos[x.c] ? 'ok' : ''}"><button class="plan-check" data-a="plancap:${pl.id}:${x.c}" aria-label="${a.hechos[x.c] ? 'Marcar como no leído' : 'Marcar como leído'}">${a.hechos[x.c] ? '✓' : ''}</button><button class="plan-leer" data-a="url:${h(x.u)}"><small>Día ${k + 1}</small><strong>${h(x.libro)} ${x.c}</strong></button></div>`).join('')}</div>
+      <div class="fila">${btn('✍️ Anotar lo que me quedó', 'nota:nueva', 'chico')}${btn('↺ Empezar de nuevo', 'planreset:' + pl.id, 'chico')}</div>${pie()}`; };
+
+  /* ---------- Cinco minutos de silencio ---------- */
+  const Sil = { total: 300, resta: 300, timer: null };
+  const fmtSil = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+  function detenerSilencio() { if (Sil.timer) { clearInterval(Sil.timer); Sil.timer = null; musicaHistoria(false); N.Pantalla.mantenerEncendida(false); } }
+  function pintarSilencio() { const t = $('#silTiempo'), b = $('#silBtn'), c = $('#silAro'); if (t) t.textContent = fmtSil(Sil.resta); if (b) b.textContent = Sil.timer ? '⏸ Pausar' : (Sil.resta < Sil.total && Sil.resta > 0 ? '▶ Seguir' : '▶ Empezar'); if (c) c.style.setProperty('--p', (1 - Sil.resta / Sil.total) * 100 + '%'); }
+  P.silencio = () => `${titulo('Un rato de silencio', 'Sentate cómodo, cerrá los ojos y dejá que Dios te mire. No hace falta decir nada.')}
+    <div class="chips" style="justify-content:center">${[3, 5, 10, 15].map(m => `<button class="chip ${Sil.total === m * 60 ? 'activo' : ''}" data-a="sil:min:${m}">${m} min</button>`).join('')}</div>
+    <div class="sil-aro" id="silAro" style="--p:${(1 - Sil.resta / Sil.total) * 100}%"><div><span id="silTiempo">${fmtSil(Sil.resta)}</span><small>«Señor, acá estoy»</small></div></div>
+    <div class="fila">${`<button class="btn primario" id="silBtn" data-a="sil:play">${Sil.timer ? '⏸ Pausar' : '▶ Empezar'}</button>`}${btn('↺ Reiniciar', 'sil:reset')}</div>
+    <label class="interruptor" for="silMus" style="margin-top:10px"><span class="int-txt"><span class="int-ico" aria-hidden="true">🎵</span><span><b>Música suave de fondo</b></span></span><input type="checkbox" id="silMus" ${S.musicaHist !== false ? 'checked' : ''}></label>
+    <div class="aviso">Si te distraés, volvé con una palabra corta: «Jesús», «Padre», «acá estoy». La pantalla queda encendida mientras dure.</div>${pie()}`;
+
   P.medios = () => `${titulo('Videos, Misa y radio', 'Transmisiones y programas de canales católicos oficiales. Se abren en YouTube o en el sitio de cada medio.')}
     <div class="chips">${['Todos', 'En vivo', 'Videos', 'Audios'].map(t => `<button class="chip ${t === medioTipo ? 'activo' : ''}" data-a="medio:${t}">${t}</button>`).join('')}</div>
     <div class="lista">${F.medios.filter(m => medioTipo === 'Todos' || m.tipo === medioTipo).map(m => item(m.icono, m.titulo, `${m.tipo} · ${m.desc}`, 'url:' + m.url)).join('')}</div>
@@ -1026,7 +1112,7 @@
       ['🕯', 'Novenas', 'Inmaculada, Navidad, Luján y más', 'ir:novenas'], ['✝', 'Vía Crucis', '14 estaciones', 'ir:viacrucis'], ['📖', 'La Biblia', 'El Libro del Pueblo de Dios', 'ir:biblia'],
       ['📜', 'Lecturas del día', 'Evangelio y liturgia', 'ir:lecturas'], ['📅', 'Calendario litúrgico', 'Santos, fiestas y colores', 'ir:calendario'], ['📰', 'Noticias', 'Papa, Iglesia y Argentina', 'ir:noticias'],
       ['📺', 'Videos, Misa y radio', 'Canales oficiales', 'ir:medios'], ['🎓', 'Formación católica', 'Mandamientos, sacramentos y más', 'ir:formacion'], ['🌿', '30 días de oración', 'Camino diario', 'ir:camino'],
-      ['🎶', 'Música', 'De la app, tus canciones, YouTube y Spotify', 'ir:musica'], ['🕊️', 'Frases de los Papas', 'Para rezar y compartir', 'ir:papas'], ['📣', 'Vayan y anuncien', 'Bienvenidos todos: servir y anunciar', 'ir:mision'], ['🤍', '¿Cómo llegás hoy?', 'Una palabra según cómo estás', 'ir:encuentro'], ['⛪', 'Guía para confesarte', 'Examen y paso a paso', 'ir:confesion'], ['🧒', 'Chicos y familia', 'Oraciones para los más chicos', 'ir:chicos'], ['🌱', 'Mi camino de fe', 'Días de oración e hitos', 'ir:logros'], ['✍️', 'Cuaderno espiritual', 'Anotaciones personales', 'ir:cuaderno'], ['📚', 'Biblioteca', 'Lector estilo libro', 'ir:biblioteca'], ['✨', 'Galería de frases', 'Pensamientos de los santos', 'ir:frases'], ['💛', 'Mis intenciones', '', 'ir:intenciones'], ['⭐', 'Oraciones favoritas', '', 'ir:favoritos'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]]
+      ['🎶', 'Música', 'De la app, tus canciones, YouTube y Spotify', 'ir:musica'], ['🕊️', 'Frases de los Papas', 'Para rezar y compartir', 'ir:papas'], ['📣', 'Vayan y anuncien', 'Bienvenidos todos: servir y anunciar', 'ir:mision'], ['🤍', '¿Cómo llegás hoy?', 'Una palabra según cómo estás', 'ir:encuentro'], ['⛪', 'Guía para confesarte', 'Examen y paso a paso', 'ir:confesion'], ['🧒', 'Chicos y familia', 'Oraciones para los más chicos', 'ir:chicos'], ['🌱', 'Mi camino de fe', 'Días de oración e hitos', 'ir:logros'], ['📘', 'Crecer en la fe', 'Aprender a leer la Biblia, rezar y vivir la Misa', 'ir:crecer'], ['✍️', 'Cuaderno espiritual', 'Anotaciones personales', 'ir:cuaderno'], ['📚', 'Biblioteca', 'Lector estilo libro', 'ir:biblioteca'], ['✨', 'Galería de frases', 'Pensamientos de los santos', 'ir:frases'], ['💛', 'Mis intenciones', '', 'ir:intenciones'], ['⭐', 'Oraciones favoritas', '', 'ir:favoritos'], ['⛪', 'Iglesias cerca de mí', 'Abre el mapa', 'url:' + F.enlaces.parroquias.url]]
       .map(([i, t, s, a]) => item(i, t, s, a)).join('')}</div>${pie()}`;
 
   /* ---------- Ajustes ---------- */
@@ -1271,6 +1357,7 @@
     const { p, arg } = actual();
     if (p === 'historia') { renderHistoria(arg); return; }
     detenerHistoria();
+    if (p !== 'silencio') detenerSilencio();
     if (p === 'rezo') { renderRezo(); return; }
     if (p === 'lector') { if (!lectorLibro) lectorLibro = LIBROS().find(b => b.id === arg); renderLector(); return; }
     document.body.classList.remove('modo-rezo');
@@ -1286,6 +1373,7 @@
     const rh = $('#recHora'); if (rh) rh.addEventListener('change', async () => { S.recordatorios.rosario = rh.value || '20:00'; guardar(); await programarRecordatorios(); render(); aviso('Te vamos a avisar a las ' + S.recordatorios.rosario); });
     const nj = $('#miNombreAj'); if (nj) nj.addEventListener('change', () => { S.nombre = nj.value.trim().slice(0, 30); guardar(); aviso(S.nombre ? 'Guardado. ¡Hola, ' + S.nombre + '!' : 'Nombre borrado'); });
     const mn = $('#miNombre'); if (mn) mn.addEventListener('keydown', e => { if (e.key === 'Enter') { S.nombre = mn.value.trim().slice(0, 30); if (S.nombre) { guardar(); render(); } } });
+    const sm2 = $('#silMus'); if (sm2) sm2.addEventListener('change', () => { S.musicaHist = sm2.checked; guardar(); if (Sil.timer) musicaHistoria(sm2.checked); });
     const sm = $('#simple'); if (sm) sm.addEventListener('change', () => { S.simple = sm.checked; guardar(); aviso(sm.checked ? 'Modo simple activado: miralo en Inicio' : 'Modo simple desactivado'); });
     const mu = $('#musica'); if (mu) mu.addEventListener('change', () => { S.musica = mu.checked; guardar(); });
     const vm = $('#volm'); if (vm) vm.addEventListener('input', () => { S.volMusica = Number(vm.value); guardar(); Sonido.volumen(S.volMusica); });
@@ -1312,7 +1400,7 @@
   }
 
   async function respaldo() {
-    const datos = { app: 'mi-fe-catolica', version: CFG.version, fecha: new Date().toISOString(), datos: { favoritos: S.favoritos, intenciones: S.intenciones, notas: S.notas, frasesFav: S.frasesFav, rosario: S.rosario, coronilla: S.coronilla, act: S.act, mision: S.mision, novenas: S.novenas, camino: S.camino, viacrucis: S.viacrucis, letra: S.letra, tema: S.tema, velocidad: S.velocidad } };
+    const datos = { app: 'mi-fe-catolica', version: CFG.version, fecha: new Date().toISOString(), datos: { favoritos: S.favoritos, intenciones: S.intenciones, notas: S.notas, frasesFav: S.frasesFav, rosario: S.rosario, coronilla: S.coronilla, act: S.act, mision: S.mision, planes: S.planes, novenas: S.novenas, camino: S.camino, viacrucis: S.viacrucis, letra: S.letra, tema: S.tema, velocidad: S.velocidad } };
     const r = await N.compartir('Respaldo Mi Fe Católica', JSON.stringify(datos));
     aviso(r === 'copiado' ? 'Respaldo copiado al portapapeles' : r ? 'Elegí dónde guardar el respaldo (por ejemplo, Drive o tu correo)' : 'No se pudo crear el respaldo');
   }
@@ -1329,7 +1417,7 @@
         if (Array.isArray(d.intenciones)) ok.intenciones = d.intenciones.filter(x => x && typeof x.texto === 'string').slice(0, 1000).map(x => ({ id: Number(x.id) || Date.now(), texto: x.texto.slice(0, 4000), fecha: String(x.fecha || '').slice(0, 10), ok: !!x.ok }));
         if (Array.isArray(d.notas)) ok.notas = d.notas.filter(x => x && typeof x.texto === 'string').slice(0, 5000).map(x => ({ id: Number(x.id) || Date.now(), titulo: String(x.titulo || '').slice(0, 200), texto: x.texto.slice(0, 20000), tipo: String(x.tipo || 'reflexion').slice(0, 20), fecha: String(x.fecha || '').slice(0, 12) }));
         if (Array.isArray(d.frasesFav)) ok.frasesFav = d.frasesFav.filter(Number.isInteger);
-        ['rosario', 'coronilla', 'novenas', 'act', 'mision'].forEach(k => { if (d[k] && typeof d[k] === 'object') ok[k] = d[k]; });
+        ['rosario', 'coronilla', 'novenas', 'act', 'mision', 'planes'].forEach(k => { if (d[k] && typeof d[k] === 'object') ok[k] = d[k]; });
         ['camino', 'viacrucis', 'velocidad'].forEach(k => { if (typeof d[k] === 'number') ok[k] = d[k]; });
         if (['normal', 'grande', 'muy-grande'].includes(d.letra)) ok.letra = d.letra; if (['claro', 'oscuro'].includes(d.tema)) ok.tema = d.tema;
         Object.assign(S, ok); guardar(); render(); aviso('Respaldo restaurado');
@@ -1412,6 +1500,17 @@
       case 'tarjetafull': { const im = $('#tarjetaImg'); if (!im || !im.src) break; const o = document.createElement('div'); o.className = 'tarjeta-full'; o.innerHTML = `<img src="${im.src}" alt="">`; o.addEventListener('click', () => o.remove()); document.body.appendChild(o); aviso('Sacá una captura de pantalla. Tocá la imagen para salir.'); break; }
       case 'examen': { examenEdad = arg; const y = window.scrollY; render(); window.scrollTo(0, y); break; }
       case 'nombre': { if (arg === 'no') S.sinNombre = true; else { const v = ($('#miNombre') || {}).value || ''; S.nombre = v.trim().slice(0, 30); if (!S.nombre) { aviso('Escribí tu nombre o tocá «Ahora no».'); break; } aviso('¡Hola, ' + S.nombre + '! 🙏'); } guardar(); render(); break; }
+      case 'plancap': { const [id, cap] = arg.split(':'); S.planes = S.planes || {}; const pl = S.planes[id] = S.planes[id] || {}; if (pl[cap]) delete pl[cap]; else { pl[cap] = 1; marcarDia(); aviso('¡Bien! Un capítulo más 📖'); } guardar(); const y = window.scrollY; render(); window.scrollTo(0, y); break; }
+      case 'planreset': if (confirm('¿Borrar el avance de este plan y empezar de nuevo?')) { if (S.planes) delete S.planes[arg]; guardar(); render(); } break;
+      case 'sil': {
+        const [que, v] = arg.split(':');
+        if (que === 'min') { detenerSilencio(); Sil.total = Sil.resta = Number(v) * 60; render(); }
+        else if (que === 'reset') { detenerSilencio(); Sil.resta = Sil.total; pintarSilencio(); }
+        else if (Sil.timer) { detenerSilencio(); pintarSilencio(); }
+        else { if (Sil.resta <= 0) Sil.resta = Sil.total; Repro.pausar(); musicaHistoria(true); N.Pantalla.mantenerEncendida(true);
+          Sil.timer = setInterval(() => { Sil.resta--; if (Sil.resta <= 0) { Sil.resta = 0; detenerSilencio(); marcarDia(); aviso('Terminó tu rato de silencio. Dios te bendiga 🙏'); } pintarSilencio(); }, 1000); pintarSilencio(); }
+        break;
+      }
       case 'simple': S.simple = arg === '1'; guardar(); render(); window.scrollTo(0, 0); break;
       case 'pedirrezo': { const r = await N.compartir('¿Rezás por mí?', '🤲 ¿Podés rezar hoy por mí? Estoy pasando un momento en el que me haría bien tu oración. ¡Gracias!\n\n— Enviado desde Mi Fe Católica 🙏'); if (r === 'copiado') aviso('Texto copiado: mandáselo a quien quieras'); break; }
       case 'mgesto': { const m = mision(), k = claveDia(); if (m.hechos[k]) delete m.hechos[k]; else { m.hechos[k] = 1; aviso('¡Gracias por servir! Dios te lo pague 🙏'); } guardar(); render(); break; }

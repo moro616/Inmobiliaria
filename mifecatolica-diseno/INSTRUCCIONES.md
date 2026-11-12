@@ -57,6 +57,9 @@ qué está terminado, qué falta y cómo seguir.
 - **Saludo personal y «Para este momento»** (`saludo`, `tarjetaNombre`, `momento`, `tarjetaMomento`): la app pide el nombre una vez
   (`S.nombre`, editable en Ajustes) y sugiere en Inicio una oración según la hora del día.
 - **Decisión del dueño:** la app es personal y sin servidores. No agregar cuentas, bases de datos ni funciones comunitarias.
+- **Crecer en la fe** (`GUIAS`, `P.crecer`, `P.guia`): guías propias para leer la Biblia, rezar, vivir la Misa, adorar y armar un plan diario.
+  **Planes de lectura** (`PLANES`, `P.planes`, `P.plan`, avance en `S.planes`) sobre el índice de `js/datos/biblia-indice.js`, y
+  **rato de silencio** con temporizador (`Sil`, `P.silencio`). Conviene que un sacerdote o catequista revise los textos de las guías.
 - Recordatorios: aviso de prueba, detección de permisos, reprogramación al abrir la app.
 - **Voz nueva grabada** (Chatterbox Multilingual, licencia MIT):
   - Rosario y Coronilla completos: 35 de 35 audios, incluidas las Letanías.
