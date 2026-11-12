@@ -119,8 +119,22 @@
   /* ================= Pantallas ================= */
   const P = {};
 
+  /* ---------- Saludo personal y oración sugerida según la hora ---------- */
+  const saludo = () => { const hh = new Date().getHours(), base = hh < 5 ? 'Buenas noches' : hh < 12 ? 'Buen día' : hh < 20 ? 'Buenas tardes' : 'Buenas noches'; return S.nombre ? `${base}, ${S.nombre}` : base; };
+  function momento() { const d = new Date(), m = d.getHours() * 60 + d.getMinutes(), tipo = R.dias[d.getDay()];
+    if (m >= 300 && m < 540) return ['🌅', 'Empezá el día con Dios', 'Ofrecimiento del día', 'oracion:ofrenda-dia'];
+    if (m >= 540 && m < 690) return ['📖', 'La Palabra de hoy', 'Evangelio y lecturas del día', 'ir:lecturas'];
+    if (m >= 690 && m < 780) return ['🔔', 'Es la hora del Ángelus', 'Un minuto con María al mediodía', 'oracion:angelus'];
+    if (m >= 780 && m < 885) return ['🍞', 'Bendecí la mesa', 'Bendición de los alimentos', 'oracion:bendicion'];
+    if (m >= 885 && m < 960) return ['💙', 'Hora de la Misericordia', 'Coronilla guiada, a las 15 h', 'rezar:coronilla'];
+    if (m >= 960 && m < 1200) return ['📿', 'Un rato con María', 'Hoy: ' + R.grupos[tipo].nombre, 'rezar:' + tipo];
+    if (m >= 1200 && m < 1350) return ['🌙', 'Repasá tu día con Dios', 'Examen de conciencia para la noche', 'oracion:examen'];
+    return ['😴', 'Descansá en Dios', 'Oración de la noche', 'oracion:descanso']; }
+  const tarjetaMomento = () => { const [i, t, s2, a] = momento(); return `<button class="momento" data-a="${a}"><span class="momento-ic" aria-hidden="true">${i}</span><span class="lema-txt"><small>Para este momento</small><strong>${h(t)}</strong><em>${h(s2)}</em></span><span class="flecha">›</span></button>`; };
+  const tarjetaNombre = () => S.nombre || S.sinNombre ? '' : `<section class="card pedir-nombre"><h3>¿Cómo te llamás?</h3><p class="small muted">Así la app te saluda por tu nombre. Queda guardado solo en este teléfono.</p>
+    <div class="yt-fila"><input class="buscar" id="miNombre" maxlength="30" autocomplete="given-name" placeholder="Tu nombre">${btn('Listo', 'nombre:guardar', 'primario chico')}</div><button class="simple-salir" data-a="nombre:no">Ahora no</button></section>`;
   function inicioSimple() { const t = hoy(), tipo = R.dias[t.w];
-    return `<div class="simple"><p class="simple-fecha">${h(fechaLarga())}</p>
+    return `<div class="simple"><p class="simple-fecha">${h(fechaLarga())}</p><h1 class="simple-saludo">${h(saludo())}</h1>
       ${[['📿', 'Rezar el Rosario', 'Hoy: ' + R.grupos[tipo].nombre, 'rezar:' + tipo], ['🤍', '¿Cómo llegás hoy?', 'Contale a Dios cómo estás', 'ir:encuentro'], ['🙏', 'Oraciones', 'Para cada momento', 'ir:oraciones'], ['📖', 'Evangelio de hoy', 'Las lecturas del día', 'ir:lecturas'], ['🎶', 'Música', 'Para rezar y alabar', 'ir:musica']]
         .map(([i, t2, s2, a]) => `<button class="simple-btn" data-a="${a}"><span>${i}</span><span><strong>${h(t2)}</strong><small>${h(s2)}</small></span></button>`).join('')}
       ${btn('Ver todo lo que tiene la app', 'ir:explorar', 'ancho')}<button class="simple-salir" data-a="simple:0">Volver a la pantalla de inicio completa</button></div>${pie()}`; }
@@ -131,8 +145,9 @@
     const ev = S.evangelioCache && S.evangelioCache.fecha === li.fecha ? S.evangelioCache : null;
     const upd = window.__actualizacion;
     return `${upd ? `<div class="card destacada"><span class="eyebrow">Nueva versión disponible</span><h3>Mi Fe Católica ${h(upd.versionName)}</h3><p class="small muted">${h(upd.notes || '').slice(0, 200)}</p>${btn('Ver actualización', 'ir:actualizar', 'primario ancho')}</div>` : ''}
-    <div class="hero"><div class="hero-img" style="background-image:url(img/misterios/${tipo}-1.webp)" aria-hidden="true"></div><div class="hero-fecha">${h(fechaLarga())}</div><h1>Un momento con Dios cambia tu día</h1>
+    <div class="hero"><div class="hero-img" style="background-image:url(img/misterios/${tipo}-1.webp)" aria-hidden="true"></div><div class="hero-fecha">${h(fechaLarga())}</div><h1>${h(saludo())}</h1><p class="hero-lema">Un momento con Dios cambia tu día.</p>
       <p>Hoy rezamos los <b>${h(g.nombre)}</b>.</p>${btn('📿 Rezar el Rosario de hoy', 'rezar:' + tipo, 'primario ancho')}</div>
+    ${tarjetaNombre()}${tarjetaMomento()}
     <div class="card liturgia-hoy" style="--lc:${li.colorHex}"><div class="dia-liturgico"><div class="franja" style="background:${li.colorHex}"></div><div>
       <span class="eyebrow">Calendario litúrgico · hoy</span><h3>${h(cel && cel.rango !== 'ML' ? cel.nombre : li.titulo)}</h3>
       <p class="small muted">${h(cel && cel.rango !== 'ML' ? li.titulo + ' · ' + cel.rangoNombre : (cel ? 'Memoria libre: ' + cel.nombre : li.tiempo))}<br>Color: ${h(li.color)} · Ciclo ${h(li.cicloDominical)}</p>
@@ -1032,7 +1047,7 @@
     if (e && alguno && e.permiso !== 'granted') problemas.push(`<div class="alerta"><b>Las notificaciones están bloqueadas.</b> Sin ese permiso los recordatorios no pueden llegar.${btn('Permitir notificaciones', 'recpermiso', 'chico primario')}</div>`);
     if (e && alguno && e.exacto && e.exacto !== 'granted') problemas.push(`<div class="alerta"><b>Falta permitir «Alarmas y recordatorios».</b> Sin ese permiso Android puede atrasar o no mostrar el aviso.${btn('Abrir permiso', 'recexacto', 'chico primario')}</div>`);
     return `${titulo('Ajustes', 'Adaptá la app a tu gusto.')}
-    <section class="card aj">${interruptor('simple', '🔠', 'Modo simple', 'Inicio con pocos botones grandes, ideal para personas mayores', S.simple)}</section>
+    <section class="card aj"><label class="lbl" for="miNombreAj" style="margin-top:0">Tu nombre (para saludarte)</label><input class="buscar" id="miNombreAj" maxlength="30" value="${h(S.nombre || '')}" placeholder="Tu nombre" style="margin-bottom:8px">${interruptor('simple', '🔠', 'Modo simple', 'Inicio con pocos botones grandes, ideal para personas mayores', S.simple)}</section>
     <section class="card aj">${cabAjuste('🎨', 'Apariencia', 'Tamaño de letra y colores')}
       <label class="lbl">Tamaño de letra</label>
       <div class="segmentado letras">${[['normal', 'Normal', 'a1'], ['grande', 'Grande', 'a2'], ['muy-grande', 'Muy grande', 'a3']].map(([k, v, c]) => `<button class="${S.letra === k ? 'activo' : ''}" data-a="letra:${k}"><span class="aa ${c}">Aa</span>${v}</button>`).join('')}</div>
@@ -1269,6 +1284,8 @@
     if (p === 'ajustes' && N.Recordatorios.disponible()) refrescarEstadoRec();
     ['recRos', 'recAng', 'recMis'].forEach(id => { const el = $('#' + id); if (el) el.addEventListener('change', () => cambiarRecordatorio(id, el.checked)); });
     const rh = $('#recHora'); if (rh) rh.addEventListener('change', async () => { S.recordatorios.rosario = rh.value || '20:00'; guardar(); await programarRecordatorios(); render(); aviso('Te vamos a avisar a las ' + S.recordatorios.rosario); });
+    const nj = $('#miNombreAj'); if (nj) nj.addEventListener('change', () => { S.nombre = nj.value.trim().slice(0, 30); guardar(); aviso(S.nombre ? 'Guardado. ¡Hola, ' + S.nombre + '!' : 'Nombre borrado'); });
+    const mn = $('#miNombre'); if (mn) mn.addEventListener('keydown', e => { if (e.key === 'Enter') { S.nombre = mn.value.trim().slice(0, 30); if (S.nombre) { guardar(); render(); } } });
     const sm = $('#simple'); if (sm) sm.addEventListener('change', () => { S.simple = sm.checked; guardar(); aviso(sm.checked ? 'Modo simple activado: miralo en Inicio' : 'Modo simple desactivado'); });
     const mu = $('#musica'); if (mu) mu.addEventListener('change', () => { S.musica = mu.checked; guardar(); });
     const vm = $('#volm'); if (vm) vm.addEventListener('input', () => { S.volMusica = Number(vm.value); guardar(); Sonido.volumen(S.volMusica); });
@@ -1394,6 +1411,7 @@
       case 'tarjetatexto': { const d = tarjetaDatos; if (d) { const r = await N.compartir('Mi Fe Católica', `«${d.texto}»${d.autor ? '\n— ' + d.autor : ''}\n\n— Compartido desde Mi Fe Católica 🙏`); if (r === 'copiado') aviso('Texto copiado'); } break; }
       case 'tarjetafull': { const im = $('#tarjetaImg'); if (!im || !im.src) break; const o = document.createElement('div'); o.className = 'tarjeta-full'; o.innerHTML = `<img src="${im.src}" alt="">`; o.addEventListener('click', () => o.remove()); document.body.appendChild(o); aviso('Sacá una captura de pantalla. Tocá la imagen para salir.'); break; }
       case 'examen': { examenEdad = arg; const y = window.scrollY; render(); window.scrollTo(0, y); break; }
+      case 'nombre': { if (arg === 'no') S.sinNombre = true; else { const v = ($('#miNombre') || {}).value || ''; S.nombre = v.trim().slice(0, 30); if (!S.nombre) { aviso('Escribí tu nombre o tocá «Ahora no».'); break; } aviso('¡Hola, ' + S.nombre + '! 🙏'); } guardar(); render(); break; }
       case 'simple': S.simple = arg === '1'; guardar(); render(); window.scrollTo(0, 0); break;
       case 'pedirrezo': { const r = await N.compartir('¿Rezás por mí?', '🤲 ¿Podés rezar hoy por mí? Estoy pasando un momento en el que me haría bien tu oración. ¡Gracias!\n\n— Enviado desde Mi Fe Católica 🙏'); if (r === 'copiado') aviso('Texto copiado: mandáselo a quien quieras'); break; }
       case 'mgesto': { const m = mision(), k = claveDia(); if (m.hechos[k]) delete m.hechos[k]; else { m.hechos[k] = 1; aviso('¡Gracias por servir! Dios te lo pague 🙏'); } guardar(); render(); break; }

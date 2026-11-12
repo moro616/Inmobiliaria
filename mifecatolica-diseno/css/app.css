@@ -618,3 +618,13 @@ body.claro .pasos-conf li::before { color: #fff; background: linear-gradient(180
 .simple-btn > span:first-child { flex: none; width: 68px; height: 68px; border-radius: 22px; display: grid; place-items: center; font-size: 2.2em; background: linear-gradient(145deg, rgba(230,195,111,.3), rgba(230,195,111,.08)); border: 1px solid var(--line); }
 .simple-btn strong { display: block; font-family: var(--serif); font-size: 1.3em; line-height: 1.2; } .simple-btn small { color: var(--tx2); font-size: .86em; }
 .simple-salir { border: 0; background: none; color: var(--tx2); text-decoration: underline; padding: 10px; font-size: .84em; }
+
+/* ---------- Saludo y «Para este momento» ---------- */
+.hero-lema { margin: -2px 0 6px; color: #f6dfa0 !important; font-family: var(--serif); font-style: italic; }
+.momento { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 14px 16px; margin: 0 0 14px; border-radius: var(--r); color: var(--tx);
+  border: 1px solid rgba(230,195,111,.45); background: radial-gradient(120% 140% at 100% 0, rgba(230,195,111,.22), transparent 60%), linear-gradient(150deg, var(--card2), var(--card)); box-shadow: var(--sombra); transition: transform .14s; }
+.momento:active { transform: scale(.98); }
+.momento-ic { flex: none; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; font-size: 1.8em; background: linear-gradient(145deg, rgba(230,195,111,.35), rgba(230,195,111,.1)); border: 1px solid var(--line); }
+.momento .flecha { color: var(--gold); font-size: 1.5em; }
+.pedir-nombre h3 { margin-bottom: 4px; } .pedir-nombre .simple-salir { display: block; margin: 0 auto; }
+.simple-saludo { text-align: center; margin: 0 0 4px; font-size: 1.5em; }

@@ -54,6 +54,9 @@ qué está terminado, qué falta y cómo seguir.
   Los textos del examen de conciencia y de las oraciones «de Mi Fe Católica» son propios: conviene que los revise un sacerdote.
 - **Fotos reales** en `www/img/fotos/`: `lujan.jpg` (Luis Argerich, CC BY 2.0) y `velas.jpg` (Narek Avetisyan, CC BY-SA 4.0),
   de Wikimedia Commons. El crédito se muestra al pie de cada pantalla que las usa y hay que mantenerlo.
+- **Saludo personal y «Para este momento»** (`saludo`, `tarjetaNombre`, `momento`, `tarjetaMomento`): la app pide el nombre una vez
+  (`S.nombre`, editable en Ajustes) y sugiere en Inicio una oración según la hora del día.
+- **Decisión del dueño:** la app es personal y sin servidores. No agregar cuentas, bases de datos ni funciones comunitarias.
 - Recordatorios: aviso de prueba, detección de permisos, reprogramación al abrir la app.
 - **Voz nueva grabada** (Chatterbox Multilingual, licencia MIT):
   - Rosario y Coronilla completos: 35 de 35 audios, incluidas las Letanías.
